@@ -4,7 +4,7 @@ Der SE2-Projekt Ordner mit allen nötigen Libaries und der vorgesehenen Ordnerst
 
 Setup
 =====
-1.  Eclipse Lune EE (normales Luna reicht nicht) herunterladen und starten.
+1.  Eclipse Luna EE (normales Luna reicht nicht) herunterladen und starten.
 2.  Clone diese Reposity oder lade die Zip-Datei herunter.
 3.  In Eclipse: File -> Import -> Existing Project into Workspace -> 
 4.  "Select Root Directory" anwählen
