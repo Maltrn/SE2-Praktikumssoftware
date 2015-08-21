@@ -13,5 +13,5 @@ Setup
 
 Tutorials
 =========
-1.  Spring MVC -> https://www.youtube.com/watch?v=iCQspqBpOB0
+1.  Spring MVC -> https://github.com/jnk111/SpringMVCTutorial
 2.  AngularJS -> https://github.com/jnk111/AngularTutorialGithubViewer
