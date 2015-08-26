@@ -2,6 +2,11 @@
 
 Der SE2-Projekt Ordner mit allen nötigen Libaries und der vorgesehenen Ordnerstruktur.
 
+Aktuell
+=======
+Front end hochgeladen:
+http://bit.ly/1JwbrTr (haw-pub)
+
 Setup
 =====
 1.  Eclipse Luna EE (normales Luna reicht nicht) herunterladen und starten.
