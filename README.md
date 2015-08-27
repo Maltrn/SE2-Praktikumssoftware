@@ -4,8 +4,8 @@ Der SE2-Projekt Ordner mit allen nötigen Libaries und der vorgesehenen Ordnerst
 
 Aktuell
 =======
-Front end hochgeladen:
-http://bit.ly/1JwbrTr (haw-pub)
+Teile des Frontend zum Projekt hinzugefügt.
+Ausprobieren (Host: HAW-Pub) -> http://bit.ly/1JwbrTr
 
 Setup
 =====
