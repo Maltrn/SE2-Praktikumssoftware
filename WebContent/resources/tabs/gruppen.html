@@ -14,7 +14,7 @@
               <!--Table start-->
               <div class="row">
                 <div class="col-md-6">
-                  <select class="selectpicker col-md-12">
+                  <select class="selectpicker" data-width="100%">
                     <option>Semester wählen...</option>
                     <option>1</option>
                     <option>2</option>
@@ -24,7 +24,7 @@
                   </select>
                 </div>
                 <div class="col-md-6">
-                  <select class="selectpicker col-md-12">
+                  <select class="selectpicker" data-width="100%">
                     <option>Fachbereich wählen...</option>
                     <option>AI</option>
                     <option>TI</option>
@@ -35,7 +35,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <br>
-                  <select class="selectpicker col-md-12">
+                  <select class="selectpicker" data-width="100%">
                     <option>Tag wählen...</option>
                     <option>Montag</option>
                     <option>Dienstag</option>
@@ -46,7 +46,7 @@
                 </div>
                 <div class="col-md-6">
                   <br>
-                  <select class="selectpicker col-md-12">
+                  <select class="selectpicker" data-width="100%">
                     <option>Gruppe wählen...</option>
                     <option>1</option>
                     <option>2</option>
@@ -120,10 +120,12 @@
               </div>
               <div class="row">
                 <div class="col-sm-12">
-                  <button type="button" class="btn btn-block" data-toggle="modal" data-target="#gruppeErstellen" data-toggle="tooltip" ng-click="openModal()">
+                  <button type="button" class="btn btn-my-block" data-toggle="modal" data-target="#gruppeErstellen" data-toggle="tooltip" ng-click="openModal()">
                     <span class="glyphicon glyphicon-plus"></span>
                   </button>
-                  <div ng-include="getGruppeErstellen()"></div>
+                  <div ng-include="getGruppeErstellen()">
+
+                  </div>
                 </div>
               </div>
             </div>

@@ -4,8 +4,8 @@ Der SE2-Projekt Ordner mit allen nötigen Libaries und der vorgesehenen Ordnerst
 
 Aktuell
 =======
-Teile des Frontend zum Projekt hinzugefügt. <br />
-Demo Frontend only (Host: HAW-Pub) -> http://bit.ly/1JwbrTr (irgendwas als login eingeben).
+Front end hochgeladen:
+http://bit.ly/1JwbrTr (haw-pub)
 
 Setup
 =====

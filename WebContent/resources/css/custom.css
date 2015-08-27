@@ -95,6 +95,7 @@
     transform: translate3d(0, 40%, 0);
 }
 
+
 .modal-dialog  {
   width:30%;
 }
@@ -126,9 +127,51 @@
  }
 
  /* align icon */
- .left-addon .glyphicon  { left:  15px;}
- .right-addon .glyphicon { right: 15px;}
+ .left-addon .glyphicon  {
+   left:  15px;
+ }
+
+ .right-addon .glyphicon {
+   right: 15px;
+ }
 
  /* add padding  */
- .left-addon input  { padding-left:  30px; }
- .right-addon input { padding-right: 30px; }
+ .left-addon input  {
+   padding-left:  30px;
+ }
+
+ .right-addon input {
+   padding-right: 30px;
+ }
+
+ .strike {
+     display: block;
+     text-align: center;
+     overflow: hidden;
+     white-space: nowrap;
+ }
+
+ .strike > span {
+     position: relative;
+     display: inline-block;
+ }
+
+ .strike > span:before,
+ .strike > span:after {
+     content: "";
+     position: absolute;
+     top: 50%;
+     width: 9999px;
+     height: 1px;
+     background: #E8E8E8;
+ }
+
+ .strike > span:before {
+     right: 100%;
+     margin-right: 15px;
+ }
+
+ .strike > span:after {
+     left: 100%;
+     margin-left: 15px;
+ }
