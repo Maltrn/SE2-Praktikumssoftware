@@ -32,4 +32,12 @@ public class LoginController
 		mv.addObject("welcomeMessage", WELCOME);
 		return mv;
 	}
+	
+	@RequestMapping(value="/main", method = RequestMethod.POST)
+	protected ModelAndView openMainPage()
+	{
+		ModelAndView mv = new ModelAndView("main");
+		mv.addObject("welcomeMessage", WELCOME);
+		return mv;
+	}
 }

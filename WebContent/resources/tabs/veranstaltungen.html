@@ -1,0 +1,127 @@
+<div class="row">
+  <br>
+  <div class="col-md-10 col-md-offset-1">
+    <div class="panel panel-info">
+      <br>
+      <div class="panel-body">
+        <!--ContentPane start-->
+        <div class="col-md-10 col-md-offset-1">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h2><strong>Veranstaltungsübersicht</strong></h2>
+            </div>
+            <div class="panel-body">
+              <!--Table start-->
+              <div class="row">
+                <div class="col-md-6">
+                  <select class="selectpicker col-md-12">
+                    <option>Semester wählen...</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <select class="selectpicker col-md-12">
+                    <option>Fachbereich wählen...</option>
+                    <option>AI</option>
+                    <option>TI</option>
+                    <option>WI</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <br>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Fach</th>
+                        <th>Dozent</th>
+                        <th>Assistent</th>
+                        <th>Anz. Teilnehmer</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>GKAP</td>
+                        <td>Padberg</td>
+                        <td>Oelker</td>
+                        <td>60 / 80</td>
+                        <td>
+                          <button type="button" class="btn btn-info pull-right btn-xs" data-toggle="modal" data-target="#modalBearbeiten" data-toggle="tooltip" ng-click="openModal()" title="Veranstaltung Bearbeiten">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                          </button>
+                          <div ng-include="getModalEdit()"></div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>ADP</td>
+                        <td>Kleine</td>
+                        <td>Blank</td>
+                        <td>50 / 80</td>
+                        <td>
+                          <button type="button" class="btn btn-info pull-right btn-xs" data-toggle="modal" data-target="#modalBearbeiten" data-toggle="tooltip" ng-click="openModal()" title="Veranstaltung Bearbeiten">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                          </button>
+                          <div ng-include="getModalEdit()"></div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>BSP</td>
+                        <td>Huebner</td>
+                        <td></td>
+                        <td>50 / 80</td>
+                        <td>
+                          <button type="button" class="btn btn-info pull-right btn-xs" data-toggle="modal" data-target="#modalBearbeiten" data-toggle="tooltip" ng-click="openModal()" title="Veranstaltung Bearbeiten">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                          </button>
+                          <div ng-include="getModalEdit()"></div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>SEP</td>
+                        <td></td>
+                        <td></td>
+                        <td>0 / 80</td>
+                        <td>
+                          <button type="button" class="btn btn-info pull-right btn-xs" data-toggle="modal" data-target="#modalBearbeiten" data-toggle="tooltip" ng-click="openModal()" title="Veranstaltung Bearbeiten">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                          </button>
+                          <div ng-include="getModalEdit()"></div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>BWP</td>
+                        <td>Gerken</td>
+                        <td></td>
+                        <td>50 / 80</td>
+                        <td>
+                          <button type="button" class="btn btn-info pull-right btn-xs" data-toggle="modal" data-target="#modalBearbeiten" data-toggle="tooltip" ng-click="openModal()" title="Veranstaltung Bearbeiten">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                          </button>
+                          <div ng-include="getModalEdit()"></div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <button type="button" class="btn btn-block" data-toggle="modal" data-target="#modalErstellen" data-toggle="tooltip" ng-click="openModal()" title="Veranstaltung Bearbeiten">
+                    <span class="glyphicon glyphicon-plus"></span>
+                  </button>
+                  <div ng-include="getModalNew()"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--ContentPane end-->
+    </div>
+  </div>
+</div>
