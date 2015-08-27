@@ -13,14 +13,19 @@
     var news = "news";
     var praktika = "praktika";
     var gruppen = "gruppen";
-    var noten = "noten";
-    var pvl = "pvl";
+    var leistungen = "leistungen";
     var meldungen = "meldungen";
     var datenim = "datenim";
     var datenex = "datenex";
+    var tmUebersicht = "tmUebersicht";
 
 
     // Model-Defintion
+
+    $scope.switchToTmUebersicht = function(){
+      $scope.viewToggle = tmUebersicht;
+    }
+
     $scope.getGruppeErstellen = function(){
       return "resources/popups/modal_gruppe_erstellen.html";
     }
@@ -31,6 +36,14 @@
     $scope.getModalNew = function(){
       return "resources/popups/modal_veranstaltung_erstellen.html";
     }
+    
+    $scope.getModalPVL = function(){
+        return "resources/popups/modal_pvl.html";
+      }
+
+      $scope.getModalNote = function(){
+        return "resources/popups/modal_note.html";
+      }
 
     $scope.viewToggle = null;
 
@@ -45,12 +58,8 @@
       $scope.viewToggle = meldungen;
     }
 
-    $scope.switchToPVL = function(){
-      $scope.viewToggle = pvl;
-    }
-
-    $scope.switchToNoten = function(){
-      $scope.viewToggle = noten;
+    $scope.switchToLeistungen = function(){
+      $scope.viewToggle = leistungen;
     }
 
     $scope.switchToProfile = function(){

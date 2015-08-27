@@ -17,6 +17,7 @@
                     <span class="glyphicon glyphicon-search"></span>
                     <input type="text" class="form-control" placeholder="Filtern - Name oder Matrikelnr eingeben..." />
                 </div>
+              </div>
               <div class="row">
                 <div class="col-md-12">
                   <br>
@@ -36,12 +37,12 @@
                         <td>Mustermann1</td>
                         <td>1</td>
                         <td>
-                          <button type="button" class="btn btn-my-default btn-sm pull-right" data-toggle="tooltip" title="Details anzeigen">
+                          <button type="button" class="btn btn-my-default btn-sm pull-right" data-placement="bottom" title="Details anzeigen" onmouseenter="$(this).tooltip('show')">
                             <span class="glyphicon glyphicon-user"></span>
                           </button>
                         </td>
                         <td>
-                          <button type="button" class="btn btn-my-default btn-sm" data-toggle="tooltip" title="Teilnehmer aus Kurs entfernen">
+                          <button type="button" class="btn btn-my-default btn-sm" data-placement="bottom" title="Teilnehmer aus Kurs entfernen" onmouseenter="$(this).tooltip('show')">
                             <span class="glyphicon glyphicon-minus"></span>
                           </button>
                         </td>
@@ -51,12 +52,12 @@
                           <td>Mustermann2</td>
                           <td>4</td>
                           <td>
-                            <button type="button" class="btn btn-my-default btn-sm pull-right" data-toggle="tooltip" title="Details anzeigen">
+                            <button type="button" class="btn btn-my-default btn-sm pull-right" data-placement="bottom" title="Details anzeigen" onmouseenter="$(this).tooltip('show')">
                               <span class="glyphicon glyphicon-user"></span>
                             </button>
                           </td>
                           <td>
-                            <button type="button" class="btn btn-my-default btn-sm" data-toggle="tooltip" title="Teilnehmer aus Kurs entfernen">
+                            <button type="button" class="btn btn-my-default btn-sm" data-placement="bottom" title="Teilnehmer aus Kurs entfernen" onmouseenter="$(this).tooltip('show')">
                               <span class="glyphicon glyphicon-minus"></span>
                             </button>
                           </td>
@@ -67,12 +68,12 @@
                           <td>Mustermann3</td>
                           <td>2</td>
                           <td>
-                            <button type="button" class="btn btn-my-default btn-sm pull-right" data-toggle="tooltip" title="Details anzeigen">
+                            <button type="button" class="btn btn-my-default btn-sm pull-right" data-placement="bottom" title="Details anzeigen" onmouseenter="$(this).tooltip('show')">
                               <span class="glyphicon glyphicon-user"></span>
                             </button>
                           </td>
                           <td>
-                            <button type="button" class="btn btn-my-default btn-sm" data-toggle="tooltip" title="Teilnehmer aus Kurs entfernen">
+                            <button type="button" class="btn btn-my-default btn-sm" data-placement="bottom" title="Teilnehmer aus kurz entfernen" onmouseenter="$(this).tooltip('show')">
                               <span class="glyphicon glyphicon-minus"></span>
                             </button>
                           </td>
@@ -83,12 +84,12 @@
                           <td>Mustermann1</td>
                           <td>3</td>
                           <td>
-                            <button type="button" class="btn btn-my-default btn-sm pull-right" data-toggle="tooltip" title="Details anzeigen">
+                            <button type="button" class="btn btn-my-default btn-sm pull-right" data-placement="bottom" title="Details anzeigen" onmouseenter="$(this).tooltip('show')">
                               <span class="glyphicon glyphicon-user"></span>
                             </button>
                           </td>
                           <td>
-                            <button type="button" class="btn btn-my-default btn-sm" data-toggle="tooltip" title="Teilnehmer aus Kurs entfernen">
+                            <button type="button" class="btn btn-my-default btn-sm" data-placement="bottom" title="Teilnehmer aus Kurs entfernen" onmouseenter="$(this).tooltip('show')">
                               <span class="glyphicon glyphicon-minus"></span>
                             </button>
                           </td>
@@ -97,12 +98,12 @@
                   </table>
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <button type="button" class="btn btn-my-block btn-md" data-toggle="tooltip" title="Zurück zur Gruppenübersicht">
-                  <span class="glyphicon glyphicon-fast-backward"></span>
-                </button>
+              <div class="row">
+                <div class="col-md-12">
+                  <button type="button" class="btn btn-my-block btn-md" data-placement="bottom" title="Zurück zur Gruppenübersicht" onmouseenter="$(this).tooltip('show')" ng-click="switchToGruppen()">
+                    <span class="glyphicon glyphicon-fast-backward"></span>
+                  </button>
+                </div>
               </div>
             </div>
           </div>

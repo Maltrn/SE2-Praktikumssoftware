@@ -1,0 +1,167 @@
+<div class="row">
+  <br>
+  <div class="col-md-10 col-md-offset-1">
+    <div class="panel panel-info">
+      <br>
+      <div class="panel-body">
+        <!--ContentPane start-->
+        <div class="col-md-10 col-md-offset-1">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h2><strong>Leistungen</strong><small> - ADP</small></h2>
+            </div>
+            <div class="panel-body">
+              <!--Table start-->
+              <div class="row">
+                <div class="col-md-6">
+                  <select class="selectpicker" data-width="100%">
+                    <option>Fach wählen...</option>
+                    <option>GKAP</option>
+                    <option>ADP</option>
+                    <option>BSP</option>
+                    <option>BWP</option>
+                    <option>SEP</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <select class="selectpicker" data-width="100%">
+                    <option>Gruppe wählen...</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                  </select>
+                </div>
+              </div>
+              <br />
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="strike text-muted">
+                     <span><h5>und / oder</h5></span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12 inner-addon right-addon">
+                    <span class="glyphicon glyphicon-search"></span>
+                    <input type="text" class="form-control" placeholder="Filtern - Name oder Matrikelnr eingeben..." />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <br>
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Matrikelnr.</th>
+                        <th>Vorname</th>
+                        <th>Nachname</th>
+                        <th>Kurs</th>
+                        <th>Gruppe</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>2431441</td>
+                        <td>Max</td>
+                        <td>Mustermann1</td>
+                        <td>GKAP</td>
+                        <td>1</td>
+                        <td>
+                          <button type="button" class="btn btn-my-default btn-sm pull-right" data-toggle="modal" data-target="#modalPVL" data-placement="bottom" title="PVL eintragen" onmouseenter="$(this).tooltip('show')">
+                            <span class="glyphicon glyphicon-check"></span>
+                          </button>
+                          <div ng-include="getModalPVL()">
+
+                          </div>
+                        </td>
+                        <td>
+                          <button type="button" class="btn btn-my-default btn-sm" data-toggle="modal" data-target="#modalNote" data-placement="bottom" title="Note eintragen" onmouseenter="$(this).tooltip('show')">
+                            <span class="glyphicon glyphicon-edit"></span>
+                          </button>
+                          <div ng-include="getModalNote()">
+
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>2431441</td>
+                        <td>Max</td>
+                        <td>Mustermann1</td>
+                        <td>GKAP</td>
+                        <td>1</td>
+                        <td>
+                          <button type="button" class="btn btn-my-default btn-sm pull-right" data-toggle="modal" data-target="#modalPVL" data-placement="bottom" title="PVL eintragen" onmouseenter="$(this).tooltip('show')">
+                            <span class="glyphicon glyphicon-check"></span>
+                          </button>
+                        </td>
+                        <div ng-include="getModalPVL()">
+
+                        </div>
+                        <td>
+                          <button type="button" class="btn btn-my-default btn-sm" data-toggle="modal" data-target="#modalNote" data-placement="bottom" title="Note eintragen" onmouseenter="$(this).tooltip('show')">
+                            <span class="glyphicon glyphicon-edit"></span>
+                          </button>
+                          <div ng-include="getModalNote()">
+
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>2431441</td>
+                        <td>Max</td>
+                        <td>Mustermann1</td>
+                        <td>GKAP</td>
+                        <td>1</td>
+                        <td>
+                          <button type="button" class="btn btn-my-default btn-sm pull-right" data-toggle="modal" data-target="#modalPVL" data-placement="bottom" title="PVL eintragen" onmouseenter="$(this).tooltip('show')">
+                            <span class="glyphicon glyphicon-check"></span>
+                          </button>
+                          <div ng-include="getModalPVL()">
+
+                          </div>
+                        </td>
+                        <td>
+                          <button type="button" class="btn btn-my-default btn-sm" data-toggle="modal" data-target="#modalNote" data-placement="bottom" title="Note eintragen" onmouseenter="$(this).tooltip('show')">
+                            <span class="glyphicon glyphicon-edit"></span>
+                          </button>
+                          <div ng-include="getModalNote()">
+
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>2431441</td>
+                        <td>Max</td>
+                        <td>Mustermann1</td>
+                        <td>GKAP</td>
+                        <td>1</td>
+                        <td>
+                          <button type="button" class="btn btn-my-default btn-sm pull-right" data-toggle="modal" data-target="#modalPVL" data-placement="bottom" title="PVL eintragen" onmouseenter="$(this).tooltip('show')">
+                            <span class="glyphicon glyphicon-check"></span>
+                          </button>
+                          <div ng-include="getModalPVL()">
+
+                          </div>
+                        </td>
+                        <td>
+                          <button type="button" class="btn btn-my-default btn-sm"  data-toggle="modal" data-target="#modalNote" data-placement="bottom" title="Note eintragen" onmouseenter="$(this).tooltip('show')">
+                            <span class="glyphicon glyphicon-edit"></span>
+                          </button>
+                          <div ng-include="getModalNote()">
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--ContentPane end-->
+    </div>
+  </div>
+</div>

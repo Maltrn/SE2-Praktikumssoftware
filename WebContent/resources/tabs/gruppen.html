@@ -81,7 +81,7 @@
                         <td>0660</td>
                         <td>6 / 10</td>
                         <td>
-                          <button type="button" class="btn btn-block btn-xs" data-toggle="tooltip" title="Weiter zur Teilnehmerübersicht">
+                          <button type="button" class="btn btn-my-default btn-sm" data-placement="bottom" title="Weiter zur Teilnehmerübersicht" onmouseenter="$(this).tooltip('show')" ng-click="switchToTmUebersicht()">
                             <span class="glyphicon glyphicon-chevron-right"></span>
                           </button>
                         </td>
@@ -95,7 +95,7 @@
                         <td>0660</td>
                         <td>3 / 10</td>
                         <td>
-                          <button type="button" class="btn btn-block btn-xs" data-toggle="tooltip" title="Weiter zur Teilnehmerübersicht">
+                          <button type="button" class="btn btn-my-default btn-sm" data-placement="bottom" title="Weiter zur Teilnehmerübersicht" onmouseenter="$(this).tooltip('show')" ng-click="switchToTmUebersicht()">
                             <span class="glyphicon glyphicon-chevron-right"></span>
                           </button>
                         </td>
@@ -109,7 +109,7 @@
                         <td>0660</td>
                         <td>3 / 10</td>
                         <td>
-                          <button type="button" class="btn btn-block btn-xs" data-toggle="tooltip" title="Weiter zur Teilnehmerübersicht">
+                          <button type="button" class="btn btn-my-default btn-sm" data-placement="bottom" title="Weiter zur Teilnehmerübersicht" onmouseenter="$(this).tooltip('show')" ng-click="switchToTmUebersicht()">
                             <span class="glyphicon glyphicon-chevron-right"></span>
                           </button>
                         </td>
@@ -120,11 +120,10 @@
               </div>
               <div class="row">
                 <div class="col-sm-12">
-                  <button type="button" class="btn btn-my-block" data-toggle="modal" data-target="#gruppeErstellen" data-toggle="tooltip" ng-click="openModal()">
+                  <button type="button" class="btn btn-my-block" data-toggle="modal" data-target="#gruppeErstellen" data-placement="bottom" title="Neue Gruppe erstellen" onmouseenter="$(this).tooltip('show')" >
                     <span class="glyphicon glyphicon-plus"></span>
                   </button>
                   <div ng-include="getGruppeErstellen()">
-
                   </div>
                 </div>
               </div>

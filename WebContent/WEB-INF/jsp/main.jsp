@@ -11,43 +11,44 @@
   <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap/bootstrap-select.css" />" >
 </head>
 <body ng-controller="MainController">
-
   <!--Button-Group-Container start-->
-  <div class="container">
-    <br>
-    <div class="btn-group btn-group-justified">
-      <div class="btn-group">
-        <button type="button" class="btn btn-my-default" ng-click="switchToNews()">News</button>
-      </div>
-      <div class="btn-group">
-        <button type="button" class="btn btn-my-default" ng-click="switchToProfile()">Profile</button>
-      </div>
-      <div class="btn-group">
-        <button type="button" class="btn btn-my-default dropdown-toggle" data-toggle="dropdown">
-          Praktika <span class="caret"></span></button>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="" ng-click="switchToPraktika()">Veranstaltungen</a></li>
-            <li><a href="" ng-click="switchToGruppen()">Gruppen</a></li>
-          </ul>
-      </div>
-      <div class="btn-group">
-        <button type="button" class="btn btn-my-default dropdown-toggle" data-toggle="dropdown">
-          Leistungen <span class="caret"></span></button>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="" ng-click="switchToPVL()">PVL</a></li>
-            <li><a href="" ng-click="switchToNoten()">Noten</a></li>
-          </ul>
-      </div>
-      <div class="btn-group">
-        <button type="button" class="btn btn-my-default dropdown-toggle" data-toggle="dropdown">
-          Daten Im-/Export <span class="caret"></span></button>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="" ng-click="switchToDatenIm()">Daten imp.</a></li>
-            <li><a href="" ng-click="switchToDatenEx()">Daten exp.</a></li>
-          </ul>
-      </div>
-      <div class="btn-group">
-        <button type="button" class="btn btn-my-default" ng-click="switchToMeldungen()">Meldungen <span class="badge">2</span></button>
+  
+<div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="btn-group btn-group-justified">
+          <div class="btn-group">
+            <button type="button" class="btn btn-my-default" ng-click="switchToNews()">News</button>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-my-default" ng-click="switchToProfile()">Profile</button>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-my-default dropdown-toggle" data-toggle="dropdown">
+              Praktika <span class="caret"></span></button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="" ng-click="switchToPraktika()">Veranstaltungen</a></li>
+                <li><a href="" ng-click="switchToGruppen()">Gruppen</a></li>
+              </ul>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-my-default" ng-click="switchToLeistungen()">Leistungen</button>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-my-default dropdown-toggle" data-toggle="dropdown">
+              Daten Im-/Export <span class="caret"></span></button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="" ng-click="switchToDatenIm()">Daten imp.</a></li>
+                <li><a href="" ng-click="switchToDatenEx()">Daten exp.</a></li>
+              </ul>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-my-default" ng-click="switchToMeldungen()">Meldungen <span class="badge">2</span></button>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-my-default">Logout</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -68,11 +69,8 @@
       <div ng-switch-when="gruppen">
         <div ng-include src="'resources/tabs/gruppen.html'"></div>
       </div>
-      <div ng-switch-when="pvl">
-        <div ng-include src="'resources/tabs/pvl.html'"></div>
-      </div>
-      <div ng-switch-when="noten">
-        <div ng-include src="'resources/tabs/noten.html'"></div>
+      <div ng-switch-when="leistungen">
+        <div ng-include src="'resources/tabs/leistungen.html'"></div>
       </div>
       <div ng-switch-when="meldungen">
         <div ng-include src="'resources/tabs/meldungen.html'"></div>
@@ -82,6 +80,9 @@
       </div>
       <div ng-switch-when="datenim">
         <div ng-include src="'resources/tabs/datenim.html'"></div>
+      </div>
+      <div ng-switch-when="tmUebersicht">
+        <div ng-include src="'resources/tabs/tm_uebersicht.html'"></div>
       </div>
       <div ng-switch-default>
         <div ng-include src="'resources/tabs/profile.html'"></div>

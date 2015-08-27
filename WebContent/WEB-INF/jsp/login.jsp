@@ -27,7 +27,7 @@
                   <input type="checkbox" value="remember-me">Daten merken
                 </label>
               </div>
-              <p><button class="btn btn-md btn-info btn-block " type="submit">Anmelden</button></p>
+              <p><button class="btn btn-my-block btn-lg" type="submit">Anmelden</button></p>
               <br>
             </form>
             <div class="panel panel-primary col-sm-10 col-lg-offset-1">
