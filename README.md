@@ -1,12 +1,11 @@
 # SE2-Praktikumssoftware
 
-Der SE2-Projekt Ordner mit allen nÃ¶tigen Libaries und der vorgesehenen Ordnerstruktur.
+Der SE2-Projekt Ordner mit allen nötigen Libaries und der vorgesehenen Ordnerstruktur.
 
 Aktuell
 =======
-Frontend fÃ¼r Angestellten Panel hinzugefÃ¼gt (unvollstÃ¤ndig). <br />
+Frontend fürr Angestellten Panel hinzugefügt (unvollstÃ¤ndig). <br />
 Frontend only Demo -> http://bit.ly/1JwbrTr <- HAW PUB <br />
-<br />
 Mit A-Kennung anmelden und irgendwas ins Login eintragen.
 
 Setup
