@@ -1,55 +1,28 @@
-<div class="row">
-  <br>
+<div class="row" ng-controller="EditController">
+  <br />
   <div class="col-md-10 col-md-offset-1">
-    <div class="panel panel-info">
-      <br>
+    <div class="panel panel-cust-info">
+      <br />
       <div class="panel-body">
-        <!--ContentPane start-->
         <div class="col-md-10 col-md-offset-1">
-          <div class="panel panel-success">
+          <div class="panel panel-cust-success">
             <div class="panel-heading">
               <h2>
                 <strong>News</strong>
               </h2>
             </div>
-            <div class="panel-body">
-              <div>
-                <h3>
-                  <strong>Header1</strong>
-                  <button type="button" class="btn btn-my-default btn-sm pull-right" data-placement="bottom" title="Diese News bearbeiten" onmouseenter="$(this).tooltip('show')">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                  </button>
-                </h3>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
-                eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet
-                consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-                dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
-                dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-                Lorem ipsum dolor sit amet.
-                <br>
-                <br>
-                <h4><strong>Subheader</strong></h4>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
-                eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet
-                consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-                dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
-                dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-                Lorem ipsum dolor sit amet.
-                <br>
-                <br>
-                <button type="button" class="btn btn-my-block btn-md" data-placement="bottom" title="Neue News hinzufügen" onmouseenter="$(this).tooltip('show')">
-                  <span class="glyphicon glyphicon-plus"></span>
-                </button>
+            <div ng-switch on="edit">
+              <div ng-switch-when="true">
+                <div ng-include src="'resources/edits/news_edit.html'">
+                </div>
+              </div>
+              <div ng-switch-when="false">
+                <div ng-include src="'resources/tabs/news_show.html'">
               </div>
             </div>
           </div>
         </div>
       </div>
-      <!--ContentPane end-->
     </div>
   </div>
 </div>

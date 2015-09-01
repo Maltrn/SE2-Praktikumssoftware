@@ -10,11 +10,11 @@
   <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap/bootstrap-select.min.css" />" >
   <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap/bootstrap-select.css" />" >
 </head>
-<body ng-controller="MainController">
-  <!--Button-Group-Container start-->
-  
-<div class="container">
+<body ng-controller="TabController">
+  <div class="container">
     <div class="row">
+
+      <!--Buttonpanel start-->
       <div class="col-sm-12">
         <div class="btn-group btn-group-justified">
           <div class="btn-group">
@@ -51,53 +51,59 @@
         </div>
       </div>
     </div>
-  </div>
-  <!--Button-Group-Container end-->
+    <!--Buttonpanel end-->
 
-  <!--ContentContainer start-->
-  <div class="container">
-    <div ng-switch on="viewToggle">
-      <div ng-switch-when="news">
-        <div ng-include src="'resources/tabs/news.html'"></div>
-      </div>
-      <div ng-switch-when="profile">
-        <div ng-include src="'resources/tabs/profile.html'"></div>
-      </div>
-      <div ng-switch-when="praktika">
-        <div ng-include src="'resources/tabs/veranstaltungen.html'"></div>
-      </div>
-      <div ng-switch-when="gruppen">
-        <div ng-include src="'resources/tabs/gruppen.html'"></div>
-      </div>
-      <div ng-switch-when="leistungen">
-        <div ng-include src="'resources/tabs/leistungen.html'"></div>
-      </div>
-      <div ng-switch-when="meldungen">
-        <div ng-include src="'resources/tabs/meldungen.html'"></div>
-      </div>
-      <div ng-switch-when="datenex">
-        <div ng-include src="'resources/tabs/datenex.html'"></div>
-      </div>
-      <div ng-switch-when="datenim">
-        <div ng-include src="'resources/tabs/datenim.html'"></div>
-      </div>
-      <div ng-switch-when="tmUebersicht">
-        <div ng-include src="'resources/tabs/tm_uebersicht.html'"></div>
-      </div>
-      <div ng-switch-default>
-        <div ng-include src="'resources/tabs/profile.html'"></div>
+    <!-- Contentrow start-->
+    <div class="row">
+      <div class="col-sm-12">
+        <div ng-switch on="viewToggle">
+          <div ng-switch-when="news">
+            <div ng-include src="'resources/tabs/news.html'"></div>
+          </div>
+          <div ng-switch-when="profile">
+            <div ng-include src="'resources/tabs/profile.html'"></div>
+          </div>
+          <div ng-switch-when="praktika">
+            <div ng-include src="'resources/tabs/veranstaltungen.html'"></div>
+          </div>
+          <div ng-switch-when="gruppen">
+            <div ng-include src="'resources/tabs/gruppen.html'"></div>
+          </div>
+          <div ng-switch-when="leistungen">
+            <div ng-include src="'resources/tabs/leistungen.html'"></div>
+          </div>
+          <div ng-switch-when="meldungen">
+            <div ng-include src="'resources/tabs/meldungen.html'"></div>
+          </div>
+          <div ng-switch-when="datenex">
+            <div ng-include src="'resources/tabs/datenex.html'"></div>
+          </div>
+          <div ng-switch-when="datenim">
+            <div ng-include src="'resources/tabs/datenim.html'"></div>
+          </div>
+          <div ng-switch-when="tmUebersicht">
+            <div ng-include src="'resources/tabs/tm_uebersicht.html'"></div>
+          </div>
+          <div ng-switch-default>
+            <div ng-include src="'resources/tabs/profile.html'"></div>
+          </div>
+        </div>
       </div>
     </div>
+    <!--Contentrow end-->
   </div>
-  <!--Contentcontainer end-->
 </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="<c:url value="/resources/js/bootstrap/bootstrap.min.js" />" ></script>
   <script src="<c:url value="/resources/js/bootstrap/bootstrap-select.min.js" />" ></script>
   <script src="<c:url value="/resources/js/bootstrap/bootstrap-select.js" />" ></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js" ></script>
-  <script src="<c:url value="/resources/js/angular/controllers/MainController.js" />" ></script>
+  <script src="<c:url value="/resources/js/angular/app/app.js" />" ></script>
+  <script src="<c:url value="/resources/js/angular/controllers/TabController.js" />" ></script>
+  <script src="<c:url value="/resources/js/angular/controllers/ModalController.js" />" ></script>
+  <script src="<c:url value="/resources/js/angular/controllers/ExtController.js" />" ></script>
+  <script src="<c:url value="/resources/js/angular/controllers/EditController.js" />" ></script>
   <script src="<c:url value="/resources/js/angular/customdirectives/selectpicker.js" />" ></script>
-  <script src="<c:url value="/resources/js/angular/customdirectives/selectpicker.js" />" ></script>
-  <script src="<c:url value="/resources/js/uiElements.js" />" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-scroll/0.7.2/angular-scroll.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-scroll/0.7.2/angular-scroll.min.js"></script>
 </html>

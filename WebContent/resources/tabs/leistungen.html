@@ -1,12 +1,12 @@
-<div class="row">
-  <br>
+<div class="row" id="leistungen"  ng-controller="ModalController">
+  <br />
   <div class="col-md-10 col-md-offset-1">
-    <div class="panel panel-info">
-      <br>
+    <div class="panel panel-cust-info">
+      <br />
       <div class="panel-body">
         <!--ContentPane start-->
         <div class="col-md-10 col-md-offset-1">
-          <div class="panel panel-success">
+          <div class="panel panel-cust-success">
             <div class="panel-heading">
               <h2><strong>Leistungen</strong><small> - ADP</small></h2>
             </div>
@@ -50,7 +50,7 @@
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <br>
+                  <br />
                   <table class="table table-striped">
                     <thead>
                       <tr>
@@ -150,6 +150,7 @@
                             <span class="glyphicon glyphicon-edit"></span>
                           </button>
                           <div ng-include="getModalNote()">
+
                           </div>
                         </td>
                       </tr>

@@ -11,14 +11,3 @@ app.directive('selectpicker', function () {
       }
     };
   });
-
-  app.directive('selectpickernew', function () {
-      return {
-        restrict: 'C',
-        link: function (scope, element) {
-          $(element).selectpicker({
-            style: 'btn-my-default'
-          });
-        }
-      };
-    });

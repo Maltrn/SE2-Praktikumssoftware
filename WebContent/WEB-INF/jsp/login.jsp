@@ -13,7 +13,7 @@
     <br>
     <div class="row">
       <div class="col-sm-10 col-lg-offset-1 text-center">
-        <div class="panel panel-default">
+        <div class="panel panel-cust-default">
           <div class="panel-body">
             <h1 class="text-muted">SE2-Praktikumssoftware</h1>
             <br>
@@ -30,7 +30,7 @@
               <p><button class="btn btn-my-block btn-lg" type="submit">Anmelden</button></p>
               <br>
             </form>
-            <div class="panel panel-primary col-sm-10 col-lg-offset-1">
+            <div class="panel panel-cust-primary col-sm-10 col-lg-offset-1">
                 <div class="panel-body text-left">
                   <h2 class="text-left"><strong>News</strong></h2>
                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
@@ -50,7 +50,8 @@
         </div>
       </div>
     </div>
-</body>
+  </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 </html>
