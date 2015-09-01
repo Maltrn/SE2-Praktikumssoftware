@@ -10,7 +10,7 @@ Mit A-Kennung anmelden und irgendwas ins Login eintragen.
 
 Setup
 =====
-1.  Eclipse Luna EE (normales Luna reicht nicht) herunterladen und starten.
+1.  Eclipse Luna (oder Mars) EE (normales Luna (oder Mars) reicht nicht) herunterladen und starten.
 2.  Clone diese Reposity oder lade die Zip-Datei herunter.
 3.  In Eclipse: File -> Import -> Existing Project into Workspace -> 
 4.  "Select Root Directory" anwählen
