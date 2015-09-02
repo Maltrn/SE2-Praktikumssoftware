@@ -1,6 +1,20 @@
 // enable Selectpicker with angular custom directive
-angular.module("SE2-Software")
-  .directive('selectpicker', function () {
+var app = angular.module("SE2-Software");
+
+
+app.directive('selectPicker', function($timeout) {
+  return {
+    link: function(scope, element, attrs) {
+      $timeout(function() {
+        $(element).selectpicker({
+          style: 'btn-my-block'
+        });
+      });
+    }
+  };
+});
+
+/*app.directive('selectpicker', function () {
     return {
       restrict: 'C',
       link: function (scope, element) {
@@ -9,4 +23,4 @@ angular.module("SE2-Software")
         });
       }
     };
-  });
+  }); */

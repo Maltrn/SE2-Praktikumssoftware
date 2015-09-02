@@ -2,8 +2,9 @@
   <div class="row">
     <br/>
     <div class="col-sm-12">
-        <button type="button" class="btn btn-my-block" ng-click="grErstellenClose()"data-placement="bottom" title="Abbrechen" onmouseenter="$(this).tooltip('show')">
-          <span class="glyphicon glyphicon-minus"></span></button>
+      <button type="button" class="btn btn-my-block" ng-click="grErstellenClose()"data-placement="bottom" title="Abbrechen" onmouseenter="$(this).tooltip('show')">
+        <span class="glyphicon glyphicon-minus"></span>
+      </button>
     </div>
   </div>
   <div class="row">
@@ -15,149 +16,90 @@
   </div>
   <div class="row">
     <div class="col-sm-12">
-      <select class="selectpicker" data-width="100%">
-        <option>Fach wählen...</option>
-        <option>GKA</option>
-        <option>SE1</option>
-        <option>BW2</option>
-        <option>etc</option>
-        <option>...</option>
+      <select select-picker data-width="100%" title="Semester wählen..." ng-model="gr.sem">
+        <option ng-repeat="sem in semesters" value="{{sem}}">{{sem}}</option>
       </select>
     </div>
   </div>
+  <div class="row">
     <br />
-    <div class="row">
-      <div class="col-sm-12">
-        <select class="selectpicker" data-width="100%">
-          <option>Gruppen Nr. wählen...</option>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-          <option>6</option>
-        </select>
+    <div class="col-sm-12">
+      <select select-picker data-width="100%" title="Fach wählen..." ng-model="gr.fach">
+        <option ng-repeat="fach in faecher" value="{{fach}}" >{{fach}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <br />
+    <div class="col-sm-12">
+      <select select-picker data-width="100%" title="Gruppen Nr. wählen..." ng-model="gr.grpNr">
+        <option ng-repeat="grnr in grNummern" value="{{grnr}}">{{grnr}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <br />
+    <div class="col-sm-12">
+      <select select-picker data-width="100%" title="Anz. Teilnehmer wählen..." ng-model="gr.anzTm">
+        <option ng-repeat="anztm in anzTmTeam" value="{{anztm}}">{{anztm}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="strike text-muted">
+        <span>Abgabetermin wählen</span>
       </div>
     </div>
-    <br>
-    <div class="row">
-      <div class="col-sm-12">
-        <select class="selectpicker" data-width="100%">
-          <option>Anz. Teilnehmer pro Team...</option>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-          <option>6</option>
-        </select>
-      </div>
-    </div>
-    <br>
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="strike text-muted">
-          <span>Abgabetermin wählen</span>
-        </div>
-      </div>
-    </div>
+  </div>
+  <div class="row">
     <br/>
-    <div class="row">
-      <div class="col-sm-3">
-        <select class="selectpicker" data-width="100%">
-          <option>1. Termin</option>
-          <option>KW12</option>
-          <option>KW13</option>
-          <option>KW14</option>
-          <option>KW15</option>
-          <option>KW16</option>
-          <option>etc</option>
-          <option>...</option>
-        </select>
-      </div>
-      <div class="col-sm-3">
-        <select class="selectpicker" data-width="100%">
-          <option>2. Termin</option>
-          <option>KW12</option>
-          <option>KW13</option>
-          <option>KW14</option>
-          <option>KW15</option>
-          <option>KW16</option>
-          <option>etc</option>
-          <option>...</option>
-        </select>
-      </div>
-      <div class="col-sm-3">
-        <select class="selectpicker" data-width="100%">
-          <option>3. Termin</option>
-          <option>KW12</option>
-          <option>KW13</option>
-          <option>KW14</option>
-          <option>KW15</option>
-          <option>KW16</option>
-          <option>etc</option>
-          <option>...</option>
-        </select>
-      </div>
-      <div class="col-sm-3">
-        <select class="selectpicker" data-width="100%">
-          <option>4. Termin</option>
-          <option>KW12</option>
-          <option>KW13</option>
-          <option>KW14</option>
-          <option>KW15</option>
-          <option>KW16</option>
-          <option>etc</option>
-          <option>...</option>
-        </select>
-      </div>
+    <div class="col-sm-3">
+      <select select-picker data-width="100%" title="1. Termin..." ng-model="gr.termine.tm1">
+        <option ng-repeat="tm1 in abgTermine" value="{{tm1}}">{{tm1}}</option>
+      </select>
     </div>
+    <div class="col-sm-3">
+      <select select-picker data-width="100%" title="2. Termin..." ng-model="gr.termine.tm2">
+        <option ng-repeat="tm2 in abgTermine" value="{{tm2}}">{{tm2}}</option>
+      </select>
+    </div>
+    <div class="col-sm-3">
+      <select select-picker data-width="100%" title="3. Termin..." ng-model="gr.termine.tm3">
+        <option ng-repeat="tm3 in abgTermine" value="{{tm3}}">{{tm3}}</option>
+      </select>
+    </div>
+    <div class="col-sm-3">
+      <select select-picker data-width="100%" title="4. Termin..." ng-model="gr.termine.tm4">
+        <option ng-repeat="tm4 in abgTermine" value="{{tm4}}">{{tm4}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
     <hr style="border-color: #E8E8E8;"/>
-    <div class="row">
-      <div class="col-sm-6">
-        <select class="selectpicker" data-width="100%">
-          <option>Uhrzeit (Begin)</option>
-          <option>08:15</option>
-          <option>12:30</option>
-          <option>16:15</option>
-          <option>19:00</option>
-          <option>etc</option>
-          <option>...</option>
-        </select>
-      </div>
-      <div class="col-sm-6">
-        <select class="selectpicker" data-width="100%">
-          <option>Uhrzeit (Ende)</option>
-          <option>11:45</option>
-          <option>15:45</option>
-          <option>16:15</option>
-          <option>20:30</option>
-          <option>etc</option>
-          <option>...</option>
-        </select>
-      </div>
+    <div class="col-sm-6">
+      <select select-picker data-width="100%" title="Uhrzeit (Beginn)..." ng-model="gr.startUhrzeit">
+        <option ng-repeat="sz in startZeiten" value="{{sz}}" >{{sz}}</option>
+      </select>
     </div>
+    <div class="col-sm-6">
+      <select select-picker data-width="100%" title="Uhrzeit (Ende)..." ng-model="gr.endUhrzeit">
+        <option ng-repeat="ez in endZeiten" value="{{ez}}" >{{ez}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
     <br />
-    <div class="row">
-      <div class="col-sm-12">
-        <select class="selectpicker" data-width="100%">
-          <option>Raum wählen...</option>
-          <option>1180</option>
-          <option>0660</option>
-          <option>1070</option>
-          <option>etc</option>
-          <option>...</option>
-        </select>
-      </div>
+    <div class="col-sm-12">
+      <select select-picker data-width="100%" title="Raum wählen..." ng-model="gr.raum">
+        <option ng-repeat="raum in raeume" value="{{raum}}" >{{raum}}</option>
+      </select>
     </div>
+  </div>
+  <div class="row">
     <br/>
-    </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <div>
-          <button type="button" class="btn btn-my-block" data-placement="bottom" title="Speichern" onmouseenter="$(this).tooltip('show')"><span class="glyphicon glyphicon-ok"></span></button>
-        </div>
-      </div>
+    <div class="col-sm-12">
+      <button type="button" class="btn btn-my-block" ng-click="addGruppe()" data-placement="bottom" title="Speichern" onmouseenter="$(this).tooltip('show')"><span class="glyphicon glyphicon-ok"></span></button>
     </div>
   </div>
 </div>

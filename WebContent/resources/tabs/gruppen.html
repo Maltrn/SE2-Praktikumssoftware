@@ -1,6 +1,6 @@
 <div class="row" id="gruppen" ng-controller="ExtController">
   <br>
-  <div class="col-sm-10 col-sm-offset-1">
+  <div class="col-sm-10 col-sm-offset-1" ng-controller="GruppenController">
     <div class="panel panel-cust-info">
       <br />
       <div class="panel-body">
@@ -14,45 +14,27 @@
               <!--Table start-->
               <div class="row">
                 <div class="col-sm-6">
-                  <select class="selectpicker" data-width="100%">
-                    <option>Semester wählen...</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
+                  <select select-picker data-width="100%" title="Semester wählen...">
+                    <option ng-repeat="sem in semesters" value="{{sem}}">{{sem}}</option>
                   </select>
                 </div>
                 <div class="col-sm-6">
-                  <select class="selectpicker" data-width="100%">
-                    <option>Fachbereich wählen...</option>
-                    <option>AI</option>
-                    <option>TI</option>
-                    <option>WI</option>
+                  <select select-picker data-width="100%" title="Fachbereich wählen...">
+                    <option ng-repeat="fb in fachbereiche" value="{{fb}}">{{fb}}</option>
                   </select>
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm-6">
                   <br />
-                  <select class="selectpicker" data-width="100%">
-                    <option>Tag wählen...</option>
-                    <option>Montag</option>
-                    <option>Dienstag</option>
-                    <option>Mittwoch</option>
-                    <option>Donnerstag</option>
-                    <option>Freitag</option>
+                  <select select-picker data-width="100%" title="Tag wählen...">
+                    <option ng-repeat="tag in tage" value="{{tag}}">{{tag}}</option>
                   </select>
                 </div>
                 <div class="col-sm-6">
                   <br />
-                  <select class="selectpicker" data-width="100%">
-                    <option>Gruppe wählen...</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                  <select select-picker data-width="100%" title="Gruppen Nr. wählen..." ng-model="gr.grpNr">
+                    <option ng-repeat="grnr in grNummern" value="{{grnr}}">{{grnr}}</option>
                   </select>
                 </div>
               </div>
@@ -72,42 +54,14 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>GKAP</td>
-                        <td>1</td>
-                        <td>12, 14, 16, 18</td>
-                        <td>08:15 - 11:45</td>
-                        <td>Padberg</td>
-                        <td>0660</td>
-                        <td>6 / 10</td>
-                        <td>
-                          <button type="button" class="btn btn-my-default btn-sm" data-placement="bottom" title="Weiter zur Teilnehmerübersicht" onmouseenter="$(this).tooltip('show')" ng-click="switchToTmUebersicht()">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>SEP</td>
-                        <td>1</td>
-                        <td>13, 15, 17, 19</td>
-                        <td>08:15 - 11:45</td>
-                        <td>Zukunft</td>
-                        <td>0660</td>
-                        <td>3 / 10</td>
-                        <td>
-                          <button type="button" class="btn btn-my-default btn-sm" data-placement="bottom" title="Weiter zur Teilnehmerübersicht" onmouseenter="$(this).tooltip('show')" ng-click="switchToTmUebersicht()">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>GKAP</td>
-                        <td>2</td>
-                        <td>13, 15, 17, 19</td>
-                        <td>08:15 - 11:45</td>
-                        <td>Zukunft</td>
-                        <td>0660</td>
-                        <td>3 / 10</td>
+                      <tr ng-repeat="gruppe in hcGruppenDaten">
+                        <td>{{gruppe.fach}}</td>
+                        <td>{{gruppe.grpNr}}</td>
+                        <td>{{gruppe.kw}}</td>
+                        <td>{{gruppe.startUhrzeit}} - {{gruppe.endUhrzeit}}</td>
+                        <td>{{gruppe.dozent}}</td>
+                        <td>{{gruppe.raum}}</td>
+                        <td>{{gruppe.minGr}} / {{gruppe.maxGr}}</td>
                         <td>
                           <button type="button" class="btn btn-my-default btn-sm" data-placement="bottom" title="Weiter zur Teilnehmerübersicht" onmouseenter="$(this).tooltip('show')" ng-click="switchToTmUebersicht()">
                             <span class="glyphicon glyphicon-chevron-right"></span>

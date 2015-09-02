@@ -1,6 +1,6 @@
 <div class="row" id="veranstaltungen"  ng-controller="ExtController">
   <br />
-  <div class="col-md-10 col-md-offset-1">
+  <div class="col-md-10 col-md-offset-1" ng-controller="VeranstaltungsController">
     <div class="panel panel-cust-info">
       <br />
       <div class="panel-body">
@@ -14,21 +14,13 @@
               <!--Table start-->
               <div class="row">
                 <div class=col-md-6>
-                  <select class="selectpicker" data-width="100%">
-                    <option>Semester wählen...</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
+                  <select select-picker data-width="100%" title="Semester wählen...">
+                    <option ng-repeat="sem in semester" value="{{sem}}" >{{sem}}</option>
                   </select>
                 </div>
                 <div class=col-md-6>
-                  <select class="selectpicker" data-width="100%">
-                    <option>Fachbereich wählen...</option>
-                    <option>AI</option>
-                    <option>TI</option>
-                    <option>WI</option>
+                  <select select-picker data-width="100%" title="Fachbereich wählen...">
+                    <option ng-repeat="fb in fachbereiche" value="{{fb}}" >{{fb}}</option>
                   </select>
                 </div>
               </div>
@@ -45,59 +37,11 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>GKAP</td>
-                        <td>Padberg</td>
-                        <td>Oelker</td>
-                        <td>60 / 80</td>
-                        <td>
-                          <button type="button" class="btn btn-my-default pull-right btn-sm" data-toggle="modal" data-target="#modalBearbeiten" data-placement="bottom" title="Veranstaltung bearbeiten" onmouseenter="$(this).tooltip('show')">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                          </button>
-                          <div ng-include="getModalEdit()"></div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>ADP</td>
-                        <td>Kleine</td>
-                        <td>Blank</td>
-                        <td>50 / 80</td>
-                        <td>
-                          <button type="button" class="btn btn-my-default pull-right btn-sm" data-toggle="modal" data-target="#modalBearbeiten" data-placement="bottom" title="Veranstaltung bearbeiten" onmouseenter="$(this).tooltip('show')">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                          </button>
-                          <div ng-include="getModalEdit()"></div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>BSP</td>
-                        <td>Huebner</td>
-                        <td></td>
-                        <td>50 / 80</td>
-                        <td>
-                          <button type="button" class="btn btn-my-default pull-right btn-sm" data-toggle="modal" data-target="#modalBearbeiten" data-placement="bottom" title="Veranstaltung bearbeiten" onmouseenter="$(this).tooltip('show')">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                          </button>
-                          <div ng-include="getModalEdit()"></div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>SEP</td>
-                        <td></td>
-                        <td></td>
-                        <td>0 / 80</td>
-                        <td>
-                          <button type="button" class="btn btn-my-default pull-right btn-sm" data-toggle="modal" data-target="#modalBearbeiten" data-placement="bottom" title="Veranstaltung bearbeiten" onmouseenter="$(this).tooltip('show')">
-                            <span class="glyphicon glyphicon-pencil"></span>
-                          </button>
-                          <div ng-include="getModalEdit()"></div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>BWP</td>
-                        <td>Gerken</td>
-                        <td></td>
-                        <td>50 / 80</td>
+                      <tr ng-repeat="veranstaltung in hcVeranstaltungsDaten">
+                        <td>{{veranstaltung.fach}}</td>
+                        <td>{{veranstaltung.dozent}}</td>
+                        <td>{{veranstaltung.assistent}}</td>
+                        <td>{{veranstaltung.min}} / {{veranstaltung.max}}</td>
                         <td>
                           <button type="button" class="btn btn-my-default pull-right btn-sm" data-toggle="modal" data-target="#modalBearbeiten" data-placement="bottom" title="Veranstaltung bearbeiten" onmouseenter="$(this).tooltip('show')">
                             <span class="glyphicon glyphicon-pencil"></span>
