@@ -5,7 +5,7 @@ Der SE2-Projekt Ordner mit allen nötigen Libaries und der vorgesehenen Ordnerst
 Aktuell
 =======
 Funktionen: Gruppe erstellen und Veranstaltung erstellen, hinzugefügt
-----------------------------------------------------------------------------------------------------------
+
 Frontend für Angestellten Panel hinzugefügt und um weitere Funktionen erweitert (unvollständig). <br />
 Frontend only Demo -> http://bit.ly/1JwbrTr <- HAW PUB <br />
 Mit A-Kennung anmelden und irgendwas ins Login eintragen.
