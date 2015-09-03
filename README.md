@@ -3,6 +3,7 @@
 Der SE2-Projekt Ordner mit allen nötigen Libaries und der vorgesehenen Ordnerstruktur.
 <br/>
 Frontend only Demo (Angestellten-Panel) -> http://bit.ly/1JwbrTr <- HAW PUB
+<br/>
 Mit A-Kennung anmelden und irgendwas ins Login eintragen.
 
 Aktuell
