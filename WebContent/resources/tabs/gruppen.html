@@ -77,9 +77,9 @@
                   <button type="button" class="btn btn-my-block" data-toggle="modal" ng-click="grErstellen()" data-placement="bottom" title="Neue Gruppe erstellen" onmouseenter="$(this).tooltip('show')" >
                     <span class="glyphicon glyphicon-plus"></span>
                   </button>
-                  <div ng-switch on="erstellen">
+                  <div ng-switch on="getCurrTemplate()">
                     <div ng-switch-when="grErstellen">
-                      <div ng-include="'resources/extensions/ext_gruppe_erstellen.html'"></div>
+                      <div ng-include="getExtGruppeErstellen()"></div>
                     </div>
                   </div>
                 </div>

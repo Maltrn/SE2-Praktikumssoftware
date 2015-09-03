@@ -1,14 +1,17 @@
 /**
- * Controllerclass to manage Popups
+ * Managed die Popups
  */
 (function () {
 
-	// Define MainController and refer to Mainapp
-	// $scope = model
+	// Controllerdefinition
   var app = angular.module("SE2-Software");
 
+  // $scope: Model Object
 	var ModalController = function($scope){
 
+
+    // Getter für die einzelnen Popups
+    // -------------------------------------------------------------
     $scope.getModalEdit = function(){
       return "resources/popups/modal_veranstaltung_aendern.html";
     }
@@ -20,12 +23,15 @@
     $scope.getModalPVL = function(){
       return "resources/popups/modal_pvl.html";
     }
+    // -------------------------------------------------------------
 
     $scope.getModalNote = function(){
       return "resources/popups/modal_note.html";
     }
 	};
 
-  // register Controller to Mainapp
+  // Controller bei der App "anmelden"
 	app.controller("ModalController", ModalController);
+
+// Code sofort ausführen
 }());

@@ -20,7 +20,7 @@ public class LoginController
 	private final String WELCOME = "Dies wird die Login-Page...";
 	
 	/**
-	 * Beschreibung und Parameter folgen...
+	 * Beschreibung und Parameter folgen
 	 * @param	username: Der Benutzername
 	 * 			password: Das Passwort
 	 * @return	ModelAndView-Objekt, welches die eingegebenen Daten hält.

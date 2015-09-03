@@ -11,13 +11,12 @@
                 <strong>News</strong>
               </h2>
             </div>
-            <div ng-switch on="edit">
+            <div ng-switch on="getEditStatus()">
               <div ng-switch-when="true">
-                <div ng-include src="'resources/edits/news_edit.html'">
-                </div>
+                <div ng-include src="getNewsEdit()"></div>
               </div>
               <div ng-switch-when="false">
-                <div ng-include src="'resources/tabs/news_show.html'">
+                <div ng-include src="getNewsShow()"></div>
               </div>
             </div>
           </div>

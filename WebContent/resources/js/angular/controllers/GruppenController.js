@@ -7,7 +7,7 @@
   var app = angular.module("SE2-Software");
 
 	// $scope = model object, $http: holt JSON Object vom SpringMVC Backend -> folgt später
-	var GruppenController = function($scope /*, $http*/){
+	var GruppenController = function($scope, autoscroller /*, $http*/){
 
     // Vorerst Hardcoded Daten zur Demonstration
     // Später dynamische Ermittlung durch Spring MVC
@@ -41,7 +41,7 @@
 
 
     // Felder initialisiern
-    // ---------------------------------------------
+    // ------------------------------------------------------
     $scope.gr = {};
     $scope.gr.sem = $scope.semesters[0];
     $scope.gr.fach = $scope.faecher[0];
@@ -59,7 +59,7 @@
     $scope.gr.maxGr = 10;
     $scope.gr.anzTm = $scope.anzTmTeam[0];
 
-    // --------------------------------------------
+    // ------------------------------------------------------
 
     //Preconditions
     // --------------------------------------------------------------------------------------
@@ -73,7 +73,7 @@
 
 
     // Helper
-    // -----------------------------------------------------------
+    // --------------------------------------------------------------
 
     // Das "KW" aus der Auswahl entfernen, für bessere Darstellung
     function fetchDigits(termine){
@@ -102,7 +102,7 @@
       return index;
     }
 
-    // ------------------------------------------------------------
+    // ---------------------------------------------------------------
 
 
     // Button-klick Funktionen
@@ -122,6 +122,9 @@
                                     raum: $scope.gr.raum,
                                     minGr: $scope.gr.minGr,
                                     maxGr: $scope.gr.maxGr});
+
+      autoscroller.erstellen = null;
+      
       }else{
         alert("Keine gültige Eingabe für min und/oder max und/oder Gruppenummer");
       }

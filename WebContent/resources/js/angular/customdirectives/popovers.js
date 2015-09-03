@@ -1,4 +1,6 @@
-
+/**
+ + Benutzderdefinierte AngularJS Direktive um mit Boostrap popovers anzeigen zu können
+**/
 var customDirectives = angular.module('SE2-Software');
 customDirectives.directive('customPopover', function () {
     return {

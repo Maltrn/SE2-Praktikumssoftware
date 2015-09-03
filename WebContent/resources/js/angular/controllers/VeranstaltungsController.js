@@ -7,7 +7,7 @@
   var app = angular.module("SE2-Software");
 
 	// $scope = model object, $http: holt JSON Daten via SpringMVC Backend -> folgt später
-	var VeranstaltungsController = function($scope /*, $http*/){
+	var VeranstaltungsController = function($scope, autoscroller /*, $http*/){
 
 
 
@@ -63,6 +63,8 @@
                                            assistent: $scope.va.assistent,
                                            min: 0,
                                            max: $scope.va.max});
+
+      autoscroller.erstellen = null;
       }else{
         alert("Keine gültige Eingabe für min und/oder max");
       }

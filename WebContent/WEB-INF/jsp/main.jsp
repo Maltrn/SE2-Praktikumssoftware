@@ -56,36 +56,36 @@
     <!-- Contentrow start-->
     <div class="row">
       <div class="col-sm-12">
-        <div ng-switch on="viewToggle">
+        <div ng-switch on="getCurrTab()">
           <div ng-switch-when="news">
-            <div ng-include src="'resources/tabs/news.html'"></div>
+            <div ng-include src="getNews()"></div>
           </div>
           <div ng-switch-when="profile">
-            <div ng-include src="'resources/tabs/profile.html'"></div>
+            <div ng-include src="getProfile()"></div>
           </div>
           <div ng-switch-when="praktika">
-            <div ng-include src="'resources/tabs/veranstaltungen.html'"></div>
+            <div ng-include src="getPraktika()"></div>
           </div>
           <div ng-switch-when="gruppen">
-            <div ng-include src="'resources/tabs/gruppen.html'"></div>
+            <div ng-include src="getGruppen()"></div>
           </div>
           <div ng-switch-when="leistungen">
-            <div ng-include src="'resources/tabs/leistungen.html'"></div>
+            <div ng-include src="getLeistungen()"></div>
           </div>
           <div ng-switch-when="meldungen">
-            <div ng-include src="'resources/tabs/meldungen.html'"></div>
+            <div ng-include src="getMeldungen()"></div>
           </div>
           <div ng-switch-when="datenex">
-            <div ng-include src="'resources/tabs/datenex.html'"></div>
+            <div ng-include src="getDatenEx()"></div>
           </div>
           <div ng-switch-when="datenim">
-            <div ng-include src="'resources/tabs/datenim.html'"></div>
+            <div ng-include src="getDatenIm()"></div>
           </div>
           <div ng-switch-when="tmUebersicht">
-            <div ng-include src="'resources/tabs/tm_uebersicht.html'"></div>
+            <div ng-include src="getTmUebersicht()"></div>
           </div>
           <div ng-switch-default>
-            <div ng-include src="'resources/tabs/profile.html'"></div>
+            <div ng-include src="getProfile()"></div>
           </div>
         </div>
       </div>
@@ -99,6 +99,7 @@
   <script src="<c:url value="/resources/js/bootstrap/bootstrap-select.js" />" ></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js" ></script>
   <script src="<c:url value="/resources/js/angular/app/app.js" />" ></script>
+  <script src="<c:url value="/resources/js/angular/services/AutoScrollService.js" />" ></script>
   <script src="<c:url value="/resources/js/angular/controllers/TabController.js" />" ></script>
   <script src="<c:url value="/resources/js/angular/controllers/ModalController.js" />" ></script>
   <script src="<c:url value="/resources/js/angular/controllers/ExtController.js" />" ></script>

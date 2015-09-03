@@ -55,12 +55,12 @@
               </div>
               <div class="row" id="veranerstellen" >
                 <div class="col-sm-12">
-                  <button type="button" class="btn btn-my-block" data-toggle="modal" ng-click="veranErstellen()" data-placement="bottom" title="Neue Gruppe erstellen" onmouseenter="$(this).tooltip('show')" >
+                  <button type="button" class="btn btn-my-block" data-toggle="modal" ng-click="veranErstellen()" data-placement="bottom" title="Neue Veranstaltung erstellen" onmouseenter="$(this).tooltip('show')" >
                     <span class="glyphicon glyphicon-plus"></span>
                   </button>
-                  <div ng-switch on="erstellen">
+                  <div ng-switch on="getCurrTemplate()">
                     <div ng-switch-when="veranErstellen">
-                      <div ng-include src="'resources/extensions/ext_veranstaltung_erstellen.html'"></div>
+                      <div ng-include src="getExtVeranErstellen()"></div>
                     </div>
                   </div>
                 </div>

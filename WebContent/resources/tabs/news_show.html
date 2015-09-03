@@ -41,9 +41,9 @@
       <button type="button" class="btn btn-my-block" data-toggle="modal" ng-click="newsErstellen()" data-placement="bottom" title="Neue News erstellen" onmouseenter="$(this).tooltip('show')" >
         <span class="glyphicon glyphicon-plus"></span>
       </button>
-      <div ng-switch on="erstellen">
+      <div ng-switch on="getCurrTemplate()">
         <div ng-switch-when="newsErstellen">
-          <div ng-include="'resources/extensions/ext_news_erstellen.html'"></div>
+          <div ng-include="getExtNewsErstellen()"></div>
         </div>
       </div>
     </div>
