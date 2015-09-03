@@ -9,7 +9,6 @@
   // $scope: Model Object
 	var ModalController = function($scope){
 
-
     // Getter für die einzelnen Popups
     // -------------------------------------------------------------
     $scope.getModalEdit = function(){

@@ -4,6 +4,7 @@ Der SE2-Projekt Ordner mit allen nötigen Libaries und der vorgesehenen Ordnerst
 
 Aktuell
 =======
+Funktionen: Veranstaltungen bearbeiten hinzugefügt <br />
 Funktionen: Gruppe erstellen und Veranstaltung erstellen, hinzugefügt <br />
 Code aufgeräumt und AngularService hinzugefügt.
 

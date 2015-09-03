@@ -6,52 +6,52 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title"><strong>Veranstaltung bearbeiten</strong></h4>
       </div>
-      <div class="modal-body">
-          <div class="row">
-            <div class="col-sm-12">Dozenten ändern/hinzufügen</div>
-            <div class="col-sm-12 inner-addon right-addon">
-                <span class="glyphicon glyphicon-search"></span>
-                <input type="text" class="form-control" placeholder="Live-Suche" />
+      <form class="form-horizontal" role="form">
+        <div class="modal-body">
+            <div class="row">
+              <div class="col-sm-12 text text-muted">Dozenten ändern/hinzufügen</div>
+              <div class="col-sm-12 inner-addon right-addon">
+                  <span class="glyphicon glyphicon-search"></span>
+                  <input id="dozent" type="text" class="form-control" placeholder="Live-Suche" ng-model="va.dozent" ng-init="'va.dozent'"/>
+              </div>
             </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-sm-12">Assistenten ändern/hinzufügen</div>
-            <div class="col-sm-12 inner-addon right-addon">
-                <span class="glyphicon glyphicon-search"></span>
-                <input type="text" class="form-control" placeholder="Live-Suche" />
+            <div class="row">
+              <br />
+              <div class="col-sm-12 text text-muted">Assistenten ändern/hinzufügen</div>
+              <div class="col-sm-12 inner-addon right-addon">
+                  <span class="glyphicon glyphicon-search"></span>
+                  <input id="assistent" type="text" class="form-control" placeholder="Live-Suche" ng-model="va.assistent" ng-init="'va.assistent'" />
+              </div>
             </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-sm-6">
-              <select select-picker data-width="100%" title="Max. Teilnehmer">
-                <!--TODO: Controller schreiben-->
-                <option>50</option>
-                <option>60</option>
-                <option>70</option>
-                <option>80</option>
-                <option>90</option>
-              </select>
+            <div class="row">
+              <div class="col-sm-12">
+                <hr />
+              </div>
             </div>
-            <div class="col-sm-6">
-              <select select-picker data-width="100%" title="Min. Teilnehmer">
-                <!--TODO: Controller schreiben-->
-                <option>10</option>
-                <option>20</option>
-                <option>30</option>
-                <option>40</option>
-                <option>50</option>
-              </select>
+            <div class="row">
+              <div class="col-sm-6 text text-muted">Min. Teilnehmer</div>
+              <div class="col-sm-6 text text-muted">Max. Teilnehmer</div>
             </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="col-md-12">
-              <button type="button" class="btn btn-my-block" data-placement="bottom" title="Speichern" onmouseenter="$(this).tooltip('show')"><span class="glyphicon glyphicon-ok"></span></button>
+            <div class="row">
+              <div class="col-sm-6">
+                <input id="minTm" type="text" class="form-control" ng-model="va.min" ng-init="'va.min'" />
+              </div>
+              <div class="col-sm-6">
+                <input id="maxTm" type="text" class="form-control" ng-model="va.max" ng-init="'va.max'" />
+              </div>
             </div>
-          </div>
-      </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <hr />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <button type="button" data-dismiss="modal" ng-click="editVeranstaltung()" class="btn btn-my-block" data-placement="bottom" title="Speichern" onmouseenter="$(this).tooltip('show')"><span class="glyphicon glyphicon-ok"></span></button>
+              </div>
+            </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>
