@@ -106,6 +106,7 @@
   <script src="<c:url value="/resources/js/angular/controllers/EditController.js" />" ></script>
   <script src="<c:url value="/resources/js/angular/controllers/VeranstaltungsController.js" />" ></script>
   <script src="<c:url value="/resources/js/angular/controllers/GruppenController.js" />" ></script>
+  <script src="<c:url value="/resources/js/angular/controllers/TMUebersichtController.js" />" ></script>
   <script src="<c:url value="/resources/js/angular/customdirectives/selectpicker.js" />" ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-scroll/0.7.2/angular-scroll.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-scroll/0.7.2/angular-scroll.min.js"></script>

@@ -1,4 +1,4 @@
-<div class="row" id="tm_uebersicht"  ng-controller="ModalController">
+<div class="row" id="tm_uebersicht"  ng-controller="GruppenController">
   <br />
   <div class="col-md-10 col-md-offset-1">
     <div class="panel panel-cust-info">
@@ -8,7 +8,7 @@
         <div class="col-md-10 col-md-offset-1">
           <div class="panel panel-cust-success">
             <div class="panel-heading">
-              <h2><strong>Teilnehmerübersicht</strong><small> - ADP</small></h2>
+              <h2><strong>Teilnehmerübersicht</strong></h2>
             </div>
             <div class="panel-body">
               <!--Table start-->
@@ -20,80 +20,75 @@
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  <br>
-                  <table class="table table-striped">
+                  <br/>
+                  <table class="table table-striped" ng-controller="TMUebersichtController">
                     <thead>
                       <tr>
                         <th>Matrikelnr.</th>
                         <th>Vorname</th>
                         <th>Nachname</th>
                         <th>Team-Nr.</th>
+                        <th>PVL</th>
+                        <th>Note</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>2431441</td>
-                        <td>Max</td>
-                        <td>Mustermann1</td>
-                        <td>1</td>
+                      <tr ng-repeat="teiln in teilnehmer" ng-controller="ModalController">
+                        <td>{{teiln.matrNr}}</td>
+                        <td>{{teiln.vorn}}</td>
+                        <td>{{teiln.nachn}}</td>
+                        <td>{{teiln.tmNr}}</td>
                         <td>
-                          <button type="button" class="btn btn-my-default btn-sm pull-right" data-placement="bottom" title="Details anzeigen" onmouseenter="$(this).tooltip('show')">
+                          <div ng-switch on="getPVL($index)">
+                            <div ng-switch-when="erfolgreich">
+                              <div ng-include="getSuccess()">
+                              </div>
+                            </div>
+                            <div ng-switch-when="nicht erfolgreich">
+                              <div ng-include="getFail()">
+                              </div>
+                            </div>
+                            <div ng-switch-when="offen">
+                              <div ng-include="getOpen()">
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <div ng-if="isSuccess($index)">
+                              <div ng-include="getSuccess()">
+                              </div>
+                            </div>
+                            <div ng-if="!isSuccess($index)">
+                              <div ng-if="isOpen($index)">
+                                <div ng-include="getOpen()">
+                                </div>
+                              </div>
+                              <div ng-if="!isOpen($index)">
+                                <div ng-include="getFail()">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <button type="button" class="btn btn-my-default btn-sm pull-right" ng-click="initTmDetails($index)" data-target="#modalTmDetails" data-toggle="modal" data-placement="bottom" title="Details anzeigen" onmouseenter="$(this).tooltip('show')">
                             <span class="glyphicon glyphicon-user"></span>
                           </button>
+                          <div ng-include="getModalTmDetails()">
+
+                          </div>
                         </td>
                         <td>
-                          <button type="button" class="btn btn-my-default btn-sm" data-placement="bottom" title="Teilnehmer aus Kurs entfernen" onmouseenter="$(this).tooltip('show')">
+                          <button type="button" class="btn btn-my-default btn-sm" ng-click="initEntfIndex($index)" data-target="#modalTmEntfernen" data-toggle="modal" data-placement="bottom" title="Teilnehmer aus Kurs entfernen" onmouseenter="$(this).tooltip('show')">
                             <span class="glyphicon glyphicon-minus"></span>
                           </button>
+                          <div ng-include="getModalTmEntfernen()">
+
+                          </div>
                         </td>
-                        <tr>
-                          <td>2431441</td>
-                          <td>Max</td>
-                          <td>Mustermann2</td>
-                          <td>4</td>
-                          <td>
-                            <button type="button" class="btn btn-my-default btn-sm pull-right" data-placement="bottom" title="Details anzeigen" onmouseenter="$(this).tooltip('show')">
-                              <span class="glyphicon glyphicon-user"></span>
-                            </button>
-                          </td>
-                          <td>
-                            <button type="button" class="btn btn-my-default btn-sm" data-placement="bottom" title="Teilnehmer aus Kurs entfernen" onmouseenter="$(this).tooltip('show')">
-                              <span class="glyphicon glyphicon-minus"></span>
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>2431441</td>
-                          <td>Max</td>
-                          <td>Mustermann3</td>
-                          <td>2</td>
-                          <td>
-                            <button type="button" class="btn btn-my-default btn-sm pull-right" data-placement="bottom" title="Details anzeigen" onmouseenter="$(this).tooltip('show')">
-                              <span class="glyphicon glyphicon-user"></span>
-                            </button>
-                          </td>
-                          <td>
-                            <button type="button" class="btn btn-my-default btn-sm" data-placement="bottom" title="Teilnehmer aus kurz entfernen" onmouseenter="$(this).tooltip('show')">
-                              <span class="glyphicon glyphicon-minus"></span>
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>2431441</td>
-                          <td>Max</td>
-                          <td>Mustermann1</td>
-                          <td>3</td>
-                          <td>
-                            <button type="button" class="btn btn-my-default btn-sm pull-right" data-placement="bottom" title="Details anzeigen" onmouseenter="$(this).tooltip('show')">
-                              <span class="glyphicon glyphicon-user"></span>
-                            </button>
-                          </td>
-                          <td>
-                            <button type="button" class="btn btn-my-default btn-sm" data-placement="bottom" title="Teilnehmer aus Kurs entfernen" onmouseenter="$(this).tooltip('show')">
-                              <span class="glyphicon glyphicon-minus"></span>
-                            </button>
-                          </td>
-                        </tr>
+                      </tr>
                       </tbody>
                     </table>
                   </div>
@@ -101,7 +96,7 @@
               <div class="row">
                 <div class="col-md-12">
                   <button type="button" class="btn btn-my-block btn-md" data-placement="bottom" title="Zurück zur Gruppenübersicht" onmouseenter="$(this).tooltip('show')" ng-click="switchToGruppen()">
-                    <span class="glyphicon glyphicon-fast-backward"></span>
+                    <span class="glyphicon glyphicon-chevron-left"></span>
                   </button>
                 </div>
               </div>

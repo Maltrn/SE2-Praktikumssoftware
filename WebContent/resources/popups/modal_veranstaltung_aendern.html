@@ -1,4 +1,4 @@
-<div class="modal fade" id="modalBearbeiten" role="dialog">
+<div class="modal" id="modalBearbeiten" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">
@@ -8,48 +8,52 @@
       </div>
       <form class="form-horizontal" role="form">
         <div class="modal-body">
-            <div class="row">
-              <div class="col-sm-12 text text-muted">Dozenten ändern/hinzufügen</div>
-              <div class="col-sm-12 inner-addon right-addon">
-                  <span class="glyphicon glyphicon-search"></span>
-                  <input id="dozent" type="text" class="form-control" placeholder="Live-Suche" ng-model="va.dozent" ng-init="'va.dozent'"/>
-              </div>
+          <div class="row">
+            <div class="col-sm-12 text text-muted">Dozenten ändern/hinzufügen</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 inner-addon right-addon">
+                <span class="glyphicon glyphicon-search"></span>
+                <input id="dozent" type="text" class="form-control" placeholder="Live-Suche" ng-model="va.dozent" ng-init="'va.dozent'"/>
             </div>
-            <div class="row">
-              <br />
-              <div class="col-sm-12 text text-muted">Assistenten ändern/hinzufügen</div>
-              <div class="col-sm-12 inner-addon right-addon">
-                  <span class="glyphicon glyphicon-search"></span>
-                  <input id="assistent" type="text" class="form-control" placeholder="Live-Suche" ng-model="va.assistent" ng-init="'va.assistent'" />
-              </div>
+          </div>
+          <div class="row">
+            <br />
+            <div class="col-sm-12 text text-muted">Assistenten ändern/hinzufügen</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 inner-addon right-addon">
+                <span class="glyphicon glyphicon-search"></span>
+                <input id="assistent" type="text" class="form-control" placeholder="Live-Suche" ng-model="va.assistent" ng-init="'va.assistent'" />
             </div>
-            <div class="row">
-              <div class="col-sm-12">
-                <hr />
-              </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <hr />
             </div>
-            <div class="row">
-              <div class="col-sm-6 text text-muted">Min. Teilnehmer</div>
-              <div class="col-sm-6 text text-muted">Max. Teilnehmer</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 text text-muted">Min. Teilnehmer</div>
+            <div class="col-sm-6 text text-muted">Max. Teilnehmer</div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <input id="minTm" type="text" class="form-control" ng-model="va.min" ng-init="'va.min'" />
             </div>
-            <div class="row">
-              <div class="col-sm-6">
-                <input id="minTm" type="text" class="form-control" ng-model="va.min" ng-init="'va.min'" />
-              </div>
-              <div class="col-sm-6">
-                <input id="maxTm" type="text" class="form-control" ng-model="va.max" ng-init="'va.max'" />
-              </div>
+            <div class="col-sm-6">
+              <input id="maxTm" type="text" class="form-control" ng-model="va.max" ng-init="'va.max'" />
             </div>
-            <div class="row">
-              <div class="col-sm-12">
-                <hr />
-              </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <hr />
             </div>
-            <div class="row">
-              <div class="col-md-12">
-                <button type="button" data-dismiss="modal" ng-click="editVeranstaltung()" class="btn btn-my-block" data-placement="bottom" title="Speichern" onmouseenter="$(this).tooltip('show')"><span class="glyphicon glyphicon-ok"></span></button>
-              </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button type="button" data-dismiss="modal" ng-click="editVeranstaltung()" class="btn btn-my-block" data-placement="bottom" title="Speichern" onmouseenter="$(this).tooltip('show')"><span class="glyphicon glyphicon-ok"></span></button>
             </div>
+          </div>
         </div>
       </form>
     </div>

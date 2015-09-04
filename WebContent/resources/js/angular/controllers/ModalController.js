@@ -11,8 +11,12 @@
 
     // Getter für die einzelnen Popups
     // -------------------------------------------------------------
-    $scope.getModalEdit = function(){
+    $scope.getVeranstaltungEdit = function(){
       return "resources/popups/modal_veranstaltung_aendern.html";
+    }
+
+    $scope.getGruppeEdit = function(){
+      return "resources/popups/modal_gruppe_aendern.html";
     }
 
     $scope.getModalNew = function(){
@@ -26,6 +30,14 @@
 
     $scope.getModalNote = function(){
       return "resources/popups/modal_note.html";
+    }
+
+    $scope.getModalTmDetails = function(){
+      return "resources/popups/modal_teilnehmer_details.html";
+    }
+
+    $scope.getModalTmEntfernen = function(){
+      return "resources/popups/modal_tm_entfernen.html";
     }
 	};
 

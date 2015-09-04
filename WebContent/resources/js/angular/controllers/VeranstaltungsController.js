@@ -9,13 +9,10 @@
 	// $scope = model object, $http: holt JSON Daten via SpringMVC Backend -> folgt später
 	var VeranstaltungsController = function($scope, autoscroller /*, $http*/){
 
-
-
     // Locals
     // -----------
     var index;
     //------------
-
 
     // Vorerst Hardcoded Daten zur Demonstration
     // Später dynamische Ermittlung durch Spring MVC
@@ -24,7 +21,7 @@
     $scope.semester = [1, 2, 3, 4, 5, 6];
     $scope.fachbereiche = ["AI", "TI", "WI"];
     $scope.maxTeilnehmer = [50, 60, 70, 80, 90];
-    $scope.currTeilnehmer = [10, 20, 30, 40, 50];
+    $scope.currTeilnehmer = $scope.minTeilnehmer = [10, 20, 30, 40, 50];
 
     // Array aus Veranstaltungsobjekten
     $scope.hcVeranstaltungsDaten =
@@ -44,6 +41,7 @@
     $scope.va.dozent = "";      // ...
     $scope.va.assistent = "";
     $scope.va.min = 0;
+    $scope.va.min = $scope.minTeilnehmer[0];
     $scope.va.curr = $scope.currTeilnehmer[0];
     $scope.va.max = $scope.maxTeilnehmer[0];
     // -------------------------------------------------------------------------
@@ -63,32 +61,24 @@
     // Button-klick Funktionen
     // ---------------------------------------------------------------------------
 
-    $scope.initPopup = function(ngIndex){
-
+    // Initialisiert das Veranstaltung-Bearbeiten-Popup mit den vorhandenen Werten
+    $scope.initVeranPopup = function(ngIndex){
       $scope.va.dozent = $scope.hcVeranstaltungsDaten[ngIndex].dozent;
       $scope.va.assistent = $scope.hcVeranstaltungsDaten[ngIndex].assistent;
       $scope.va.min = $scope.hcVeranstaltungsDaten[ngIndex].min;
       $scope.va.max = $scope.hcVeranstaltungsDaten[ngIndex].max;
-      console.log(ngIndex);
-      console.log($scope.va.assistent);
-      console.log($scope.va.dozent);
-      console.log($scope.va.min);
-      console.log($scope.va.max);
       index = ngIndex;
-
     }
 
+    // Fügt eine neue Veranstaltung in die Tabelle ein -> TODO: Preconditions
     $scope.addVeranstaltung = function(){
-
-      if(isValidNumber($scope.va.min) && isValidNumber($scope.va.max)){ // TODO: Precondition für gültige min max Eingabe
-
+      if(isValidNumber($scope.va.min) && isValidNumber($scope.va.max)){ //
         $scope.hcVeranstaltungsDaten.push({fach: $scope.va.fach,
                                            dozent: $scope.va.dozent,
                                            assistent: $scope.va.assistent,
                                            min: $scope.va.min,
                                            curr: 0,
                                            max: $scope.va.max});
-
       autoscroller.erstellen = null;
       }else{
         alert("Keine gültige Eingabe für min und/oder max");
@@ -97,17 +87,21 @@
       $scope.va = {};
     }
 
-    $scope.editVeranstaltung = function(){            // TODO: Preconditions (min < curr, etc)
-
+    // Ändert den Tabelleneintrag der Veranstaltung anhand der Benutzereingaben -> // TODO: Preconditions
+    $scope.editVeranstaltung = function(){
       $scope.hcVeranstaltungsDaten[index].dozent = $scope.va.dozent;
       $scope.hcVeranstaltungsDaten[index].assistent = $scope.va.assistent;
       $scope.hcVeranstaltungsDaten[index].min = $scope.va.min;
       $scope.hcVeranstaltungsDaten[index].max = $scope.va.max;
 
+      // Felder wieder zurücksetzen
+      $scope.va = {};
     }
-
-    // ----------------------------------------------------------------------------
-	};
+ // ----------------------------------------------------------------------------
+    
+ };
+    
+	
 
   // Controller bei der App "anmelden"
 	app.controller("VeranstaltungsController", VeranstaltungsController);

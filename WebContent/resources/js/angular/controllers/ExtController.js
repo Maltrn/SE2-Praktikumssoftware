@@ -1,32 +1,45 @@
 /**
- * Controllerclass to manage Popups
+ * Managed die Extensions der einzelnen Tabs
  */
 (function () {
 
-	// Define MainController and refer to Mainapp
-	// $scope = model
+	// Controllerdefintion
+	// $scope = model: das Model-Objekt
   var app = angular.module("SE2-Software");
 
 	var ExtController = function($scope, autoscroller){
 
+
+    // Scope Fields
+    // -------------------------------------------
+    $scope.erstellen = autoscroller.erstellen;
+    // -------------------------------------------
+
+
     // Extension-Tags
+    // -----------------------------------------------
     var grErstellen = "grErstellen";
     var newsErstellen = "newsErstellen";
     var veranErstellen = "veranErstellen";
+    // -----------------------------------------------
 
     // Extension Scroll-IDs
+    // ----------------------------------------------
     var scrollGrErstellen = 'grerstellen';
     var scrollNewsErstellen = 'newserstellen';
     var scrollVeranErstellen = 'veranerstellen';
+    // ----------------------------------------------
 
-    //Extension templates
+    // Extension templates
+    // -----------------------------------------------------------------------------
     var extGruppeErstellen = "resources/extensions/ext_gruppe_erstellen.html";
     var extNewsErstellen = "resources/extensions/ext_news_erstellen.html";
     var extVeranErstellen = "resources/extensions/ext_veranstaltung_erstellen.html";
+    // -----------------------------------------------------------------------------
 
-    $scope.erstellen = autoscroller.erstellen;
-    // Method Defintion
 
+    // Funktionen um die Extension ein- und auszublenden
+    // --------------------------------------------------
     $scope.getCurrTemplate = function(){
       return autoscroller.erstellen;
     }
@@ -87,8 +100,12 @@
         autoscroller.erstellen = null;
       }
     }
+
+    // --------------------------------------------------
 	};
 
-  // register Controller to Mainapp
+  // Controller bei der App "anmelden"
 	app.controller("ExtController", ExtController);
+
+// Code sofort ausführen
 }());

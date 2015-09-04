@@ -20,7 +20,7 @@
                 </div>
                 <div class=col-md-6>
                   <select select-picker data-width="100%" title="Fachbereich wählen...">
-                    <option id="'d-'+{{$index}}" ng-repeat="fb in fachbereiche" value="{{fb}}" >{{fb}}</option>
+                    <option ng-repeat="fb in fachbereiche" value="{{fb}}" >{{fb}}</option>
                   </select>
                 </div>
               </div>
@@ -43,10 +43,10 @@
                         <td>{{veranstaltung.assistent}}</td>
                         <td>{{veranstaltung.curr}} / {{veranstaltung.max}}</td>
                         <td>
-                          <button type="button" class="btn btn-my-default pull-right btn-sm" ng-click="initPopup($index)" data-toggle="modal" data-target="#modalBearbeiten" data-placement="bottom" title="Veranstaltung bearbeiten" onmouseenter="$(this).tooltip('show')">
+                          <button type="button" class="btn btn-my-default pull-right btn-sm" ng-click="initVeranPopup($index)" data-toggle="modal" data-target="#modalBearbeiten" data-placement="bottom" title="Veranstaltung bearbeiten" onmouseenter="$(this).tooltip('show')">
                             <span class="glyphicon glyphicon-pencil"></span>
                           </button>
-                          <div ng-include src="getModalEdit($index)"></div>
+                          <div ng-include src="getVeranstaltungEdit()"></div>
                         </td>
                       </tr>
                     </tbody>

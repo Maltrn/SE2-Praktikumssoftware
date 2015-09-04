@@ -6,9 +6,10 @@ Frontend only Demo (Angestellten-Panel) -> http://bit.ly/1JwbrTr <- HAW PUB
 <br/>
 Mit A-Kennung anmelden und irgendwas ins Login eintragen.
 
+
 Aktuell
 =======
-Funktionen: Veranstaltungen bearbeiten hinzugefügt <br />
+Funktionen: Veranstaltungen bearbeiten, Gruppe bearbeiten, und Teilnehmerübersicht mit Leistungen-Anzeige hinzugefügt <br />
 Funktionen: Gruppe erstellen und Veranstaltung erstellen, hinzugefügt <br />
 Code aufgeräumt und AngularService hinzugefügt.
 

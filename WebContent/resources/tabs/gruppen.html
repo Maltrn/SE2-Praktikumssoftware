@@ -41,12 +41,13 @@
               <div class="row">
                 <div class="col-sm-12">
                   <br />
-                  <table class="table table-striped">
+                  <table class="table table-striped" ng-controller="ModalController">
                     <thead>
                       <tr>
                         <th>Fach</th>
                         <th>Grp. Nr.</th>
                         <th>KW</th>
+                        <th>Tag</th>
                         <th>Uhrzeit</th>
                         <th>Prof</th>
                         <th>Raum</th>
@@ -58,12 +59,19 @@
                         <td>{{gruppe.fach}}</td>
                         <td>{{gruppe.grpNr}}</td>
                         <td>{{gruppe.kw}}</td>
+                        <td>{{gruppe.tag}}</td>
                         <td>{{gruppe.startUhrzeit}} - {{gruppe.endUhrzeit}}</td>
                         <td>{{gruppe.dozent}}</td>
                         <td>{{gruppe.raum}}</td>
                         <td>{{gruppe.minGr}} / {{gruppe.maxGr}}</td>
                         <td>
-                          <button type="button" class="btn btn-my-default btn-sm" data-placement="bottom" title="Weiter zur Teilnehmerübersicht" onmouseenter="$(this).tooltip('show')" ng-click="switchToTmUebersicht()">
+                          <button type="button" class="btn btn-my-default btn-sm" ng-click="initGruppePopup($index)" data-toggle="modal" data-target="#gruppeBearbeiten" data-placement="bottom" title="Gruppe bearbeiten" onmouseenter="$(this).tooltip('show')">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                          </button>
+                          <div ng-include src="getGruppeEdit()"></div>
+                        </td>
+                        <td>
+                          <button type="button" class="btn btn-my-default btn-sm"  ng-click="initFach($index); switchToTmUebersicht()" data-placement="bottom" title="Weiter zur Teilnehmerübersicht" onmouseenter="$(this).tooltip('show')">
                             <span class="glyphicon glyphicon-chevron-right"></span>
                           </button>
                         </td>

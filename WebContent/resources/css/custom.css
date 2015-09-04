@@ -124,6 +124,16 @@
      border-radius: 0px;
  }
 
+ .fade {
+   opacity: 0;
+   -webkit-transition: opacity 0.02s linear;
+   transition: opacity 0.05s linear;
+}
+
+.modal-backdrop{
+    opacity:0.00 !important;
+}
+
  /*Inner GlyphIcons*/
  /* enable absolute positioning */
  /* enable absolute positioning */
@@ -189,8 +199,12 @@
      margin-left: 15px;
  }
 
-
  /* dropdownmenu */
  .dropdown-menu {
    border-radius: 0px;
+ }
+
+ /* Glyphicons */
+ .glyphicon-stop{
+   font-size:1.5em;
  }
