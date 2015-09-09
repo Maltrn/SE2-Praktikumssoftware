@@ -19,6 +19,10 @@
       return "resources/popups/modal_gruppe_aendern.html";
     }
 
+    $scope.getGruppeDetails = function(){
+      return "resources/popups/modal_gruppe_details.html";
+    }
+
     $scope.getModalNew = function(){
       return "resources/popups/modal_veranstaltung_erstellen.html";
     }

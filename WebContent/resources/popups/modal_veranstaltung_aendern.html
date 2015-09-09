@@ -9,49 +9,49 @@
       <form class="form-horizontal" role="form">
         <div class="modal-body">
           <div class="row">
-            <div class="col-sm-12 text text-muted">Dozenten ändern/hinzufügen</div>
+            <div class="col-sm-12 text text-muted"><small>Dozenten ändern/hinzufügen</small></div>
           </div>
           <div class="row">
             <div class="col-sm-12 inner-addon right-addon">
-                <span class="glyphicon glyphicon-search"></span>
-                <input id="dozent" type="text" class="form-control" placeholder="Live-Suche" ng-model="va.dozent" ng-init="'va.dozent'"/>
+              <span class="glyphicon glyphicon-search"></span>
+              <input type="text" class="form-control" placeholder="Live-Suche" ng-model="va.dozent", name="dozent"  />
             </div>
           </div>
           <div class="row">
             <br />
-            <div class="col-sm-12 text text-muted">Assistenten ändern/hinzufügen</div>
+            <div class="col-sm-12 text text-muted"><small>Assistenten ändern/hinzufügen</small></div>
           </div>
           <div class="row">
             <div class="col-sm-12 inner-addon right-addon">
-                <span class="glyphicon glyphicon-search"></span>
-                <input id="assistent" type="text" class="form-control" placeholder="Live-Suche" ng-model="va.assistent" ng-init="'va.assistent'" />
+              <span class="glyphicon glyphicon-search"></span>
+              <input type="text" class="form-control" placeholder="Live-Suche" ng-model="va.assistent" name="assistent"/>
+            </div>
+          </div>
+          <div class="row">
+            <br />
+            <div class="col-sm-6 text text-muted"><small>Min. Teilnehmer</small></div>
+            <div class="col-sm-6 text text-muted"><small>Max. Teilnehmer</small></div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <input type="number" name="min" class="form-control" placeholder="Min. Teilnehmer..." ng-model="va.min"/>
+              <p class="help-box"ng-show="!isValidNumber(va.min)"><span class="text text-danger"> <small>Bitte gültige Zahl eingeben!</small></span></p>
+              <p class="help-box"ng-show="!isValidMin(va.min)"><span class="text text-danger"><small>Darf nicht > Max sein!</small></span></p>
+            </div>
+            <div class="col-sm-6">
+              <input type="number" class="form-control" placeholder="Max. Teilnehmer..." data-ng-model="va.max" name="assistent"/>
+              <p class="help-box"ng-show="!isValidNumber(va.max)"><span class="text text-danger"> <small>Bitte gültige Zahl eingeben!</small></span></p>
+              <p class="help-box"ng-show="!isValidMax(va.max)"><span class="text text-danger"> <small>Darf nicht < Min sein!</small></span></p>
             </div>
           </div>
           <div class="row">
             <div class="col-sm-12">
-              <hr />
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-6 text text-muted">Min. Teilnehmer</div>
-            <div class="col-sm-6 text text-muted">Max. Teilnehmer</div>
-          </div>
-          <div class="row">
-            <div class="col-sm-6">
-              <input id="minTm" type="text" class="form-control" ng-model="va.min" ng-init="'va.min'" />
-            </div>
-            <div class="col-sm-6">
-              <input id="maxTm" type="text" class="form-control" ng-model="va.max" ng-init="'va.max'" />
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-12">
-              <hr />
+              <hr/>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
-              <button type="button" data-dismiss="modal" ng-click="editVeranstaltung()" class="btn btn-my-block" data-placement="bottom" title="Speichern" onmouseenter="$(this).tooltip('show')"><span class="glyphicon glyphicon-ok"></span></button>
+              <button type="button" data-dismiss="modal" ng-disabled="!filledComplete()" ng-click="editVeranstaltung()" class="btn btn-my-block" data-placement="bottom" title="Speichern" onmouseenter="$(this).tooltip('show')"><span class="glyphicon glyphicon-ok"></span></button>
             </div>
           </div>
         </div>

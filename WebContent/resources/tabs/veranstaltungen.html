@@ -11,22 +11,49 @@
               <h2><strong>Veranstaltungsübersicht</strong></h2>
             </div>
             <div class="panel-body">
-              <!--Table start-->
+              <div class="row">
+                <div class="col-sm-6 text text-muted">
+                  <small>Fachbereich:</small>
+                </div>
+                <div class="col-sm-6 text text-muted">
+                  <small>Semester</small>
+                </div>
+              </div>
               <div class="row">
                 <div class=col-md-6>
-                  <select select-picker data-width="100%" title="Semester wählen...">
-                    <option ng-repeat="sem in semester" value="{{sem}}" >{{sem}}</option>
+                  <select class="form-control" data-width="100%" ng-model="va.fachbereich" ng-options="fb for fb in fachbereiche">
                   </select>
                 </div>
                 <div class=col-md-6>
-                  <select select-picker data-width="100%" title="Fachbereich wählen...">
-                    <option ng-repeat="fb in fachbereiche" value="{{fb}}" >{{fb}}</option>
+                  <select class="form-control" data-width="100%" ng-model="va.sem" ng-options="sem for sem in semester">
                   </select>
                 </div>
               </div>
               <div class="row">
+                <div class="col-sm-12">
+                </div>
+              </div>
+              <div class="row">
+                <br />
+                <div class="col-sm-12">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="strike text text-muted">
+                        <span>und/oder</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12 inner-addon right-addon">
+                    <span class="glyphicon glyphicon-search"></span>
+                    <input type="text" class="form-control" ng-model="searchKeyword" placeholder="Fach, Dozent, Assistent eingeben..." />
+                </div>
+              </div>
+              <div class="row">
+                <br/>
                 <div class="col-md-12">
-                  <br />
                   <table class="table table-striped" ng-controller="ModalController">
                     <thead>
                       <tr>
@@ -37,7 +64,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr ng-repeat="veranstaltung in hcVeranstaltungsDaten">
+                      <tr ng-repeat="veranstaltung in hcVeranstaltungsDaten | filter: searchKeyword">
                         <td>{{veranstaltung.fach}}</td>
                         <td>{{veranstaltung.dozent}}</td>
                         <td>{{veranstaltung.assistent}}</td>

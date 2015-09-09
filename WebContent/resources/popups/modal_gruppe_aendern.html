@@ -1,5 +1,5 @@
 <div class="modal" id="gruppeBearbeiten" role="dialog">
-  <div class="modal-dialog" style="width:40%;">
+  <div class="modal-dialog" style="width:40%;" ng-controller="DateController">
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
@@ -9,73 +9,97 @@
       <form class="form-horizontal" role="form">
         <div class="modal-body">
           <div class="row">
-            <div class="col-sm-12 text text-muted">Anz. Teammitglieder pro Gruppe</div>
+            <div class="col-sm-12 text text-muted">
+              <small>{{selBoxAnzTeamTitle}}</small>
+            </div>
           </div>
           <div class="row">
             <div class="col-sm-12">
-              <input id="maxTm" type="text" class="form-control" ng-model="gr.maxGr" ng-init="'gr.maxGr'" />
+              <select class="form-control" data-width="100%" ng-model="gr.anzTm" ng-options="anzTeam for anzTeam in anzTmTeam">
+              </select>
             </div>
           </div>
           <div class="row">
             <br />
             <div class="col-sm-12">
-              <div class="strike text-muted">
-                <span>Abgabetermin wählen</span>
+              <div class="strike text text-muted">
+                <span>{{termWaehlenTitle}}</span>
               </div>
             </div>
           </div>
           <div class="row">
-            <br/>
-            <div class="col-sm-3">
-              <select select-picker data-width="100%" title="1. Termin..." ng-model="gr.termine.tm1">
-                <option ng-repeat="termin1 in abgTermine">{{termin1}}</option>
-              </select>
+            <div class="col-sm-12">
+              <table class="table table-striped" style="margin: 1px;">
+                <thead>
+                  <tr>
+                    <th>TNr.</th>
+                    <th>Datum</th>
+                    <th>Beginn</th>
+                    <th>Ende</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="termin in gr.termine">
+                    <td style="width: 5%;">{{$index+1}}.</td>
+                    <td style="width: 35%;">
+                      <div class="input-group">
+                        <input type="text" class="form-control" ng-click="openCal($index)" show-button-bar="false" datepicker-popup="{{format}}" ng-model="termin.date" is-open="status[$index].opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)"ng-required="true" close-text="Close" />
+                        <div class="input-group-addon">
+                          <i class="glyphicon glyphicon-calendar"></i>
+                        </div>
+                      </div>
+                      <p class="help-box"ng-show="!isValidDate($index)"><span class="text text-danger"> <small>Folgetermin in Vergangenheit oder gleich.</small></span></p>
+                    </td>
+                    <td style="width: 30%;">
+                      <select class="form-control" data-width="100%" ng-model="termin.timeStart" ng-options="uzBeginn.getString() for uzBeginn in startZeiten">
+                      </select>
+                      <p class="help-box"ng-show="!isValidStartTime($index)"><span class="text text-danger"> <small>Uhrzeit Ende liegt in Vergangenheit.</small></span></p>
+                    </td>
+                    <td style="width: 30%;">
+                      <select class="form-control" data-width="100%" ng-model="termin.timeEnd" ng-options="uzEnde.getString() for uzEnde in endZeiten">
+                      </select>
+                    </td>
+                    <td>
+                      <button type="button" class="btn btn-my-default btn-sm"  ng-click="terminLoeschen($index)" data-placement="bottom" title="Diesen Termin entfernen" onmouseenter="$(this).tooltip('show')">
+                        <span class="glyphicon glyphicon glyphicon-minus"></span>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <div class="col-sm-3">
-              <select select-picker data-width="100%" title="2. Termin..." ng-model="gr.termine.tm2">
-                <option ng-repeat="termin2 in abgTermine">{{termin2}}</option>
-              </select>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <button type="button" class="btn btn-my-block btn-sm"  ng-click="addCal(); terminHinzufuegen()" data-placement="bottom" title="Weiteren Termin hinzufügen" onmouseenter="$(this).tooltip('show')">
+                <span class="glyphicon glyphicon glyphicon-plus"></span>
+              </button>
             </div>
-            <div class="col-sm-3">
-              <select select-picker data-width="100%" title="3. Termin..." ng-model="gr.termine.tm3">
-                <option ng-repeat="termin3 in abgTermine">{{termin3}}</option>
-              </select>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <hr/>
             </div>
-            <div class="col-sm-3">
-              <select select-picker data-width="100%" title="4. Termin..." ng-model="gr.termine.tm4">
-                <option ng-repeat="termin4 in abgTermine">{{termin4}}</option>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 text text-muted">
+              <small>{{raumWaehlenTitle}}</small>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <select class="form-control" data-width="100%" ng-model="gr.raum" ng-options="raum for raum in raeume">
               </select>
             </div>
           </div>
           <div class="row">
             <div class="col-sm-12">
-              <hr style="border-color: #E8E8E8;"/>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-6">
-              <select select-picker data-width="100%" title="Uhrzeit (Beginn)..." ng-model="gr.startUhrzeit">
-                <option ng-repeat="sz in startZeiten" value="{{sz}}" >{{sz}}</option>
-              </select>
-            </div>
-            <div class="col-sm-6">
-              <select select-picker data-width="100%" title="Uhrzeit (Ende)..." ng-model="gr.endUhrzeit">
-                <option ng-repeat="ez in endZeiten" value="{{ez}}" >{{ez}}</option>
-              </select>
+              <hr/>
             </div>
           </div>
           <div class="row">
             <div class="col-sm-12">
-              <br />
-              <select select-picker data-width="100%" title="Raum wählen..." ng-model="gr.raum">
-                <option ng-repeat="raum in raeume" >{{raum}}</option>
-              </select>
-            </div>
-          </div>
-          <div class="row">
-            <br />
-            <div class="col-md-12">
-              <button type="button" data-dismiss="modal" ng-click="editGruppe()" class="btn btn-my-block" data-placement="bottom" title="Speichern" onmouseenter="$(this).tooltip('show')"><span class="glyphicon glyphicon-ok"></span></button>
+              <button type="button" class="btn btn-my-block" data-dismiss="modal" ng-disabled="!isFilledCompleteBearbeiten()" ng-click="editGruppe()" data-placement="bottom" title="Speichern" onmouseenter="$(this).tooltip('show')"><span class="glyphicon glyphicon-ok"></span></button>
             </div>
           </div>
         </div>
