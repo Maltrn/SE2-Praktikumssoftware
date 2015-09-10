@@ -1,13 +1,13 @@
 /**
  * Managed die Extensions der einzelnen Tabs
  */
-(function () {
+(function() {
 
-	// Controllerdefintion
-	// $scope = model: das Model-Objekt
+  // Controllerdefintion
+  // $scope = model: das Model-Objekt
   var app = angular.module("SE2-Software");
 
-	var ExtController = function($scope, autoscroller){
+  var ExtController = function($scope, autoscroller) {
 
 
     // Scope Fields
@@ -40,72 +40,72 @@
 
     // Funktionen um die Extension ein- und auszublenden
     // --------------------------------------------------
-    $scope.getCurrTemplate = function(){
+    $scope.getCurrTemplate = function() {
       return autoscroller.erstellen;
     }
 
-    $scope.getExtGruppeErstellen = function(){
+    $scope.getExtGruppeErstellen = function() {
       return extGruppeErstellen;
     }
 
-    $scope.getExtNewsErstellen = function(){
+    $scope.getExtNewsErstellen = function() {
       return extNewsErstellen;
     }
 
-    $scope.getExtVeranErstellen = function(){
+    $scope.getExtVeranErstellen = function() {
       return extVeranErstellen;
     }
 
 
-    $scope.grErstellen = function(){
+    $scope.grErstellen = function() {
 
-      if(autoscroller.erstellen != grErstellen){
+      if (autoscroller.erstellen != grErstellen) {
         autoscroller.erstellen = grErstellen;
         autoscroller.scrollTo(scrollGrErstellen);
       }
     }
 
-    $scope.newsErstellen = function(){
+    $scope.newsErstellen = function() {
 
-      if(autoscroller.erstellen != newsErstellen){
+      if (autoscroller.erstellen != newsErstellen) {
         autoscroller.erstellen = newsErstellen;
         autoscroller.scrollTo(scrollNewsErstellen);
       }
     }
 
-    $scope.grErstellenClose = function(){
+    $scope.grErstellenClose = function() {
 
-      if(autoscroller.erstellen == grErstellen){
+      if (autoscroller.erstellen == grErstellen) {
         autoscroller.erstellen = null;
       }
     }
 
-    $scope.veranErstellen = function(){
-      if(autoscroller.erstellen != veranErstellen){
+    $scope.veranErstellen = function() {
+      if (autoscroller.erstellen != veranErstellen) {
         autoscroller.erstellen = veranErstellen;
         autoscroller.scrollTo(scrollVeranErstellen);
       }
     }
 
-    $scope.veranErstellenClose = function(){
+    $scope.veranErstellenClose = function() {
 
-      if(autoscroller.erstellen == veranErstellen){
+      if (autoscroller.erstellen == veranErstellen) {
         autoscroller.erstellen = null;
       }
     }
 
-    $scope.newsErstellenClose = function(){
+    $scope.newsErstellenClose = function() {
 
-      if(autoscroller.erstellen == newsErstellen){
+      if (autoscroller.erstellen == newsErstellen) {
         autoscroller.erstellen = null;
       }
     }
 
     // --------------------------------------------------
-	};
+  };
 
   // Controller bei der App "anmelden"
-	app.controller("ExtController", ExtController);
+  app.controller("ExtController", ExtController);
 
-// Code sofort ausführen
+  // Code sofort ausführen
 }());

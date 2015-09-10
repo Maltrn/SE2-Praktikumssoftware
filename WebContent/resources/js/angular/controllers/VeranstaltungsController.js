@@ -7,11 +7,12 @@
   var app = angular.module("SE2-Software");
 
   // $scope = model object, $http: holt JSON Daten via SpringMVC Backend -> folgt später
-  var VeranstaltungsController = function($scope, autoscroller /*, $http*/ ) {
+  var VeranstaltungsController = function($scope, autoscroller, vgservice /*, $http*/ ) {
 
     // Locals
     // -----------
-    var index;
+    var indexLoesch;
+    var indexEdit;
     //------------
 
     // Vorerst Hardcoded Daten zur Demonstration
@@ -26,36 +27,41 @@
     // Array aus Veranstaltungsobjekten
     $scope.hcVeranstaltungsDaten = [{
       fach: "GKAP",
-      dozent: "Padberg",
-      assistent: "Oelker",
+      dozent: "Prof. Dr. Julia Padberg",
+      currGr: 6,
+      maxGr: 10,
       min: 10,
       curr: 60,
       max: 80
     }, {
       fach: "ADP",
-      dozent: "Kleine",
-      assistent: "Blank",
+      dozent: "Prof. Dr. Martin Kleine",
+      currGr: 6,
+      maxGr: 10,
       min: 10,
       curr: 50,
       max: 60
     }, {
       fach: "BSP",
-      dozent: "Huebner",
-      assistent: "",
+      dozent: "Prof Dr. Martin Huebner",
+      currGr: 6,
+      maxGr: 10,
       min: 10,
       curr: 70,
       max: 80
     }, {
       fach: "SEP",
-      dozent: "",
-      assistent: "",
+      dozent: "Prof. Dr. Olaf Zukunft",
+      currGr: 6,
+      maxGr: 10,
       min: 10,
       curr: 0,
       max: 80
     }, {
       fach: "BWP",
-      dozent: "Gerken",
-      assistent: "",
+      dozent: "Prof. Dr. Wolfgang Gerken",
+      currGr: 6,
+      maxGr: 10,
       min: 10,
       curr: 50,
       max: 80
@@ -120,12 +126,12 @@
     // ---------------------------------------------------------------------------
 
     // Initialisiert das Veranstaltung-Bearbeiten-Popup mit den vorhandenen Werten
-    $scope.initVeranPopup = function(ngIndex) {
+    $scope.initVeranBearbeitenPopup = function(ngIndex) {
       $scope.va.dozent = $scope.hcVeranstaltungsDaten[ngIndex].dozent;
       $scope.va.assistent = $scope.hcVeranstaltungsDaten[ngIndex].assistent;
       $scope.va.min = $scope.hcVeranstaltungsDaten[ngIndex].min;
       $scope.va.max = $scope.hcVeranstaltungsDaten[ngIndex].max;
-      index = ngIndex;
+      indexEdit = ngIndex;
     }
 
     // Fügt eine neue Veranstaltung in die Tabelle ein -> TODO: Preconditions
@@ -133,20 +139,43 @@
       $scope.hcVeranstaltungsDaten.push({
         fach: $scope.va.fach,
         dozent: $scope.va.dozent,
-        assistent: $scope.va.assistent,
         min: $scope.va.min,
         curr: 0,
         max: $scope.va.max
       });
+
+
+
       autoscroller.erstellen = null;
     }
 
-    // Ändert den Tabelleneintrag der Veranstaltung anhand der Benutzereingaben -> // TODO: Preconditions
+    // Verorgt den vgservice mit den benötigten Daten für die Gruppenübersicht
+    $scope.initGruppenUebersicht = function(ngIndex) {
+
+      vgservice.setFach($scope.hcVeranstaltungsDaten[ngIndex].fach);
+      // TODO: Weitere Informatioen -> Erst wenn reale Datenbank
+    }
+
+    // Ändert den Tabelleneintrag der Veranstaltung anhand der Benutzereingaben
     $scope.editVeranstaltung = function() {
-        $scope.hcVeranstaltungsDaten[index].dozent = $scope.va.dozent;
-        $scope.hcVeranstaltungsDaten[index].assistent = $scope.va.assistent;
-        $scope.hcVeranstaltungsDaten[index].min = $scope.va.min;
-        $scope.hcVeranstaltungsDaten[index].max = $scope.va.max;
+      $scope.hcVeranstaltungsDaten[indexEdit].dozent = $scope.va.dozent;
+      $scope.hcVeranstaltungsDaten[indexEdit].min = $scope.va.min;
+      $scope.hcVeranstaltungsDaten[indexEdit].max = $scope.va.max;
+    }
+
+    // Initialisiert den Index der zu löschenden Veranstaltung
+    $scope.initVeranstaltungLoeschen = function(ngIndex) {
+      console.log(ngIndex);
+      indexLoesch = ngIndex;
+    }
+
+    $scope.loescheVeranstaltung = function() {
+        $scope.hcVeranstaltungsDaten.splice(indexLoesch, 1);
+
+        // Modal schließen forcieren, bug über normalen Weg (data-dismiss-tag) TODO: FIX
+        $('#gruppeLoeschen').modal('hide');
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
       }
       // ----------------------------------------------------------------------------
   };

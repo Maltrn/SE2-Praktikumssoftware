@@ -18,7 +18,7 @@
 
       <!--Buttonpanel start-->
       <div class="col-sm-12">
-        <div class="btn-group btn-group-justified">
+          <div class="btn-group btn-group-justified">
           <div class="btn-group">
             <button type="button" class="btn btn-my-default" ng-click="switchToNews()">News</button>
           </div>
@@ -27,10 +27,11 @@
           </div>
           <div class="btn-group">
             <button type="button" class="btn btn-my-default dropdown-toggle" data-toggle="dropdown">
-              Praktika <span class="caret"></span></button>
+              Veranstaltungen <span class="caret"></span></button>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="" ng-click="switchToPraktika()">Veranstaltungen</a></li>
-                <li><a href="" ng-click="switchToGruppen()">Gruppen</a></li>
+                <li><a href="" ng-click="switchToPraktika()"><span class="text text-success">Pflichtpraktika</span></a></li>
+                <li><a href="" ng-click="switchToWahlpflicht()"><span class="text text-danger">Wahlpflicht</span></a></li>
+                <li><a href="" ng-click="switchToProjekte()"><span class="text text-danger">Projekte</span></a></li>
               </ul>
           </div>
           <div class="btn-group">
@@ -40,15 +41,15 @@
             <button type="button" class="btn btn-my-default dropdown-toggle" data-toggle="dropdown">
               Daten Im-/Export <span class="caret"></span></button>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="" ng-click="switchToDatenIm()">Daten imp.</a></li>
-                <li><a href="" ng-click="switchToDatenEx()">Daten exp.</a></li>
+                <li><a href="" ng-click="switchToDatenIm()"><span class="text text-danger">Daten imp.</span></a></li>
+                <li><a href="" ng-click="switchToDatenEx()"><span class="text text-danger">Daten ex.</span></a></li>
               </ul>
           </div>
           <div class="btn-group">
             <button type="button" class="btn btn-my-default" ng-click="switchToMeldungen()">Meldungen <span class="badge">2</span></button>
           </div>
           <div class="btn-group">
-            <button type="button" class="btn btn-my-default">Logout</button>
+            <a href="login.html"><button type="button" class="btn btn-my-default">Logout</button></a>
           </div>
         </div>
       </div>
@@ -102,6 +103,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js" ></script>
   <script src="<c:url value="/resources/js/angular/app/app.js" />" ></script>
   <script src="<c:url value="/resources/js/angular/services/AutoScrollService.js" />" ></script>
+  <script src="<c:url value="/resources/js/angular/services/VeranstGruppCommunicator.js" />" ></script>
+  <script src="<c:url value="/resources/js/angular/services/GruppTmUebersCommunicator.js" />" ></script>
   <script src="<c:url value="/resources/js/angular/controllers/TabController.js" />" ></script>
   <script src="<c:url value="/resources/js/angular/controllers/ModalController.js" />" ></script>
   <script src="<c:url value="/resources/js/angular/controllers/ExtController.js" />" ></script>
@@ -110,10 +113,10 @@
   <script src="<c:url value="/resources/js/angular/controllers/GruppenController.js" />" ></script>
   <script src="<c:url value="/resources/js/angular/controllers/TMUebersichtController.js" />" ></script>
   <script src="<c:url value="/resources/js/angular/controllers/DateController.js" />" ></script>
+  <script src="<c:url value="/resources/js/angular/controllers/LeistungenController.js" />" ></script>
   <script src="<c:url value="/resources/js/bootstrap/ui-bootstrap.min.js" />" ></script>
   <script src="<c:url value="/resources/js/bootstrap/ui-bootstrap-tpls.js" />" ></script>
   <script src="<c:url value="/resources/js/bootstrap/ui-bootstrap-tpls.min.js" />" ></script>
-  <script src="<c:url value="/resources/js/angular/customdirectives/selectpicker.js" />" ></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-scroll/0.7.2/angular-scroll.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-scroll/0.7.2/angular-scroll.min.js"></script>
 </html>

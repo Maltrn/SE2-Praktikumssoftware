@@ -1,6 +1,6 @@
-<div class="row" id="leistungen"  ng-controller="ModalController">
+<div class="row" id="leistungen" ng-controller="ModalController">
   <br />
-  <div class="col-md-10 col-md-offset-1">
+  <div class="col-md-10 col-md-offset-1" ng-controller="LeistungenController">
     <div class="panel panel-cust-info">
       <br />
       <div class="panel-body">
@@ -8,7 +8,9 @@
         <div class="col-md-10 col-md-offset-1">
           <div class="panel panel-cust-success">
             <div class="panel-heading">
-              <h2><strong>Leistungen</strong></h2>
+              <h2>
+                <strong>Leistungen</strong>
+              </h2>
             </div>
             <div class="panel-body">
               <div class="row">
@@ -21,20 +23,11 @@
               </div>
               <div class="row">
                 <div class="col-sm-6 text text-muted">
-                  <select class="form-control" data-width="100%">
-                    <option>AI</option>
-                    <option>WI</option>
-                    <option>TI</option>
+                  <select class="form-control" data-width="100%" ng-options="fb for fb in fachbereiche" ng-model="ls.fb">
                   </select>
                 </div>
                 <div class="col-sm-6 text text-muted">
-                  <select class="form-control" data-width="100%">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
+                  <select class="form-control" data-width="100%" ng-options="sem for sem in semester" ng-model="ls.sem">
                   </select>
                 </div>
               </div>
@@ -49,23 +42,11 @@
               </div>
               <div class="row">
                 <div class="col-md-6">
-                  <!--TODO: Write Controller-->
-                  <select class="form-control" data-width="100%">
-                    <option>GKAP</option>
-                    <option>ADP</option>
-                    <option>BSP</option>
-                    <option>BWP</option>
-                    <option>SEP</option>
+                  <select class="form-control" data-width="100%" ng-options="fach for fach in faecher" ng-model="ls.fach">
                   </select>
                 </div>
                 <div class="col-md-6">
-                  <!--TODO: Write Controller-->
-                  <select class="form-control" data-width="100%">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
+                  <select class="form-control" data-width="100%" ng-options="gruppe for gruppe in gruppen" ng-model="ls.gruppe">
                   </select>
                 </div>
               </div>
@@ -73,14 +54,16 @@
                 <br/>
                 <div class="col-sm-12">
                   <div class="strike text-muted">
-                     <span><h5>und / oder</h5></span>
+                    <span>
+                      <h5>und / oder</h5>
+                    </span>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-sm-12 inner-addon right-addon">
-                    <span class="glyphicon glyphicon-search"></span>
-                    <input type="text" class="form-control" placeholder="Filtern - Name oder Matrikelnr eingeben..." />
+                  <span class="glyphicon glyphicon-search"></span>
+                  <input type="text" class="form-control" ng-model="searchKeyword" placeholder="Filtern - Name oder Matrikelnr eingeben..." />
                 </div>
               </div>
               <div class="row">
@@ -92,100 +75,72 @@
                         <th>Matrikelnr.</th>
                         <th>Vorname</th>
                         <th>Nachname</th>
-                        <th>Kurs</th>
+                        <th>Fach</th>
                         <th>Gruppe</th>
+                        <th>PVL</th>
+                        <th>Prüfung</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>2431441</td>
-                        <td>Max</td>
-                        <td>Mustermann1</td>
-                        <td>GKAP</td>
-                        <td>1</td>
+                      <tr ng-repeat="tm in teilnehmer | filter: searchKeyword">
+                        <td>{{tm.matrNr}}</td>
+                        <td>{{tm.vorn}}</td>
+                        <td>{{tm.nachn}}</td>
+                        <td>{{tm.fach}}</td>
+                        <td>{{tm.grNr}}</td>
                         <td>
-                          <button type="button" class="btn btn-my-default btn-sm pull-right" data-toggle="modal" data-target="#modalPVL" data-placement="bottom" title="PVL eintragen" onmouseenter="$(this).tooltip('show')">
+                          <div>
+                            <div ng-if="isSuccessPVL($index)">
+                              <div ng-include="getSuccess()">
+                              </div>
+                            </div>
+                            <div ng-if="!isSuccessPVL($index)">
+                              <div ng-if="isOpenPVL($index)">
+                                <div ng-include="getOpen()">
+                                </div>
+                              </div>
+                              <div ng-if="!isOpenPVL($index)">
+                                <div ng-include="getFail()">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div>
+                            <div ng-if="isSuccessNote($index)">
+                              <div ng-include="getSuccess()">
+                              </div>
+                            </div>
+                            <div ng-if="!isSuccessNote($index)">
+                              <div ng-if="isOpenNote($index)">
+                                <div ng-include="getOpen()">
+                                </div>
+                              </div>
+                              <div ng-if="!isOpenNote($index)">
+                                <div ng-include="getFail()">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <button type="button" class="btn btn-my-default btn-sm" ng-click="initTmDetailsLeist($index)" data-toggle="modal" data-target="#modalTmDetailsLeist" data-placement="bottom" title="Teilnehmerdetails zeigen" onmouseenter="$(this).tooltip('show')">
+                            <span class="glyphicon glyphicon-user"></span>
+                          </button>
+                          <div ng-include="getModalTMLeistungen()"></div>
+                        </td>
+                        <td>
+                          <button type="button" class="btn btn-my-default btn-sm" ng-disabled="isSuccessPVL($index)" ng-click="initEintragen($index)" data-toggle="modal" data-target="#modalPVL" data-placement="bottom" title="PVL eintragen" onmouseenter="$(this).tooltip('show')">
                             <span class="glyphicon glyphicon-check"></span>
                           </button>
-                          <div ng-include="getModalPVL()">
-
-                          </div>
+                          <div ng-include="getModalPVL()"> </div>
                         </td>
                         <td>
-                          <button type="button" class="btn btn-my-default btn-sm" data-toggle="modal" data-target="#modalNote" data-placement="bottom" title="Note eintragen" onmouseenter="$(this).tooltip('show')">
+                          <button type="button" class="btn btn-my-default btn-sm" ng-disabled="isSuccessNote($index)" ng-click="initEintragen($index)" data-toggle="modal" data-target="#modalNote" data-placement="bottom" title="Note eintragen" onmouseenter="$(this).tooltip('show')">
                             <span class="glyphicon glyphicon-edit"></span>
                           </button>
-                          <div ng-include="getModalNote()">
-
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2431441</td>
-                        <td>Max</td>
-                        <td>Mustermann1</td>
-                        <td>GKAP</td>
-                        <td>1</td>
-                        <td>
-                          <button type="button" class="btn btn-my-default btn-sm pull-right" data-toggle="modal" data-target="#modalPVL" data-placement="bottom" title="PVL eintragen" onmouseenter="$(this).tooltip('show')">
-                            <span class="glyphicon glyphicon-check"></span>
-                          </button>
-                        </td>
-                        <div ng-include="getModalPVL()">
-
-                        </div>
-                        <td>
-                          <button type="button" class="btn btn-my-default btn-sm" data-toggle="modal" data-target="#modalNote" data-placement="bottom" title="Note eintragen" onmouseenter="$(this).tooltip('show')">
-                            <span class="glyphicon glyphicon-edit"></span>
-                          </button>
-                          <div ng-include="getModalNote()">
-
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2431441</td>
-                        <td>Max</td>
-                        <td>Mustermann1</td>
-                        <td>GKAP</td>
-                        <td>1</td>
-                        <td>
-                          <button type="button" class="btn btn-my-default btn-sm pull-right" data-toggle="modal" data-target="#modalPVL" data-placement="bottom" title="PVL eintragen" onmouseenter="$(this).tooltip('show')">
-                            <span class="glyphicon glyphicon-check"></span>
-                          </button>
-                          <div ng-include="getModalPVL()">
-
-                          </div>
-                        </td>
-                        <td>
-                          <button type="button" class="btn btn-my-default btn-sm" data-toggle="modal" data-target="#modalNote" data-placement="bottom" title="Note eintragen" onmouseenter="$(this).tooltip('show')">
-                            <span class="glyphicon glyphicon-edit"></span>
-                          </button>
-                          <div ng-include="getModalNote()">
-
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2431441</td>
-                        <td>Max</td>
-                        <td>Mustermann1</td>
-                        <td>GKAP</td>
-                        <td>1</td>
-                        <td>
-                          <button type="button" class="btn btn-my-default btn-sm pull-right" data-toggle="modal" data-target="#modalPVL" data-placement="bottom" title="PVL eintragen" onmouseenter="$(this).tooltip('show')">
-                            <span class="glyphicon glyphicon-check"></span>
-                          </button>
-                          <div ng-include="getModalPVL()">
-
-                          </div>
-                        </td>
-                        <td>
-                          <button type="button" class="btn btn-my-default btn-sm"  data-toggle="modal" data-target="#modalNote" data-placement="bottom" title="Note eintragen" onmouseenter="$(this).tooltip('show')">
-                            <span class="glyphicon glyphicon-edit"></span>
-                          </button>
-                          <div ng-include="getModalNote()">
-                          </div>
+                          <div ng-include="getModalNote()"></div>
                         </td>
                       </tr>
                     </tbody>

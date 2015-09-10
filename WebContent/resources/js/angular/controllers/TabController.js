@@ -1,13 +1,13 @@
 /**
  * Managed die einzelnen Tabs
  */
-(function () {
+(function() {
 
-	// Controllerdefinition
+  // Controllerdefinition
   var app = angular.module("SE2-Software");
 
-	// $scope = model object
-	var TabController = function($scope){
+  // $scope = model object
+  var TabController = function($scope) {
 
     // Togglepoint
     $scope.switch = {};
@@ -19,6 +19,8 @@
     var profil = "profile";
     var news = "news";
     var praktika = "praktika";
+    var wahlpflicht = "wahlpflicht";
+    var projekte = "projekte";
     var gruppen = "gruppen";
     var leistungen = "leistungen";
     var meldungen = "meldungen";
@@ -32,7 +34,9 @@
     // -------------------------------------------------------------------------
     var newsTab = "resources/tabs/news.html";
     var profileTab = "resources/tabs/profile.html";
-    var praktikaTab = "resources/tabs/veranstaltungen.html";
+    var praktikaTab = "resources/tabs/pflicht_praktika.html";
+    var wahlPflichtTab = "resources/tabs/wahlpflicht_uebersicht.html";
+    var projekteTab = "resources/tabs/projekte_uebersicht.html";
     var gruppenTab = "resources/tabs/gruppen.html";
     var leistungenTab = "resources/tabs/leistungen.html";
     var meldungenTab = "resources/tabs/meldungen.html";
@@ -44,90 +48,106 @@
 
     // get Tabs
     // -------------------------------------------------------------------------
-    $scope.getCurrTab = function(){
+    $scope.getCurrTab = function() {
       return $scope.viewToggle;
     }
 
-    $scope.getNews = function(){
+    $scope.getNews = function() {
       return newsTab;
     }
 
-    $scope.getProfile = function(){
+    $scope.getProfile = function() {
       return profileTab;
     }
 
-    $scope.getPraktika = function(){
+    $scope.getPraktika = function() {
       return praktikaTab;
     }
 
-    $scope.getGruppen = function(){
+    $scope.getWahlpflicht = function() {
+      return wahlPflichtTab;
+    }
+
+    $scope.getProjekte = function() {
+      return projekteTab;
+    }
+
+    $scope.getGruppen = function() {
       return gruppenTab;
     }
 
-    $scope.getLeistungen = function(){
+    $scope.getLeistungen = function() {
       return leistungenTab;
     }
 
-    $scope.getMeldungen = function(){
+    $scope.getMeldungen = function() {
       return meldungenTab;
     }
 
-    $scope.getDatenEx = function(){
+    $scope.getDatenEx = function() {
       return datenExTab;
     }
 
-    $scope.getDatenIm = function(){
+    $scope.getDatenIm = function() {
       return datenImTab;
     }
 
-    $scope.getTmUebersicht = function(){
-      return tmTab;
-    }
-    // -------------------------------------------------------------------------
+    $scope.getTmUebersicht = function() {
+        return tmTab;
+      }
+      // -------------------------------------------------------------------------
 
 
     // Tab-Switch functions
     // -------------------------------------------------------------------------
-    $scope.switchToTmUebersicht = function(){
+    $scope.switchToTmUebersicht = function() {
       $scope.viewToggle = tmUebersicht;
     }
 
-    $scope.switchToDatenEx = function(){
+    $scope.switchToDatenEx = function() {
       $scope.viewToggle = datenex;
     }
 
-    $scope.switchToDatenIm = function(){
+    $scope.switchToDatenIm = function() {
       $scope.viewToggle = datenim;
     }
-    $scope.switchToMeldungen = function(){
+    $scope.switchToMeldungen = function() {
       $scope.viewToggle = meldungen;
     }
 
-    $scope.switchToLeistungen = function(){
+    $scope.switchToLeistungen = function() {
       $scope.viewToggle = leistungen;
     }
 
-    $scope.switchToProfile = function(){
+    $scope.switchToProfile = function() {
       $scope.viewToggle = profil;
     }
 
-    $scope.switchToNews = function(){
+    $scope.switchToNews = function() {
       $scope.viewToggle = news;
     }
 
-    $scope.switchToPraktika = function(){
+    $scope.switchToPraktika = function() {
       $scope.viewToggle = praktika;
     }
 
-    $scope.switchToGruppen = function(){
-      $scope.viewToggle = gruppen;
+    $scope.switchToWahlpflicht = function() {
+      $scope.viewToggle = wahlpflicht;
     }
-    // -------------------------------------------------------------------------
 
-	};
+    $scope.switchToProjekte = function() {
+      $scope.viewToggle = projekte;
+    }
+
+    $scope.switchToGruppen = function() {
+        $scope.viewToggle = gruppen;
+      }
+      // -------------------------------------------------------------------------
+
+  };
 
   // Controller bei der app "anmelden"
-	app.controller("TabController", TabController);
+  app.controller("TabController", TabController);
 
-// Code sofort ausführen
+  // Code sofort ausführen
 }());

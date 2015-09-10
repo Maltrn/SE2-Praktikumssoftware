@@ -2,15 +2,22 @@
 
 Der SE2-Projekt Ordner mit allen nötigen Libaries und der vorgesehenen Ordnerstruktur.
 <br/>
+<br/>
 Frontend only Demo (Angestellten-Panel) -> http://bit.ly/1JwbrTr <- HAW PUB
 <br/>
+<br/>
 Mit A-Kennung anmelden und irgendwas ins Login eintragen.<br/>
-Download -> http://bit.ly/1IYzKZD
+Download -> http://bit.ly/1IYzKZD <- HAW PUB
 
+
+Aktuell (10.09.2015)
+====================
+<li>Layout angepasst, Gruppenkonfigution über Veranstaltungen erreichbar</li>
+<li>Leistungen (Note/PVL) eintragen implementiert </li>
+<li>weitere Form Validations hinzugefügt</li>
 
 Aktuell (09.09.2015)
 ====================
-
 <li>Layout und Funktionen Gruppenverwaltung verändert</li>
 <li>Datepicker für Terminverwaltung hinzugefügt</li>
 <li>Form Validations hinzugefügt</li>

@@ -15,34 +15,6 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-6 text text-muted">
-      <small>{{selBoxSemTitle}}</small>
-    </div>
-    <div class="col-sm-6 text text-muted">
-      <small>{{selBoxSubjTitle}}</small>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-6">
-      <select class="form-control" data-width="100%" ng-model="gr.sem" ng-options="sem for sem in semesters">
-      </select>
-      <p class="help-box" ng-show="!isValidNumber(gr.sem)">
-        <span class="text text-danger">
-          <small>Bitte gültiges Semester wählen.</small>
-        </span>
-      </p>
-    </div>
-    <div class="col-sm-6">
-      <select class="form-control" data-width="100%" ng-model="gr.fach" ng-options="fach for fach in faecher">
-      </select>
-      <p class="help-box" ng-show="!isValidSubject(gr.fach)">
-        <span class="text text-danger">
-          <small>Bitte gültiges Fach eingeben.</small>
-        </span>
-      </p>
-    </div>
-  </div>
-  <div class="row">
     <br />
     <div class="col-sm-6 text text-muted">
       <small>{{selBoxGrpNrTitle}}</small>
@@ -66,8 +38,8 @@
       </p>
     </div>
     <div class="col-sm-6">
-      <select class="form-control" data-width="100%" ng-model="gr.anzTm" ng-options="anzTeam for anzTeam in anzTmTeam">
-      </select>
+      <input type="number" string-to-number class="form-control form-control-no-border" ng-model="gr.anzTm" placeholder="Anzahl Teammitglieder eingeben..." />
+      <p class="help-box"ng-show="!isValidAnzTeilnehmer(gr.anzTm)"><span class="text text-danger"> <small>Mind. 2 und Max. 10 Mitglieder erlaubt.</small></span></p>
     </div>
   </div>
   <div class="row">
@@ -80,7 +52,7 @@
   </div>
   <div class="row">
     <div class="col-sm-12">
-      <table class="table table-striped" style="margin: 1px;">
+      <table class="table table-striped" style="margin: 5px;">
         <thead>
           <tr>
             <th>TNr.</th>

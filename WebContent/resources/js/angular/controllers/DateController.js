@@ -1,13 +1,13 @@
 /**
- * Managed die möglichen Edits
+ * Managed den Datepicker
  */
-(function () {
+(function() {
 
   // Controllerdefinition
   var app = angular.module("SE2-Software");
 
   // $scope = model object
-	var DateController = function($scope){
+  var DateController = function($scope) {
 
 
     $scope.today = function() {
@@ -32,12 +32,14 @@
     $scope.maxDate = new Date(2020, 5, 22);
 
 
-    $scope.openCal = function(index){
+    $scope.openCal = function(index) {
       $scope.status[index].opened = true;
     }
 
-    $scope.addCal = function(){
-      $scope.status.push({opened: false});
+    $scope.addCal = function() {
+      $scope.status.push({
+        opened: false
+      });
     }
 
 
@@ -50,10 +52,18 @@
     $scope.format = $scope.formats[2];
 
     $scope.status = [];
-    $scope.status.push({opened: false});
-    $scope.status.push({opened: false});
-    $scope.status.push({opened: false});
-    $scope.status.push({opened: false});
+    $scope.status.push({
+      opened: false
+    });
+    $scope.status.push({
+      opened: false
+    });
+    $scope.status.push({
+      opened: false
+    });
+    $scope.status.push({
+      opened: false
+    });
 
 
 
@@ -82,10 +92,10 @@
         }
       }
     }
-	};
+  };
 
   // Controller bei der App "anmelden"
-	app.controller("DateController", DateController);
+  app.controller("DateController", DateController);
 
-// Code sofort ausführen
+  // Code sofort ausführen
 }());

@@ -1,4 +1,4 @@
-<div class="row" id="tm_uebersicht"  ng-controller="GruppenController">
+<div class="row" id="tm_uebersicht" ng-controller="TMUebersichtController">
   <br />
   <div class="col-md-10 col-md-offset-1">
     <div class="panel panel-cust-info">
@@ -8,28 +8,31 @@
         <div class="col-md-10 col-md-offset-1">
           <div class="panel panel-cust-success">
             <div class="panel-heading">
-              <h2><strong>Teilnehmerübersicht</strong></h2>
+              <h2>
+                <strong>Teilnehmerübersicht
+                  <small> - {{tm.fach}} - Gruppe: {{tm.grpNr}}</small>
+                </strong>
+              </h2>
             </div>
             <div class="panel-body">
               <!--Table start-->
               <div class="row">
                 <div class="col-sm-12 inner-addon right-addon">
-                    <span class="glyphicon glyphicon-search"></span>
-                    <input type="text" class="form-control" placeholder="Filtern - Name oder Matrikelnr eingeben..." />
+                  <span class="glyphicon glyphicon-search"></span>
+                  <input type="text" class="form-control" placeholder="Filtern - Name oder Matrikelnr eingeben..." />
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-12">
                   <br/>
-                  <table class="table table-striped" ng-controller="TMUebersichtController">
+                  <table class="table table-striped">
                     <thead>
                       <tr>
                         <th>Matrikelnr.</th>
                         <th>Vorname</th>
                         <th>Nachname</th>
                         <th>Team-Nr.</th>
-                        <th>PVL</th>
-                        <th>Note</th>
+                        <th>Fortschritt</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -39,44 +42,17 @@
                         <td>{{teiln.nachn}}</td>
                         <td>{{teiln.tmNr}}</td>
                         <td>
-                          <div ng-switch on="getPVL($index)">
-                            <div ng-switch-when="erfolgreich">
-                              <div ng-include="getSuccess()">
-                              </div>
-                            </div>
-                            <div ng-switch-when="nicht erfolgreich">
-                              <div ng-include="getFail()">
-                              </div>
-                            </div>
-                            <div ng-switch-when="offen">
-                              <div ng-include="getOpen()">
-                              </div>
+                          <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:50%">
+                              50%
                             </div>
                           </div>
                         </td>
                         <td>
-                          <div>
-                            <div ng-if="isSuccess($index)">
-                              <div ng-include="getSuccess()">
-                              </div>
-                            </div>
-                            <div ng-if="!isSuccess($index)">
-                              <div ng-if="isOpen($index)">
-                                <div ng-include="getOpen()">
-                                </div>
-                              </div>
-                              <div ng-if="!isOpen($index)">
-                                <div ng-include="getFail()">
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                        <td>
-                          <button type="button" class="btn btn-my-default btn-sm pull-right" ng-click="initTmDetails($index)" data-target="#modalTmDetails" data-toggle="modal" data-placement="bottom" title="Details anzeigen" onmouseenter="$(this).tooltip('show')">
+                          <button type="button" class="btn btn-my-default btn-sm pull-right" ng-click="initTmDetails($index)" data-target="#modalTmDetailsPrakt" data-toggle="modal" data-placement="bottom" title="Details anzeigen" onmouseenter="$(this).tooltip('show')">
                             <span class="glyphicon glyphicon-user"></span>
                           </button>
-                          <div ng-include="getModalTmDetails()">
+                          <div ng-include="getModalTmDetailsPrakt()">
 
                           </div>
                         </td>
@@ -84,15 +60,13 @@
                           <button type="button" class="btn btn-my-default btn-sm" ng-click="initEntfIndex($index)" data-target="#modalTmEntfernen" data-toggle="modal" data-placement="bottom" title="Teilnehmer aus Kurs entfernen" onmouseenter="$(this).tooltip('show')">
                             <span class="glyphicon glyphicon-minus"></span>
                           </button>
-                          <div ng-include="getModalTmEntfernen()">
-
-                          </div>
+                          <div ng-include="getModalTmEntfernen()"></div>
                         </td>
                       </tr>
-                      </tbody>
-                    </table>
-                  </div>
+                    </tbody>
+                  </table>
                 </div>
+              </div>
               <div class="row">
                 <div class="col-md-12">
                   <button type="button" class="btn btn-my-block btn-md" data-placement="bottom" title="Zurück zur Gruppenübersicht" onmouseenter="$(this).tooltip('show')" ng-click="switchToGruppen()">

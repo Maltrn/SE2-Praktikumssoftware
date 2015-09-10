@@ -1,52 +1,64 @@
 /**
  * Managed die Popups
  */
-(function () {
+(function() {
 
-	// Controllerdefinition
+  // Controllerdefinition
   var app = angular.module("SE2-Software");
 
   // $scope: Model Object
-	var ModalController = function($scope){
+  var ModalController = function($scope) {
 
     // Getter für die einzelnen Popups
     // -------------------------------------------------------------
-    $scope.getVeranstaltungEdit = function(){
+    $scope.getVeranstaltungEdit = function() {
       return "resources/popups/modal_veranstaltung_aendern.html";
     }
 
-    $scope.getGruppeEdit = function(){
+    $scope.getVeranstaltungLoesch = function() {
+      return "resources/popups/modal_veranstaltung_loeschen.html";
+    }
+
+    $scope.getGruppeEdit = function() {
       return "resources/popups/modal_gruppe_aendern.html";
     }
 
-    $scope.getGruppeDetails = function(){
+    $scope.getGruppeDetails = function() {
       return "resources/popups/modal_gruppe_details.html";
     }
 
-    $scope.getModalNew = function(){
+    $scope.getModalNew = function() {
       return "resources/popups/modal_veranstaltung_erstellen.html";
     }
 
-    $scope.getModalPVL = function(){
-      return "resources/popups/modal_pvl.html";
-    }
-    // -------------------------------------------------------------
+    $scope.getModalPVL = function() {
+        return "resources/popups/modal_pvl.html";
+      }
+      // -------------------------------------------------------------
 
-    $scope.getModalNote = function(){
+    $scope.getModalNote = function() {
       return "resources/popups/modal_note.html";
     }
 
-    $scope.getModalTmDetails = function(){
-      return "resources/popups/modal_teilnehmer_details.html";
+    $scope.getModalTmDetailsPrakt = function() {
+      return "resources/popups/modal_teilnehmer_details_prakt.html";
     }
 
-    $scope.getModalTmEntfernen = function(){
+    $scope.getModalTMLeistungen = function() {
+      return "resources/popups/modal_teilnehmer_details_leist.html";
+    }
+
+    $scope.getModalTmEntfernen = function() {
       return "resources/popups/modal_tm_entfernen.html";
     }
-	};
+
+    $scope.getGruppeLoeschen = function() {
+      return "resources/popups/modal_gruppe_loeschen.html";
+    }
+  };
 
   // Controller bei der App "anmelden"
-	app.controller("ModalController", ModalController);
+  app.controller("ModalController", ModalController);
 
-// Code sofort ausführen
+  // Code sofort ausführen
 }());

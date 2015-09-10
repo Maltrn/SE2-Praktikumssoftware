@@ -4,36 +4,23 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title"><strong>Note eintragen</strong></h4>
+        <h4 class="modal-title">
+          <strong>Note eintragen</strong>
+        </h4>
       </div>
       <div class="modal-body">
         <div class="row">
           <div class="col-sm-12">
-            <select class="form-control"data-width="100%" title="Bitte wählen...">
-              <!-- TODO: Controller schreiben-->
-              <option>0</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
-              <option>7</option>
-              <option>8</option>
-              <option>9</option>
-              <option>10</option>
-              <option>11</option>
-              <option>12</option>
-              <option>13</option>
-              <option>14</option>
-              <option>15</option>
+            <select class="form-control" data-width="100%" title="Bitte wählen..." ng-options="note for note in noten" ng-model="ls.eintrNote">
             </select>
           </div>
         </div>
         <br />
         <div class="row">
           <div class="col-sm-12">
-            <button type="button" class="btn btn-my-block" data-placement="bottom" title="Speichern" onmouseenter="$(this).tooltip('show')"><span class="glyphicon glyphicon-ok"></span></button>
+            <button type="button" class="btn btn-my-block" ng-click="trageNoteEin()" data-dismiss="modal" data-placement="bottom" title="Speichern" onmouseenter="$(this).tooltip('show')">
+              <span class="glyphicon glyphicon-ok"></span>
+            </button>
           </div>
         </div>
       </div>

@@ -4,22 +4,23 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title"><strong>PVL eintragen</strong></h4>
+        <h4 class="modal-title">
+          <strong>PVL eintragen</strong>
+        </h4>
       </div>
       <div class="modal-body">
         <div class="row">
           <div class="col-sm-12">
-            <select class="form-control" data-width="100%" title="Bitte wählen...">
-              <!--TODO: Controller schreiben-->
-              <option>erfolgreich</option>
-              <option>nicht erfolgreich</option>
+            <select class="form-control" data-width="100%" title="Bitte wählen..." ng-options="pvl for pvl in pvls" ng-model="ls.eintrPVL">
             </select>
           </div>
         </div>
         <br />
         <div class="row">
           <div class="col-sm-12">
-            <button type="button" class="btn btn-my-block" data-placement="bottom" title="Speichern" onmouseenter="$(this).tooltip('show')"><span class="glyphicon glyphicon-ok"></span></button>
+            <button type="button" class="btn btn-my-block" ng-click="tragePVLEin()" data-dismiss="modal" data-placement="bottom" title="Speichern" onmouseenter="$(this).tooltip('show')">
+              <span class="glyphicon glyphicon-ok"></span>
+            </button>
           </div>
         </div>
 
