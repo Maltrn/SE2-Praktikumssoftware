@@ -364,7 +364,7 @@
     }
 
     $scope.isValidAnzTeilnehmer = function(anzTeiln) {
-      return anzTeiln > 1 && anzTeiln < 10;
+      return anzTeiln > 1 && anzTeiln < 11;
     }
 
     $scope.isValidStartTime = function(ngIndex) {
@@ -418,7 +418,7 @@
 
 
     $scope.isFilledCompleteBearbeiten = function() {
-        return $scope.isFilledCompleteErstellen();
+        return $scope.isValidDateComplete() && $scope.isValidStartTimeComplete();
       }
       // ############################################################################################################
 
