@@ -12,6 +12,7 @@ Download -> http://bit.ly/1IYzKZD <- HAW PUB
 
 Aktuell (10.09.2015)
 ====================
+<li>Datenbank-Beispiel hinzugefügt (Funktioniert nur über Eclipse-Projekt, Anleitung weiter unten)</li>
 <li>Layout angepasst, Gruppenkonfigution über Veranstaltungen erreichbar</li>
 <li>Leistungen (Note/PVL) eintragen implementiert </li>
 <li>weitere Form Validations hinzugefügt</li>
@@ -32,6 +33,14 @@ Setup
 4.  "Select Root Directory" anwählen
 5.  SE2-Praktikumssoftware-Ordner auswÃ¤hlen
 6.  Finish klicken
+
+Anleitung für DB-Beispiel
+=========================
+1. Projekt in Eclipse importieren.
+2. Sicherstellen das Apache-Tomcat installiert und in Eclipse konfiguriert ist.
+3. A-Kennung in der Java-Klasse [DBConnector](/src/se2/praktikum/projekt/controllers/DBConnector.java) eintragen.
+4. Projekt ausführen.
+6. Rest sollte selbsterkärend sein.
 
 Tutorials
 =========

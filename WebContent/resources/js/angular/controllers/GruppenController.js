@@ -431,6 +431,7 @@
     $scope.terminLoeschen = function(ngIndex) {
         $scope.gr.termine.splice(ngIndex, 1);
       }
+
       // Fügt einen weiteren Termin hinzu
     $scope.terminHinzufuegen = function() {
         var lastAppDate = $scope.gr.termine[$scope.termine.length - 1].date;

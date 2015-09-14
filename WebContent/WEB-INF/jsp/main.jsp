@@ -49,7 +49,10 @@
             <button type="button" class="btn btn-my-default" ng-click="switchToMeldungen()">Meldungen <span class="badge">2</span></button>
           </div>
           <div class="btn-group">
-            <a href="login.html"><button type="button" class="btn btn-my-default">Logout</button></a>
+            <button type="button" class="btn btn-my-default">Logout</button>
+          </div>
+          <div class="btn-group">
+          	<a href="<c:url value="/dbbeispiel" />"><button type="button" class="btn btn-success">Datenbank-Beispiel</button></a>
           </div>
         </div>
       </div>

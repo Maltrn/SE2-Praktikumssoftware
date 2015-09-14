@@ -13,9 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class LoginController 
-{
-	
-	
+{	
 	// Konstanten
 	private final String WELCOME = "Dies wird die Login-Page...";
 	
