@@ -9,6 +9,9 @@ Frontend only Demo (Angestellten-Panel) -> http://bit.ly/1JwbrTr <- HAW PUB
 Mit A-Kennung anmelden und irgendwas ins Login eintragen.<br/>
 Download -> http://bit.ly/1IYzKZD <- HAW PUB
 
+Aktuell (25.09.2015)
+====================
+<li>[Schnittstellen-Beispiel](/WebContent/resources/js/angular/services/database/DBVeranstService.js) hinzugefügt</li>
 
 Aktuell (10.09.2015)
 ====================

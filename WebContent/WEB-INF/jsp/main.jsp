@@ -106,6 +106,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js" ></script>
   <script src="<c:url value="/resources/js/angular/app/app.js" />" ></script>
   <script src="<c:url value="/resources/js/angular/services/AutoScrollService.js" />" ></script>
+  <script src="<c:url value="/resources/js/angular/services/database/DBVeranstService.js" />" ></script>
+  <script src="<c:url value="/resources/js/angular/services/database/DBGruppService.js" />" ></script>
+  <script src="<c:url value="/resources/js/angular/services/database/DBGruppTmService.js" />" ></script>
+  <script src="<c:url value="/resources/js/angular/services/database/DBLeistungService.js" />" ></script>
   <script src="<c:url value="/resources/js/angular/services/VeranstGruppCommunicator.js" />" ></script>
   <script src="<c:url value="/resources/js/angular/services/GruppTmUebersCommunicator.js" />" ></script>
   <script src="<c:url value="/resources/js/angular/controllers/TabController.js" />" ></script>
