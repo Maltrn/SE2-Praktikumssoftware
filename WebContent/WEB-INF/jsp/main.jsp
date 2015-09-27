@@ -23,7 +23,7 @@
             <button type="button" class="btn btn-my-default" ng-click="switchToNews()">News</button>
           </div>
           <div class="btn-group">
-            <button type="button" class="btn btn-my-default" ng-click="switchToProfile()">Profile</button>
+            <button type="button" class="btn btn-my-default" ng-click="switchToProfile()">Profil</button>
           </div>
           <div class="btn-group">
             <button type="button" class="btn btn-my-default dropdown-toggle" data-toggle="dropdown">
