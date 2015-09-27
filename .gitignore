@@ -1,0 +1,2 @@
+# Ignoriere DB-Connector
+/src/se2/praktikum/projekt/controllers/DBConnector.java
