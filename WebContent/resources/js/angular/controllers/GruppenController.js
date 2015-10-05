@@ -7,7 +7,7 @@
   var app = angular.module("SE2-Software");
 
   // $scope = model object, $http: holt JSON Object vom SpringMVC Backend -> folgt später
-  var GruppenController = function($scope, autoscroller, vgservice, tmGruppenService, DBGruppService /*, $http*/ ) {
+  var GruppenController = function($scope, autoscroller, DBGruppTmService, DBGruppService /*, $http*/ ) {
 
 
     // Locals
@@ -51,7 +51,7 @@
     // ############################################################################################################
     $scope.gr = {};
     $scope.gr.sem;
-    $scope.gr.fach = vgservice.getFach();
+    $scope.gr.fach = DBGruppService.getFach();
     $scope.gr.grpNr = DBGruppService.grNummern[0];
     $scope.gr.termine = $scope.termine;
     $scope.gr.dozent = DBGruppService.dozenten[0];
@@ -59,7 +59,7 @@
     $scope.gr.raum = DBGruppService.raeume[0];
     $scope.gr.minGr = 0;
     $scope.gr.maxGr = 10;
-    $scope.gr.anzTm = DBGruppService.anzTmTeam[2];
+    $scope.gr.anzTm = 2;
 
     // ############################################################################################################
 
@@ -222,19 +222,21 @@
 
 
     // initialisiert das Popup mit den vorhandenen Werten
-    $scope.initGruppeEdit = function(ngIndex) {
-      indexGrEdit = ngIndex;
-      $scope.gr.maxGr = DBGruppService.hcGruppenDaten[ngIndex].maxGr;
-      $scope.gr.termine = DBGruppService.hcGruppenDaten[ngIndex].termine;
-      $scope.gr.tag = DBGruppService.hcGruppenDaten[ngIndex].tag;
-      $scope.gr.startUhrzeit = DBGruppService.hcGruppenDaten[ngIndex].startUhrzeit;
-      $scope.gr.endUhrzeit = DBGruppService.hcGruppenDaten[ngIndex].endUhrzeit;
-      $scope.gr.raum = DBGruppService.hcGruppenDaten[ngIndex].raum;
+    $scope.initGruppeEdit = function(fach, grpNr) {
+      indexGrEdit = DBGruppService.sucheGruppe(fach, grpNr);
+      $scope.gr.maxGr = DBGruppService.hcGruppenDaten[indexGrEdit].maxGr;
+      $scope.gr.termine = DBGruppService.hcGruppenDaten[indexGrEdit].termine;
+      $scope.gr.tag = DBGruppService.hcGruppenDaten[indexGrEdit].tag;
+      $scope.gr.startUhrzeit = DBGruppService.hcGruppenDaten[indexGrEdit].startUhrzeit;
+      $scope.gr.endUhrzeit = DBGruppService.hcGruppenDaten[indexGrEdit].endUhrzeit;
+      $scope.gr.raum = DBGruppService.hcGruppenDaten[indexGrEdit].raum;
 
     }
 
     // Initialisert das popup mit den Gruppendetails mit den vorhandenen Werten
-    $scope.initGruppeDetails = function(ngIndex) {
+    $scope.initGruppeDetails = function(fach, grpNr) {
+
+      var ngIndex = DBGruppService.sucheGruppe(fach, grpNr);
       $scope.gr.grpNr = DBGruppService.hcGruppenDaten[ngIndex].grpNr;
       $scope.gr.termine = DBGruppService.hcGruppenDaten[ngIndex].termine;
       $scope.gr.dozent = DBGruppService.hcGruppenDaten[ngIndex].dozent;
@@ -264,8 +266,8 @@
     }
 
     // Speichert den Index des zu loeschenden Gruppeneintrags
-    $scope.initGruppeLoeschen = function(ngIndex) {
-      indexGrLoeschen = ngIndex;
+    $scope.initGruppeLoeschen = function(fach, grpNr) {
+      indexGrLoeschen = DBGruppService.sucheGruppe(fach, grpNr);
     }
 
 
@@ -286,9 +288,14 @@
 
     // Initialsiert die Teilnehmerübersicht für die gewählte Gruppe
     // TODO: Wird noch um einige Funktionen erweitert
-    $scope.initTmUebersicht = function(ngIndex) {
-      tmGruppenService.setFach(vgservice.getFach());
-      tmGruppenService.setGruppe(DBGruppService.hcGruppenDaten[ngIndex].grpNr);
+    $scope.initTmUebersicht = function(fach, grpNr) {
+
+      var index = DBGruppService.sucheGruppe(fach, grpNr);
+      var gruppe = DBGruppService.hcGruppenDaten[index];
+      DBGruppTmService.setFach(gruppe.fach);
+      DBGruppTmService.setGruppe(gruppe.grpNr);
+      DBGruppTmService.initTmUebersicht(gruppe);
+
     }
     // ############################################################################################################
   };

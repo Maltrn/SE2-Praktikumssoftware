@@ -1,4 +1,4 @@
-package se2.praktikum.projekt.services;
+package se2.praktikum.projekt.dbms;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -7,8 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import se2.praktikum.projekt.controllers.DBConnector;
-import se2.praktikum.projekt.models.student.Student;
+import se2.praktikum.projekt.models.person.Student;
 
 /**
  * Service der für Abfragen/Anlegen und Prüfen von Daten in der Datenbank zuständig ist.

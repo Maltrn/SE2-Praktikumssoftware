@@ -1,4 +1,4 @@
-package se2.praktikum.projekt.controllers;
+package se2.praktikum.projekt.dbms;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

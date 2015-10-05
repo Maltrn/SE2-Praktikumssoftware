@@ -11,12 +11,46 @@
   var DBVeranstService = function($http) {
 
 
+    // Helper
+    // ====================================================================================
+
+      var sucheVA = function(fach){
+
+        for(i = 0; i < hcVeranstaltungsDaten.length; i++){
+          if(hcVeranstaltungsDaten[i].fach == fach){
+            return i;
+          }
+        }
+        return -1;
+      }
+
+      var getFachbereich = function(){
+        return fachbereich;
+      }
+
+      var getSemester = function(){
+        return sem;
+      }
+
+
+    // Locls
+    // ####################################################################################
+    var semester = [1, 2, 3, 4, 5, 6];
+    var fachbereiche = ["AI", "TI", "WI"];
+
+    var fachbereich = fachbereiche[0];
+    var sem = semester[0];
+
+    var url = "http://localhost:8080/SE2-Praktikumssoftware/"; // URL um Backend anzusprechen
+    var veranstaltungen = []; // Hier werden die ermittelten Daten temporär gespeichert um schnelles Anzeigen zu gewährleisten
+                              // Ersetzt HC-Gruppendaten
+    var error = false; // Flag zur Fehlererkennung
+    // ####################################################################################
+
+
     // Vorerst Hardcoded Daten zur Demonstration
     // Später dynamische Ermittlung durch Spring MVC
     // ====================================================================================
-
-    var semester = [1, 2, 3, 4, 5, 6];
-    var fachbereiche = ["AI", "TI", "WI"];
 
     // Array aus Veranstaltungsobjekten
     var hcVeranstaltungsDaten = [{
@@ -62,59 +96,20 @@
     }];
     // ====================================================================================
 
-    // Locals
-    // =========================================================================================================================
-    var url = "http://localhost:8080/SE2-Praktikumssoftware/veranstaltungen"; // URL um Backend anzusprechen
-    var veranstaltungen = []; // Hier werden die ermittelten Daten temporär gespeichert um schnelles Anzeigen zu gewährleisten
-    var error = false; // Flag zur Fehlererkennung
-    // =========================================================================================================================
 
-    // Angeforderte Schnittstelle
-    // #########################################################################################################################
-
-    // Ermittelt alle Semester aus der Datenbank
-    // TODO: implement
-    function getAlleSemester() {
-
-    }
-
-    // Ermittelt alle Fachbereiche aus der Datenbank
-    // TODO: implement
-    function getAlleFachbereiche() {
-
-    }
-
-    // Speichert eine Veranstaltung in der Datenbank
-    // TODO: implement
-    function addVeranstaltungDB(Veranstaltung) {
-
-      return true; // Gibt true zurück, wenn Speicherung erfolgreich
-    }
-
-    // Editiert eine Veranstaltung in der Datenbank
-    // TODO: implement
-    function editVeranstaltungDB(index, edit){
-      return true;
-    }
-
-    // Loescht eine Veranstaltung aus der Datenbank
-    // TODO: implement
-    function loescheVeranstaltungDB(index) {
-      return true;
-    }
-
+    // SCHNITTSTELLE
     // #########################################################################################################################
 
 
-
-    // Angebotene SCHNITTSTELLE
-    // #########################################################################################################################
-
-    // Beispiel für eine implementierte Operation der Schnittstelle -> Alle Veranstaltungen aus der Datenbank ermitteln
+    // Beispiel für eine implementierte Operation der Schnittstelle -> Alle Pflichtpraktika aus der Datenbank ermitteln
     // TODO: Funktioniert erst wenn Datenbank vorhanden
-    var getAlleVeranstaltungen = function() {
+    var initPraktika = function(sem, fachbereich) {
 
-      $http.get(url).
+
+      // JSON Data
+      var args = [sem, fachbereich];
+
+      $http.post(url+"pflichtpraktika", angular.toJson(args)).
         // Funktion, falls gültige Daten zurückkommen
       then(function(response) {
           // Daten aus dem Response-Object in das Veranstaltungen-Array pushen
@@ -129,6 +124,41 @@
         });
     }
 
+    // holt alle WPs zu aus der Datenbank und gib
+    var initWP = function(sem, fachbereich){
+
+      // TODO: Precondition: mindestens Semster 4
+
+      // url = wp;
+      // siehe initPraktika
+
+    }
+
+    // holz alle PO aus der Datenbank
+    var initPO = function(sem, fachbereich){
+      // TODO: Precondition: mindestens Semster 5
+
+      // url = po
+      // siehe initPraktika
+
+    }
+
+    // Editiert eine Veranstaltung in der Datenbank
+    // TODO: implement
+    function editVeranstaltungDB(veranstaltung){
+
+      // url = vBeabeiten
+      return true;
+    }
+
+    // Loescht eine Veranstaltung aus der Datenbank
+    // TODO: implement
+    function loescheVeranstaltungDB(veranstaltung) {
+
+      // url = vLoeschen
+      return true;
+    }
+
 
     // Speichert eine neue Veranstaltung
     var addVeranstaltung = function(veranstaltung) {
@@ -140,41 +170,60 @@
         hcVeranstaltungsDaten.push(veranstaltung); // Erst Tabelle aktualisieren
         return true;
       }
+
+
     }
 
     // Editiiert eine vorhndene Veranstaltung
-    var editVeranstaltung = function(index, edit){
-
-      if(!editVeranstaltungDB(index, edit)){
+    var editVeranstaltung = function(index, va){
+      if(!editVeranstaltungDB(va)){
         return false;
       }else{
-        hcVeranstaltungsDaten[index].dozent = edit.dozent;
-        hcVeranstaltungsDaten[index].min = edit.min;
-        hcVeranstaltungsDaten[index].max = edit.max;
+        hcVeranstaltungsDaten[index].dozent = va.dozent;
+        hcVeranstaltungsDaten[index].min = va.min;
+        hcVeranstaltungsDaten[index].max = va.max;
         return true;
       }
     }
 
     // Loescht eine vorhandene Veranstaltung
-    var loescheVeranstaltung = function(index){
-      if(!loescheVeranstaltungDB(index)){
+    var loescheVeranstaltung = function(fach){
+
+      var va = {};                  // Veranstaltung initialisieren
+      var index = sucheVA(fach);    // Suche Index der VA
+      console.log(fach);
+      console.log(index);
+
+      if(index > 0){
+        va = hcVeranstaltungsDaten[index];  // Weise VA zu
+      }else{
+        return false;
+      }
+
+      if(!loescheVeranstaltungDB(va)){
         return false;
       }else{
         hcVeranstaltungsDaten.splice(index, 1);
       }
     }
 
-    // Ermittelt alle Veranstaltungen fuer ein Semester
+    // Speichert eine Veranstaltung in der Datenbank
     // TODO: implement
-    var getAlleVeranstaltungenFuerSem = function(semester) {
+    function addVeranstaltungDB(Veranstaltung) {
 
-    }
+      return true; // Vorerst nur true zurückgeben, darunterliegender Code nicht betrachtet
 
-
-    // Ermittelt alle Veranstaltungen fuer einen Fachbereich
-    // TODO: implement
-    var getAlleVeranstaltungenFuerFachbereich = function(fachbereich) {
-
+      /*
+      // erzeuge data object
+      $http.post(url+"vErstellen", veranstaltung)
+      .then(function(){
+        // Prüfe ob Daten eingefügt
+        return true;  // Gibt true zurück, wenn Speicherung erfolgreich
+      },
+      function(){
+        return false;
+      });
+      */
 
     }
 
@@ -185,13 +234,16 @@
     return {
       semester: semester,
       fachbereiche: fachbereiche,
-      getAlleVeranstaltungen: getAlleVeranstaltungen,
       addVeranstaltung: addVeranstaltung,
       editVeranstaltung: editVeranstaltung,
       hcVeranstaltungsDaten: hcVeranstaltungsDaten,
       loescheVeranstaltung: loescheVeranstaltung,
-      getAlleVeranstaltungenFuerSem: getAlleVeranstaltungenFuerSem,
-      getAlleVeranstaltungenFuerFachbereich: getAlleVeranstaltungenFuerFachbereich,
+      sucheVA: sucheVA,
+      getFachbereich: getFachbereich,
+      getSemester: getSemester,
+      initPraktika: initPraktika,
+      initWP: initWP,
+      initPO: initPO
     };
     // -----------------------------------------------------------------------------------
   };

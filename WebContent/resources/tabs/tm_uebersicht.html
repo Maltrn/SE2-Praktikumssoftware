@@ -49,7 +49,7 @@
                           </div>
                         </td>
                         <td>
-                          <button type="button" class="btn btn-my-default btn-sm pull-right" ng-click="initTmDetails($index)" data-target="#modalTmDetailsPrakt" data-toggle="modal" data-placement="bottom" title="Details anzeigen" onmouseenter="$(this).tooltip('show')">
+                          <button type="button" class="btn btn-my-default btn-sm pull-right" ng-click="initTmDetails(teiln.matrNr)" data-target="#modalTmDetailsPrakt" data-toggle="modal" data-placement="bottom" title="Details anzeigen" onmouseenter="$(this).tooltip('show')">
                             <span class="glyphicon glyphicon-user"></span>
                           </button>
                           <div ng-include="getModalTmDetailsPrakt()">
@@ -57,7 +57,7 @@
                           </div>
                         </td>
                         <td>
-                          <button type="button" class="btn btn-my-default btn-sm" ng-click="initEntfIndex($index)" data-target="#modalTmEntfernen" data-toggle="modal" data-placement="bottom" title="Teilnehmer aus Kurs entfernen" onmouseenter="$(this).tooltip('show')">
+                          <button type="button" class="btn btn-my-default btn-sm" ng-click="initTmLoeschen(teiln.matrNr)" data-target="#modalTmEntfernen" data-toggle="modal" data-placement="bottom" title="Teilnehmer aus Kurs entfernen" onmouseenter="$(this).tooltip('show')">
                             <span class="glyphicon glyphicon-minus"></span>
                           </button>
                           <div ng-include="getModalTmEntfernen()"></div>

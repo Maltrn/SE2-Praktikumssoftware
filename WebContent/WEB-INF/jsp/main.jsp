@@ -110,8 +110,6 @@
   <script src="<c:url value="/resources/js/angular/services/database/DBGruppService.js" />" ></script>
   <script src="<c:url value="/resources/js/angular/services/database/DBGruppTmService.js" />" ></script>
   <script src="<c:url value="/resources/js/angular/services/database/DBLeistungService.js" />" ></script>
-  <script src="<c:url value="/resources/js/angular/services/VeranstGruppCommunicator.js" />" ></script>
-  <script src="<c:url value="/resources/js/angular/services/GruppTmUebersCommunicator.js" />" ></script>
   <script src="<c:url value="/resources/js/angular/controllers/TabController.js" />" ></script>
   <script src="<c:url value="/resources/js/angular/controllers/ModalController.js" />" ></script>
   <script src="<c:url value="/resources/js/angular/controllers/ExtController.js" />" ></script>

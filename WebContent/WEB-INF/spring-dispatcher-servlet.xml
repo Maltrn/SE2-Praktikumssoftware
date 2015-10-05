@@ -11,7 +11,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springf
                     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd"> 
 	
     
-	<context:component-scan base-package="se2.praktikum.projekt.controllers." />
+	<context:component-scan base-package="se2.praktikum.projekt." />
 	
 	<mvc:annotation-driven/>
 	<mvc:resources mapping="/resources/**" location="/resources/" />

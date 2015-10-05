@@ -1,8 +1,8 @@
-package se2.praktikum.projekt.models.student;
+package se2.praktikum.projekt.models.person;
 
 
 
-public class Student {
+public class Student extends Person{
 	
 	private int matrNr;
 	private String vorName;

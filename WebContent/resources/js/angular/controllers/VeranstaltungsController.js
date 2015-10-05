@@ -7,11 +7,11 @@
   var app = angular.module("SE2-Software");
 
   // $scope = model object, $http: holt JSON Daten via SpringMVC Backend -> folgt später
-  var VeranstaltungsController = function($scope, autoscroller, vgservice, DBVeranstService /*, $http*/ ) {
+  var VeranstaltungsController = function($scope, autoscroller, DBVeranstService, DBGruppService /*, $http*/ ) {
 
     // Locals
     // ###########################################################################################################
-    var indexLoesch;
+    var loesch;
     var indexEdit;
     // ###########################################################################################################
 
@@ -26,8 +26,8 @@
     $scope.va.min = 10;
     $scope.va.curr = 0;
     $scope.va.max = 60;
-    $scope.va.fachbereich = DBVeranstService.fachbereiche[0];
-    $scope.va.sem = DBVeranstService.semester[0];
+    $scope.va.fachbereich = DBVeranstService.getFachbereich();
+    $scope.va.sem = DBVeranstService.getSemester();
     $scope.veranstaltungen = DBVeranstService.hcVeranstaltungsDaten;
     $scope.fachbereiche = DBVeranstService.fachbereiche;
     $scope.semester = DBVeranstService.semester;
@@ -74,13 +74,29 @@
     // Button-klick Funktionen
     // ###########################################################################################################
 
+      // Initialisert die Gruppenübersicht zu einer Veranstaltung
+        $scope.initGruppenUebersicht = function(fach) {
+
+         // Temporär -> nur solange keine DB vorhanden
+          for(i = 0; i < DBGruppService.hcGruppenDaten.length; i++){
+            DBGruppService.hcGruppenDaten[i].fach = fach;
+          }
+          var vaIndex = DBVeranstService.sucheVA(fach);
+          var va = DBVeranstService.hcVeranstaltungsDaten[vaIndex];
+
+          if(!DBGruppService.initGruppen(va)){
+            // Fehlermeldung
+          }
+
+        }
+
     // Initialisiert das Veranstaltung-Bearbeiten-Popup mit den vorhandenen Werten
-    $scope.initVeranBearbeitenPopup = function(ngIndex) {
-      $scope.va.dozent = DBVeranstService.hcVeranstaltungsDaten[ngIndex].dozent;
-      $scope.va.assistent = DBVeranstService.hcVeranstaltungsDaten[ngIndex].assistent;
-      $scope.va.min = DBVeranstService.hcVeranstaltungsDaten[ngIndex].min;
-      $scope.va.max = DBVeranstService.hcVeranstaltungsDaten[ngIndex].max;
-      indexEdit = ngIndex;
+    $scope.initVeranBearbeitenPopup = function(fach) {
+
+      indexEdit = DBVeranstService.sucheVA(fach);
+      $scope.va.dozent = DBVeranstService.hcVeranstaltungsDaten[indexEdit].dozent;
+      $scope.va.min = DBVeranstService.hcVeranstaltungsDaten[indexEdit].min;
+      $scope.va.max = DBVeranstService.hcVeranstaltungsDaten[indexEdit].max;
     }
 
     // Fügt eine neue Veranstaltung in die Tabelle ein -> TODO: Preconditions
@@ -89,6 +105,8 @@
       var va = {};
       va.fach = $scope.va.fach;
       va.dozent = $scope.va.dozent;
+      va.semester = $scope.va.semester;
+      va.fachbereich = $scope.va.fachbereich;
       va.min = $scope.va.min;
       va.curr = 0; // Später dynamische Ermittlung
       va.max = $scope.va.max;
@@ -106,13 +124,6 @@
       autoscroller.erstellen = null;
     }
 
-    // Verorgt den vgservice mit den benötigten Daten für die Gruppenübersicht
-    $scope.initGruppenUebersicht = function(ngIndex) {
-
-      vgservice.setFach(DBVeranstService.hcVeranstaltungsDaten[ngIndex].fach);
-      // TODO: Weitere Informatioen -> Erst wenn reale Datenbank
-    }
-
     // Ändert den Tabelleneintrag der Veranstaltung anhand der Benutzereingaben
     $scope.editVeranstaltung = function() {
 
@@ -127,13 +138,13 @@
     }
 
     // Initialisiert den Index der zu löschenden Veranstaltung
-    $scope.initVeranstaltungLoeschen = function(ngIndex) {
-      indexLoesch = ngIndex;
+    $scope.initVeranstaltungLoeschen = function(fach) {
+      loesch = fach;
     }
 
     $scope.loescheVeranstaltung = function() {
 
-        if (!DBVeranstService.loescheVeranstaltung(indexLoesch)) {
+        if (!DBVeranstService.loescheVeranstaltung(loesch)) {
           // Fehlermeldung
         }
 
@@ -142,6 +153,19 @@
         $('body').removeClass('modal-open');
         $('.modal-backdrop').remove();
       }
+
+
+    $scope.getVAFuerFachbereich = function(fachbereich){
+
+      DBVeranstService.getAlleVeranstaltungenFuerFachbereich(fachbereich);
+
+    }
+
+    $scope.getVAFuerSemester = function(semester){
+
+      DBVeranstService.getAlleVeranstaltungenFuerSem(semester);
+
+    }
       // ###########################################################################################################
   };
 

@@ -7,7 +7,23 @@
   var app = angular.module("SE2-Software");
 
   // Servicedefinition
-  var DBGruppService = function($http, vgservice) {
+  var DBGruppService = function($http) {
+
+
+    // Locals
+    // ########################################################################################################
+    var fach; // aktuelles Fach
+    var raeume = ["0660", "1180", "1070", "0770"];
+    var dozenten = ["Padberg", "Zukunft", "Kleine", "Gerken", "Huebner"];
+    var assistenten = ["Blank", "Oelker", "Schulz"];
+    var grNummern = [1,2,3,4,5,6];
+
+    var url = "http://localhost:8080/SE2-Praktikumssoftware/"; // URL um Backend anzusprechen
+    var gruppen = []; // Hier werden die ermittelten Daten temporär gespeichert um schnelles Anzeigen zu gewährleisten
+                              // Ersetzt HC-Gruppendaten
+    var error = false; // Flag zur Fehlererkennung
+
+    // #######################################################################################################
 
 
     // Benutzerdefinierte Klassen
@@ -116,7 +132,27 @@
     // Helper
     // ###########################################################################################################
 
-    // Setzt die Termine nach Erstellung der neuen Gruppe wieder auf die Standardwerte zurück
+
+    function getFach(){
+      console.log(fach);
+      return fach;
+    }
+
+    function setFach(f){
+      fach = f;
+    }
+
+    var sucheGruppe = function(fach, grpNr){
+
+      for(i = 0; i < hcGruppenDaten.length; i++){
+        if(hcGruppenDaten[i].fach == fach && hcGruppenDaten[i].grpNr == grpNr){
+          return i;
+        }
+      }
+      return -1;
+    }
+
+        // Setzt die Termine nach Erstellung der neuen Gruppe wieder auf die Standardwerte zurück
     function resetAppValues() {
 
       var term = [];
@@ -237,12 +273,10 @@
     term.push(tm4);
     // -------------------------------------------------------------------------
 
-    var grNummern = [1, 2, 3, 4, 5, 6];
-    var anzTmTeam = [2, 3, 4, 5, 6, 7, 8, 9, 10];
 
     // Vorhandene Hardcoded Daten (in Tabelle gelistet)
     var hcGruppenDaten = [{
-      fach: vgservice.getFach(),
+      fach: "",
       grpNr: 1,
       termine: term,
       kw: toStr(term),
@@ -252,7 +286,7 @@
       minGr: 6,
       maxGr: 10
     }, {
-      fach: vgservice.getFach(),
+      fach: "",
       grpNr: 2,
       termine: term,
       kw: toStr(term),
@@ -262,7 +296,7 @@
       minGr: 3,
       maxGr: 10
     }, {
-      fach: vgservice.getFach(),
+      fach: "",
       grpNr: 3,
       termine: term,
       kw: toStr(term),
@@ -272,7 +306,7 @@
       minGr: 3,
       maxGr: 10
     }, {
-      fach: vgservice.getFach(),
+      fach: "",
       grpNr: 4,
       termine: term,
       kw: toStr(term),
@@ -282,34 +316,43 @@
       minGr: 3,
       maxGr: 10
     }];
-
-
-    var raeume = ["0660", "1180", "1070", "0770"];
-    var dozenten = ["Padberg", "Zukunft", "Kleine", "Gerken", "Huebner"];
-    var assistenten = ["Blank", "Oelker", "Schulz"];
 // ###########################################################################################################
 
 
-// Angeforderte Schnittstelle TODO: Weitere Operationen
+// SCHNITTSTELLE
 // ###########################################################################################################
 
+    // Gruppe der Datenbank hinzufügen
     var addGruppeDB = function(gruppe){
+
+      // url = gruppErstellen
       return true;
     }
 
+    // Gruppe in der Datenbank bearbeiten
     var editGruppeDB = function(gruppe){
 
       return true;
     }
 
-    var loescheGruppeDB = function(index){
+    // gruppe aus der Datenbank löschen
+    var loescheGruppeDB = function(gruppe){
+
+      // url = gruppLoeschen
       return true;
     }
-// ###########################################################################################################
+
+    // Alle Gruppen zu einer Veranstaltung aus der DB ermitteln
+    var initGruppen = function(veranstaltung){
+
+      // url = gruppUebersicht
+      // Gruppendaten aus der Datenbank holen
+
+      return true;
+    }
 
 
-// Angebotene Schnittstelle
-// ###########################################################################################################
+    // Gruppe einer Veranstaltung hinufügen
     var addGruppe = function(gruppe){
 
       //  Erst Eintrag in die Datenbank einfügen
@@ -322,6 +365,7 @@
       }
     }
 
+    // gruppe einer Veranstaltung editieren
     var editGruppe = function(index, gruppe){
 
       if(!editGruppeDB(gruppe)){
@@ -336,15 +380,16 @@
       }
     }
 
+    // Gruppe einer Veranstaltung löschen
     var gruppeLoeschen = function(index){
 
-      if(!loescheGruppeDB(index)){
+      var gr = hcGruppenDaten[index];
+      if(!loescheGruppeDB(gr)){
         return false;
       }else{
         hcGruppenDaten.splice(index, 1);
       }
     }
-
     // ###########################################################################################################
 
 
@@ -359,16 +404,19 @@
       timesEnd: timesEnd,
       addGruppe: addGruppe,
       editGruppe: editGruppe,
-      grNummern: grNummern,
       raeume: raeume,
       dozenten: dozenten,
+      grNummern: grNummern,
       assistenten: assistenten,
-      anzTmTeam: anzTmTeam,
       hcGruppenDaten: hcGruppenDaten,
       term: term,
       gruppeLoeschen: gruppeLoeschen,
       getDate: getDate,
-      getAppointment: getAppointment
+      getAppointment: getAppointment,
+      getFach: getFach,
+      setFach: setFach,
+      initGruppen: initGruppen,
+      sucheGruppe: sucheGruppe
     };
     // ###########################################################################################################
   };

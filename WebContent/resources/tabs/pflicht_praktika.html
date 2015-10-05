@@ -23,11 +23,11 @@
               </div>
               <div class="row">
                 <div class=col-md-6>
-                  <select class="form-control" data-width="100%" ng-model="va.fachbereich" ng-options="fb for fb in fachbereiche">
+                  <select class="form-control" data-width="100%" ng-model="va.fachbereich" ng-options="fb for fb in fachbereiche" ng-change="getVAFuerFachbereich(va.fachbereich)">
                   </select>
                 </div>
                 <div class=col-md-6>
-                  <select class="form-control" data-width="100%" ng-model="va.sem" ng-options="sem for sem in semester">
+                  <select class="form-control" data-width="100%" ng-model="va.sem" ng-options="sem for sem in semester" ng-change="getVAFuerSemester(va.sem)">
                   </select>
                 </div>
               </div>
@@ -72,18 +72,18 @@
                         <td>{{veranstaltung.curr}} / {{veranstaltung.max}}</td>
                         <td>{{veranstaltung.currGr}} / {{veranstaltung.maxGr}}</td>
                         <td>
-                          <button type="button" class="btn btn-my-default btn-sm" ng-click="initGruppenUebersicht($index); switchToGruppen()" data-placement="bottom" title="Weiter zur Gruppenübersicht" onmouseenter="$(this).tooltip('show')">
+                          <button type="button" class="btn btn-my-default btn-sm" ng-click="initGruppenUebersicht(veranstaltung.fach); switchToGruppen()" data-placement="bottom" title="Weiter zur Gruppenübersicht" onmouseenter="$(this).tooltip('show')">
                             <span class="glyphicon glyphicon-forward"></span>
                           </button>
                         </td>
                         <td>
-                          <button type="button" class="btn btn-my-default btn-sm" ng-click="initVeranBearbeitenPopup($index)" data-toggle="modal" data-target="#modalBearbeiten" data-placement="bottom" title="Veranstaltung bearbeiten" onmouseenter="$(this).tooltip('show')">
+                          <button type="button" class="btn btn-my-default btn-sm" ng-click="initVeranBearbeitenPopup(veranstaltung.fach)" data-toggle="modal" data-target="#modalBearbeiten" data-placement="bottom" title="Veranstaltung bearbeiten" onmouseenter="$(this).tooltip('show')">
                             <span class="glyphicon glyphicon-pencil"></span>
                           </button>
                           <div ng-include src="getVeranstaltungEdit()"></div>
                         </td>
                         <td>
-                          <button type="button" class="btn btn-my-default btn-sm" ng-click="initVeranstaltungLoeschen($index)" data-toggle="modal" data-target="#veranstLoeschen" data-placement="bottom" title="Diese Veranstaltung löschen" onmouseenter="$(this).tooltip('show')">
+                          <button type="button" class="btn btn-my-default btn-sm" ng-click="initVeranstaltungLoeschen(veranstaltung.fach)" data-toggle="modal" data-target="#veranstLoeschen" data-placement="bottom" title="Diese Veranstaltung löschen" onmouseenter="$(this).tooltip('show')">
                             <span class="glyphicon glyphicon-trash"></span>
                           </button>
                           <div ng-include src="getVeranstaltungLoesch()"></div>

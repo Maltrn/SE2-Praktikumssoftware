@@ -1,4 +1,4 @@
-package se2.praktikum.projekt.controllers;
+package se2.praktikum.projekt.dbms;
 
 import java.util.List;
 
@@ -8,8 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import se2.praktikum.projekt.models.student.Student;
-import se2.praktikum.projekt.services.DBService;
+import se2.praktikum.projekt.models.person.Student;
 
 /**
  * Datenbank Controller für das Beispiel

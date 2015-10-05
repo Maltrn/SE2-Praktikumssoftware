@@ -16,13 +16,13 @@
   var app = angular.module("SE2-Software");
 
   // $scope = model object, $http: holt JSON Daten via SpringMVC Backend -> folgt später
-  var TMUebersichtController = function($scope, autoscroller, tmGruppenService /*, $http*/ ) {
+  var TMUebersichtController = function($scope, autoscroller, DBGruppTmService /*, $http*/ ) {
 
     // Scope-Felder
     // ------------------
     $scope.tm = {};
-    $scope.tm.fach = tmGruppenService.getFach();
-    $scope.tm.grpNr = tmGruppenService.getGruppe();
+    $scope.tm.fach = DBGruppTmService.getFach();
+    $scope.tm.grpNr = DBGruppTmService.getGruppe();
     $scope.tm.matrNr;
     $scope.tm.vorn;
     $scope.tm.nachn;
@@ -31,65 +31,9 @@
     $scope.tm.pvl;
     $scope.tm.note;
     $scope.entfIndex;
+    $scope.teilnehmer = DBGruppTmService.hcTeilnehmer;
     // ------------------
 
-
-
-    // Vorerst Hardcoded Daten zur Demonstration
-    // Später dynamische Ermittlung durch Spring MVC
-    // =================================================================================================================================================
-
-    $scope.teilnehmer = [{
-      matrNr: 243441,
-      vorn: "Max",
-      nachn: "Mustermann1",
-      tmNr: 1,
-      tmPartner: "Max Mustermann3",
-      pvl: "erfolgreich",
-      note: 15
-    }, {
-      matrNr: 243442,
-      vorn: "Max",
-      nachn: "Mustermann2",
-      tmNr: 4,
-      tmPartner: "Max Mustermann4",
-      pvl: "nicht erfolgreich",
-      note: -1
-    }, {
-      matrNr: 243443,
-      vorn: "Max",
-      nachn: "Mustermann3",
-      tmNr: 1,
-      tmPartner: "Max Mustermann1",
-      pvl: "erfolgreich",
-      note: 3
-    }, {
-      matrNr: 243444,
-      vorn: "Max",
-      nachn: "Mustermann4",
-      tmNr: 4,
-      tmPartner: "Max Mustermann2",
-      pvl: "nicht erfolgreich",
-      note: -1
-    }, {
-      matrNr: 243445,
-      vorn: "Max",
-      nachn: "Mustermann5",
-      tmNr: 5,
-      tmPartner: "Max Mustermann6",
-      pvl: "offen",
-      note: -1
-    }, {
-      matrNr: 243446,
-      vorn: "Max",
-      nachn: "Mustermann6",
-      tmNr: 5,
-      tmPartner: "Max Mustermann5",
-      pvl: "offen",
-      note: -1
-    }]
-
-    // ==================================================================================================================================================
 
     // Funktionen um Ergebnisse darzustellen
     // --------------------------------------------------
@@ -125,29 +69,31 @@
     }
 
     // Iinitlaisiert das Teilnehmer-Detail-Popup
-    $scope.initTmDetails = function(ngIndex) {
-      $scope.tm.matrNr = $scope.teilnehmer[ngIndex].matrNr;
-      $scope.tm.vorn = $scope.teilnehmer[ngIndex].vorn;
-      $scope.tm.nachn = $scope.teilnehmer[ngIndex].nachn;
-      $scope.tm.tmNr = $scope.teilnehmer[ngIndex].tmNr;
-      $scope.tm.tmPartner = $scope.teilnehmer[ngIndex].tmPartner;
-      $scope.tm.pvl = $scope.teilnehmer[ngIndex].pvl;
+    $scope.initTmDetails = function(matrNr) {
 
-      if ($scope.teilnehmer[ngIndex].note == -1) {
+      var index = DBGruppTmService.sucheStudent(matrNr);
+      $scope.tm.matrNr = DBGruppTmService.hcTeilnehmer[index].matrNr;
+      $scope.tm.vorn = DBGruppTmService.hcTeilnehmer[index].vorn;
+      $scope.tm.nachn = DBGruppTmService.hcTeilnehmer[index].nachn;
+      $scope.tm.tmNr = DBGruppTmService.hcTeilnehmer[index].tmNr;
+      $scope.tm.tmPartner = DBGruppTmService.hcTeilnehmer[index].tmPartner;
+      $scope.tm.pvl = DBGruppTmService.hcTeilnehmer[index].pvl;
+
+      if (DBGruppTmService.hcTeilnehmer[index].note == -1) {
         $scope.tm.note = "offen";
       } else {
-        $scope.tm.note = $scope.teilnehmer[ngIndex].note;
+        $scope.tm.note = DBGruppTmService.hcTeilnehmer[index].note;
       }
     }
 
     // Initlalisiert den Index des zu entfernden Eintrags
-    $scope.initEntfIndex = function(ngIndex) {
-      $scope.entfIndex = ngIndex;
+    $scope.initTmLoeschen = function(matrNr) {
+      $scope.entfIndex = DBGruppTmService.sucheStudent(matrNr);
     }
 
     // Entfernt den Eintrag auf dem der Index zeigt
-    $scope.entferneTeilnehmer = function(ngIndex) {
-      $scope.teilnehmer.splice($scope.entfIndex, 1);
+    $scope.entferneTeilnehmer = function() {
+      DBGruppTmService.loescheTm($scope.entfIndex);
       $scope.entfIndex = 0;
 
       // Modal schließen forcieren, bug über normalen Weg (data-dismiss-tag) TODO: FIX

@@ -7,7 +7,7 @@
   var app = angular.module("SE2-Software");
 
   // $scope = model object
-  var TabController = function($scope) {
+  var TabController = function($scope, DBVeranstService, DBGruppService) {
 
     // Togglepoint
     $scope.switch = {};
@@ -124,14 +124,17 @@
     }
 
     $scope.switchToPraktika = function() {
+      DBVeranstService.initPraktika("1", "AI");
       $scope.viewToggle = praktika;
     }
 
     $scope.switchToWahlpflicht = function() {
+      DBVeranstService.initWP("4", "AI");
       $scope.viewToggle = wahlpflicht;
     }
 
     $scope.switchToProjekte = function() {
+      DBVeranstService.initPO("5", "AI");
       $scope.viewToggle = projekte;
     }
 

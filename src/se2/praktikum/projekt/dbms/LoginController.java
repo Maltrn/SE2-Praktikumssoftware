@@ -1,4 +1,4 @@
-package se2.praktikum.projekt.controllers;
+package se2.praktikum.projekt.dbms;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
