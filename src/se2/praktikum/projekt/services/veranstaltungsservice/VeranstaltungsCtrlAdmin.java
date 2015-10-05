@@ -37,13 +37,6 @@ public class VeranstaltungsCtrlAdmin {
 		
 	}
 	
-	@RequestMapping(value="/test", method=RequestMethod.GET)
-	public void test(){
-		
-		System.out.println("called");
-		
-	}
-	
 	/**
 	 * holt alle WP für eine gegebenes Semester und Fachbereich
 	 * @param args : args[0] = semester, args[1] = fachbereich
