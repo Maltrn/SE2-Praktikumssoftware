@@ -129,6 +129,7 @@
         });
     }
 
+
     // Speichert eine neue Veranstaltung
     var addVeranstaltung = function(veranstaltung) {
       //  Erst Eintrag in die Datenbank einfügen

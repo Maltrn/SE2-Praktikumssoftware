@@ -111,10 +111,6 @@
     $scope.switchToDatenIm = function() {
       $scope.viewToggle = datenim;
     }
-    $scope.switchToMeldungen = function() {
-      $scope.viewToggle = meldungen;
-    }
-
     $scope.switchToLeistungen = function() {
       $scope.viewToggle = leistungen;
     }

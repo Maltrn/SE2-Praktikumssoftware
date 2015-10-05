@@ -10,13 +10,14 @@
   var VeranstaltungsController = function($scope, autoscroller, vgservice, DBVeranstService /*, $http*/ ) {
 
     // Locals
-    // -----------
+    // ###########################################################################################################
     var indexLoesch;
     var indexEdit;
-    //------------
+    // ###########################################################################################################
+
 
     // Felder initialisiern
-    // -------------------------------------------------------------------------
+    // ###########################################################################################################
     $scope.va = {}; // Veranstaltungsobject anlegen
     $scope.va.fach = ""; // Attribut Fach anlegen und initialsieren
     $scope.va.dozent = ""; // ...
@@ -30,11 +31,11 @@
     $scope.veranstaltungen = DBVeranstService.hcVeranstaltungsDaten;
     $scope.fachbereiche = DBVeranstService.fachbereiche;
     $scope.semester = DBVeranstService.semester;
-    // -------------------------------------------------------------------------
+    // ###########################################################################################################
 
 
     //Preconditions -> TODO: Wird noch um weitere erweitert
-    // ------------------------------------------------------------
+    // ###########################################################################################################
 
     $scope.isValidNumber = function(x) {
       return x % 1 === 0 && x > 0;
@@ -66,12 +67,12 @@
 
       return $scope.isValidMin($scope.va.min) && $scope.isValidMax($scope.va.max);
     }
+    // ###########################################################################################################-
 
-    // ------------------------------------------------------------
 
 
     // Button-klick Funktionen
-    // ---------------------------------------------------------------------------
+    // ###########################################################################################################
 
     // Initialisiert das Veranstaltung-Bearbeiten-Popup mit den vorhandenen Werten
     $scope.initVeranBearbeitenPopup = function(ngIndex) {
@@ -141,7 +142,7 @@
         $('body').removeClass('modal-open');
         $('.modal-backdrop').remove();
       }
-      // ----------------------------------------------------------------------------
+      // ###########################################################################################################
   };
 
   // Controller bei der App "anmelden"
