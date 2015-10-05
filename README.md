@@ -17,8 +17,8 @@ Aktuell (05.10.2015)
 <li>Angular-Schnittstellen für erste Komponente (Veranstaltungsservice):
  <ul> 
   <li>[Veranstaltungsservice](/WebContent/resources/js/angular/services/database/DBVeranstService.js)</li>
-  <li>[Gruppenservice]((/WebContent/resources/js/angular/services/database/DBGruppService.js)</li>
-  <li>[Gruppenteilnehmerservice]((/WebContent/resources/js/angular/services/database/DBGruppTmService.js)</li>
+  <li>[Gruppenservice](/WebContent/resources/js/angular/services/database/DBGruppService.js)</li>
+  <li>[Gruppenteilnehmerservice](/WebContent/resources/js/angular/services/database/DBGruppTmService.js)</li>
  </ul>
 </li>
 <li>Spring MVC-Schnittstellen für erste Komponente (Veranstaltungsservice):
@@ -26,8 +26,13 @@ Aktuell (05.10.2015)
   <li>[Veranstaltungsservice](/src/se2/praktikum/projekt/services/veranstaltungsservice/VeranstaltungsCtrlAdmin.java)</li>
  </ul>
 </li>
-  
-
+<br/>
+<li>Weitere Info:
+ <ul>
+   <li> Vorerst sind nur die Codeteile der Module (eben aufgeführt) mit der Überschrift "SCHNITTSTELLE" wichtig</li>
+   <li> Tipp: Im [Veranstaltungsservice (angular)](/WebContent/resources/js/angular/services/database/DBVeranstService.js) ist ein Codebeispiel (siehe Methode "initPraktika(sem, fachbereich)" -> Zeile 106)</li>
+ </ul>
+<li>
 
 
 Aktuell (25.09.2015)
