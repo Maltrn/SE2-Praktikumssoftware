@@ -18,7 +18,7 @@
     var assistenten = ["Blank", "Oelker", "Schulz"];
     var grNummern = [1,2,3,4,5,6];
 
-    var url = "http://localhost:8080/"; // URL um Backend anzusprechen
+    var url = "http://localhost:8080/SE2-Praktikumssoftware/"; // URL um Backend anzusprechen
     var gruppen = []; // Hier werden die ermittelten Daten temporär gespeichert um schnelles Anzeigen zu gewährleisten
                               // Ersetzt HC-Gruppendaten
     var error = false; // Flag zur Fehlererkennung

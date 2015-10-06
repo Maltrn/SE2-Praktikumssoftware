@@ -16,6 +16,7 @@
     var fach;
     var gruppe;
     var teilnehmer = []; // Ersetzt später hcTeilnehmer
+    var url = "http://localhost:8080/SE2-Praktikumssoftware/";
     // #######################################################################
 
     // Vorerst Hardcoded Daten zur Demonstration
