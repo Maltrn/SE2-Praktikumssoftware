@@ -26,8 +26,6 @@ Aktuell (05.10.2015)
   <li>[Veranstaltungsservice](/src/se2/praktikum/projekt/services/veranstaltungsservice/VeranstaltungsCtrlAdmin.java)</li>
  </ul>
 </li>
-
-<br/>
 <li>Weitere Info:
  <ul>
    <li> Vorerst sind nur die Codeteile der Module (eben aufgeführt) mit der Überschrift "SCHNITTSTELLE" wichtig</li>
