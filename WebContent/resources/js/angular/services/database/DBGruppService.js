@@ -18,7 +18,7 @@
     var assistenten = ["Blank", "Oelker", "Schulz"];
     var grNummern = [1,2,3,4,5,6];
 
-    var url = "http://localhost:8080/SE2-Praktikumssoftware/"; // URL um Backend anzusprechen
+    var url = "http://localhost:8080/"; // URL um Backend anzusprechen
     var gruppen = []; // Hier werden die ermittelten Daten temporär gespeichert um schnelles Anzeigen zu gewährleisten
                               // Ersetzt HC-Gruppendaten
     var error = false; // Flag zur Fehlererkennung
@@ -322,7 +322,12 @@
 // SCHNITTSTELLE
 // ###########################################################################################################
 
-    // Gruppe der Datenbank hinzufügen
+// TODO: Diese Methoden müssen implementiert werden
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    // Gruppe zur Datenbank hinzufügen
+    // Ruft die Schnittstelle im Backend auf und übergibt die Informationen
+    // der Gruppe als Json
     var addGruppeDB = function(gruppe){
 
       // url = gruppErstellen
@@ -330,12 +335,18 @@
     }
 
     // Gruppe in der Datenbank bearbeiten
+    // Ruft die Schnittstelle im Backend auf und übergibt die Informationen
+    // der Gruppe als Json
+    // Geänderte gruppe wird automatisch in der View aktualisiert
     var editGruppeDB = function(gruppe){
 
       return true;
     }
 
     // gruppe aus der Datenbank löschen
+    // Ruft die Schnittstelle im Backend auf und übergibt die Informationen
+    // der zu löschenden Gruppe als Json
+    // Gruppe wird automatisch aus der View gelöscht
     var loescheGruppeDB = function(gruppe){
 
       // url = gruppLoeschen
@@ -343,6 +354,10 @@
     }
 
     // Alle Gruppen zu einer Veranstaltung aus der DB ermitteln
+    // Ruft die Schnittstelle im Backend auf und holt Die Gruppen
+    // zu einer übergebenen Veranstaltung
+    // Gruppen müssen in Array "gruppen" gespeichert werden (Json-Format)
+    // Werden dann automatisch in der View ausgegeben
     var initGruppen = function(veranstaltung){
 
       // url = gruppUebersicht
@@ -350,6 +365,8 @@
 
       return true;
     }
+
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
     // Gruppe einer Veranstaltung hinufügen

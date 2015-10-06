@@ -41,7 +41,7 @@
     var fachbereich = fachbereiche[0];
     var sem = semester[0];
 
-    var url = "http://localhost:8080/SE2-Praktikumssoftware/"; // URL um Backend anzusprechen
+    var url = "http://localhost:8080/"; // URL um Backend anzusprechen
     var veranstaltungen = []; // Hier werden die ermittelten Daten temporär gespeichert um schnelles Anzeigen zu gewährleisten
                               // Ersetzt HC-Gruppendaten
     var error = false; // Flag zur Fehlererkennung
@@ -100,13 +100,19 @@
     // SCHNITTSTELLE
     // #########################################################################################################################
 
+    // TODO: Diese Methoden müssen implementiert/ergänzt werden
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     // Beispiel für eine implementierte Operation der Schnittstelle -> Alle Pflichtpraktika aus der Datenbank ermitteln
-    // TODO: Funktioniert erst wenn Datenbank vorhanden
+
+    // Alle Pflichtpraktika zu den übergebenen Parametern ermitteln
+    // Ruft Backend-Schnittstelle auf und übergibt die Parameter
+    // Ermittelte Pfichtpraktika, werden in Array gespeichert
+    // Diese werden dann automatisch in der View sichtbar
     var initPraktika = function(sem, fachbereich) {
 
 
-      // JSON Data
+      // JSOM Data
       var args = [sem, fachbereich];
 
       $http.post(url+"pflichtpraktika", angular.toJson(args)).
@@ -115,7 +121,7 @@
           // Daten aus dem Response-Object in das Veranstaltungen-Array pushen
           for (i = 0; i < response.data.length; i++) {
             var data = response.data;
-            veranstaltungen.push({ /* Veranstaltungsobjekt aus dem Daten-Array */ });
+            veranstaltungen.push({ /* Veranstaltungsobjekt aus dem Daten-Array */ }); // ergänzen
           }
         },
         // Funktion bei Fehler
@@ -124,7 +130,11 @@
         });
     }
 
-    // holt alle WPs zu aus der Datenbank und gib
+
+    // Alle WP zu den übergebenen Parametern ermitteln
+    // Ruft Backend-Schnittstelle auf und übergibt die Parameter
+    // Ermittelte WP, werden in Array gespeichert
+    // Diese werden dann automatisch in der View sichtbar TODO: View implementieren
     var initWP = function(sem, fachbereich){
 
       // TODO: Precondition: mindestens Semster 4
@@ -134,7 +144,10 @@
 
     }
 
-    // holz alle PO aus der Datenbank
+    // Alle PO zu den übergebenen Parametern ermitteln
+    // Ruft Backend-Schnittstelle auf und übergibt die Parameter
+    // Ermittelte WP, werden in Array gespeichert
+    // Diese werden dann automatisch in der View sichtbar TODO: View implementieren
     var initPO = function(sem, fachbereich){
       // TODO: Precondition: mindestens Semster 5
 
@@ -144,7 +157,8 @@
     }
 
     // Editiert eine Veranstaltung in der Datenbank
-    // TODO: implement
+    // Editierte Veranstaltung wird dem Backend übergeben (Json-Format)
+    // View wird automatisch aktualisiert
     function editVeranstaltungDB(veranstaltung){
 
       // url = vBeabeiten
@@ -152,12 +166,15 @@
     }
 
     // Loescht eine Veranstaltung aus der Datenbank
-    // TODO: implement
+    // zu löschende Veranstaltung wird dem Backend übergeben (Json-Format)
+    // view wird automatisch aktualisiert
     function loescheVeranstaltungDB(veranstaltung) {
 
       // url = vLoeschen
       return true;
     }
+
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
     // Speichert eine neue Veranstaltung

@@ -16,7 +16,6 @@
     var fach;
     var gruppe;
     var teilnehmer = []; // Ersetzt später hcTeilnehmer
-    var url = "http://localhost:8080/SE2-Praktikumssoftware/"; // URL um Backend anzusprechen
     // #######################################################################
 
     // Vorerst Hardcoded Daten zur Demonstration
@@ -109,16 +108,27 @@
     // SCHNITTSTELLE
     // ################################################################################################################
 
+    // TODO: Diese Methoden müssen implementiert werden.
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     // Einen Studenten aus der Gruppe (Datenbank) löschen
+    // Ruft die Schnittstelle im Backend auf und übergibt die Informationen
+    // für den zu löschenden Studenten
     var loescheTmDB = function(gruppe, student){
       return true;
     }
 
-    // Die teilnehmerübersicht zur gegebenen Gruppe via Spring aus der DB ermitteln
+    // Alle Teilnehmer zu einer Gruppe aus der DB ermitteln
+    // Ruft die Schnittstelle im Backend auf und holt Teilnehner
+    // zu einer übergebenen Gruppe (Json)
+    // Teilnehmer müssen im Array "teilnehmer" gespeichert werden
+    // Diese werden dann automatisch in der View ausgegeben.
     var initTmUebersicht = function(gruppe){
 
       // url = tmUebersicht
     }
+
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     // Einen Studenten aus der Gruppe löschen
     var loescheTm = function(index){

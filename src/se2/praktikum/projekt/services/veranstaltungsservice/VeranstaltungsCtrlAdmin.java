@@ -31,6 +31,7 @@ public class VeranstaltungsCtrlAdmin {
 	public @ResponseBody List<Veranstaltung> praktikaAnzeigen(@RequestBody List<String> args){
 		
 		AnzeigerSrv srv = anzService;
+		System.out.println(args.toString());
 		// try-catch-Block
 		// bei SQLException -> false zurückgeben
 		return null;

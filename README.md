@@ -16,9 +16,9 @@ Aktuell (05.10.2015)
 <li>Bugs vom heutigen Meeting behoben (z. B. Filter und Index)</li>
 <li>Angular-Schnittstellen für erste Komponente (Veranstaltungsservice):
  <ul> 
-  <li>[Veranstaltungsservice](/WebContent/resources/js/angular/services/database/DBVeranstService.js)</li>
-  <li>[Gruppenservice](/WebContent/resources/js/angular/services/database/DBGruppService.js)</li>
-  <li>[Gruppenteilnehmerservice](/WebContent/resources/js/angular/services/database/DBGruppTmService.js)</li>
+  <li>[Veranstaltungsservice](/WebContent/resources/js/angular/services/database/DBVeranstService.js) - Zeile 103 - 177</li>
+  <li>[Gruppenservice](/WebContent/resources/js/angular/services/database/DBGruppService.js) - Zeile 325 - 369</li>
+  <li>[Gruppenteilnehmerservice](/WebContent/resources/js/angular/services/database/DBGruppTmService.js) - Zeile 111 - 131</li>
  </ul>
 </li>
 <li>Spring MVC-Schnittstellen für erste Komponente (Veranstaltungsservice):
@@ -26,6 +26,7 @@ Aktuell (05.10.2015)
   <li>[Veranstaltungsservice](/src/se2/praktikum/projekt/services/veranstaltungsservice/VeranstaltungsCtrlAdmin.java)</li>
  </ul>
 </li>
+
 <br/>
 <li>Weitere Info:
  <ul>
@@ -67,7 +68,7 @@ Anleitung für DB-Beispiel
 =========================
 1. Projekt in Eclipse importieren.
 2. Sicherstellen das Apache-Tomcat installiert und in Eclipse konfiguriert ist.
-3. A-Kennung in der Java-Klasse [DBConnector](/src/se2/praktikum/projekt/controllers/DBConnector.java) eintragen.
+3. A-Kennung in der Java-Klasse [DBConnector](/src/se2/praktikum/projekt/dbms/DBConnector.java) eintragen.
 4. Projekt ausführen.
 6. Rest sollte selbsterkärend sein.
 
