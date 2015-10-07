@@ -1,8 +1,15 @@
 package se2.praktikum.projekt.dbms;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import org.springframework.core.io.ClassPathResource;
 
 
 /**
@@ -11,16 +18,13 @@ import java.sql.SQLException;
  *
  */
 public class DBConnector {
-	
- 	// ==============================================================================================
- 	private final static String A_KENNUNG = "A-Kennung";		// Hier A-Kennung eintragen.
- 	private final static String PASSWORT = "Passwort";			// Hier zugehöriges Passwort eintragen.
- 	// ==============================================================================================
- 
+
+ 	private static String aKennung;		
+ 	private static String passwort;
  	
-	private static Connection connection = null;
- 	private final static String URL = "jdbc:oracle:thin:@ora14.informatik.haw-hamburg.de:1521:inf14";
- 	private final static String DRIVER = "oracle.jdbc.driver.OracleDriver";
+	private static Connection connection;
+ 	private static String url;
+ 	private static String driver;
  	
     public static Connection getConnection() 
     {
@@ -32,8 +36,9 @@ public class DBConnector {
         {
             try 
             {
-            	Class.forName(DRIVER);
-            	connection = DriverManager.getConnection(URL, A_KENNUNG, PASSWORT);
+            	getUserDBData();
+            	Class.forName(driver);
+            	connection = DriverManager.getConnection(url, aKennung, passwort);
             } 
             catch (ClassNotFoundException e) 
             {
@@ -45,5 +50,34 @@ public class DBConnector {
             }
             return connection;
         }
+        
     }
+
+	private static void getUserDBData() {
+		
+		ClassPathResource resource = new ClassPathResource("database.config");
+		
+		List<String> databaseInfo = new ArrayList<>();
+		Scanner sc;
+		try {
+			File file = resource.getFile();
+			sc = new Scanner(file);
+			while(sc.hasNext()){
+				
+				String [] data = sc.nextLine().split("=");
+				databaseInfo.add(data[1]);
+			}
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		// database[0] = driver, database[1] = url, database[2] = A-Kennung, database[3] = Passwort
+		
+		driver = databaseInfo.get(0);
+		url = databaseInfo.get(1);
+		aKennung = databaseInfo.get(2);
+		passwort = databaseInfo.get(3);
+		
+	}
 }

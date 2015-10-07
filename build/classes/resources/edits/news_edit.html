@@ -1,0 +1,42 @@
+<div class="panel-body">
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>
+        News bearbeiten
+        <button type="button" class="btn btn-my-default btn-sm pull-right" ng-click="showEditPanel()" data-placement="bottom" title="Diese News Löschen" onmouseenter="$(this).tooltip('show')">
+            <span class="glyphicon glyphicon-ban-circle"></span>
+        </button>
+      </h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <textarea type="text" class="form-control" rows="1">Header 1</textarea>
+    </div>
+  </div>
+  <br/>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <textarea class="form-control" rows="6">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At veroeos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</textarea>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <button type="button" class="btn btn-my-block" data-placement="bottom" title="Subartikel hinzufügen" onmouseenter="$(this).tooltip('show')"><span class="glyphicon glyphicon-file"></span></button>
+    </div>
+  </div>
+  <div class="row">
+    <br/>
+    <div class="col-md-12">
+      <button type="button" class="btn btn-my-block" data-placement="bottom" title="Speichern" onmouseenter="$(this).tooltip('show')"><span class="glyphicon glyphicon-ok"></span></button>
+    </div>
+  </div>
+  <div class="row">
+    <br/>
+    <div class="col-md-12">
+      <button type="button" class="btn btn-my-block" data-placement="bottom" title="Abbrechen" ng-click="hideEditPanel()" onmouseenter="$(this).tooltip('show')"><span class="glyphicon glyphicon-minus"></span></button>
+    </div>
+  </div>
+</div>
