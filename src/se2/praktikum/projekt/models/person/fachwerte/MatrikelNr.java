@@ -18,7 +18,6 @@ public class MatrikelNr {
 	 */
 	private MatrikelNr(int matrNr){
 		
-		//TODO: Preconditions
 		this.matrNr = matrNr;
 	}
 	
@@ -29,6 +28,7 @@ public class MatrikelNr {
 	 */
 	public static MatrikelNr getMatrikelNr(int matrNr){
 		
+		//TODO: Preconditions
 		return new MatrikelNr(matrNr);
 	}
 

@@ -4,7 +4,12 @@ import java.util.Date;
 
 import se2.praktikum.projekt.models.person.fachwerte.Adresse;
 
-public abstract class AbstractPerson {
+/**
+ * Repräsentiert eine Person als abstrakte Klasse
+ * @author jan
+ *
+ */
+public abstract class AbstractPerson implements Person{
 	
 	// Felder
 	protected String vorname;			// Vorname
@@ -22,6 +27,7 @@ public abstract class AbstractPerson {
 	 * Gibt den Vornamen einer Person zurück
 	 * @return Vorname
 	 */
+	@Override
 	public String getVorname() {
 		return vorname;
 	}
@@ -30,6 +36,7 @@ public abstract class AbstractPerson {
 	 * Setzt den Vornamen einer Person
 	 * @param vorname
 	 */
+	@Override
 	public void setVorname(String vorname) {
 		this.vorname = vorname;
 	}
@@ -38,6 +45,7 @@ public abstract class AbstractPerson {
 	 * Gibt den Nachnamen einer Person zurück
 	 * @return nachname
 	 */
+	@Override
 	public String getNachname() {
 		return nachname;
 	}
@@ -46,6 +54,7 @@ public abstract class AbstractPerson {
 	 * Setzt den Nachnamen einer Person
 	 * @param nachname
 	 */
+	@Override
 	public void setNachname(String nachname) {
 		this.nachname = nachname;
 	}
@@ -54,6 +63,7 @@ public abstract class AbstractPerson {
 	 * Gibt den Benutzernamen einer Person zurück
 	 * @return benutzername
 	 */
+	@Override
 	public String getBenutzername() {
 		return benutzername;
 	}
@@ -62,6 +72,7 @@ public abstract class AbstractPerson {
 	 * Setzt den Benutzernamen einer Person
 	 * @param benutzername
 	 */
+	@Override
 	public void setBenutzername(String benutzername) {
 		this.benutzername = benutzername;
 	}
@@ -70,6 +81,7 @@ public abstract class AbstractPerson {
 	 * gibt das Geburtsdatum einer Person zurück
 	 * @return Geburtsdatum
 	 */
+	@Override
 	public Date getGebDatum() {
 		return gebDatum;
 	}
@@ -78,6 +90,7 @@ public abstract class AbstractPerson {
 	 * Setzt das Geburtsdatum einer Person
 	 * @param gebDatum
 	 */
+	@Override
 	public void setGebDatum(Date gebDatum) {
 		this.gebDatum = gebDatum;
 	}
@@ -86,6 +99,7 @@ public abstract class AbstractPerson {
 	 * Gibt den Geburtsort einer Person zurück
 	 * @return Geburtsort
 	 */
+	@Override
 	public String getGebOrt() {
 		return gebOrt;
 	}
@@ -94,6 +108,7 @@ public abstract class AbstractPerson {
 	 * Setzt den Geburtsort einer Person
 	 * @param gebOrt
 	 */
+	@Override
 	public void setGebOrt(String gebOrt) {
 		this.gebOrt = gebOrt;
 	}
@@ -102,6 +117,7 @@ public abstract class AbstractPerson {
 	 * Gibt die Adresse einer Person zurück
 	 * @return die Adresse
 	 */
+	@Override
 	public Adresse getAdresse() {
 		return adresse;
 	}
@@ -110,6 +126,7 @@ public abstract class AbstractPerson {
 	 * Setzt die Adresse einer Person
 	 * @param adresse
 	 */
+	@Override
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
 	}
@@ -118,6 +135,7 @@ public abstract class AbstractPerson {
 	 * gibt das zuständige Department einer Person zurück
 	 * @return Department
 	 */
+	@Override
 	public String getDepartment() {
 		return department;
 	}
@@ -126,6 +144,7 @@ public abstract class AbstractPerson {
 	 * Setzt das zuständige Department einer Person
 	 * @param department
 	 */
+	@Override
 	public void setDepartment(String department) {
 		this.department = department;
 	}
@@ -134,6 +153,7 @@ public abstract class AbstractPerson {
 	 * Gibt den Fachbereich einer Person zurück
 	 * @return der Fachbereich
 	 */
+	@Override
 	public String getFachbereich() {
 		return fachbereich;
 	}
@@ -142,6 +162,7 @@ public abstract class AbstractPerson {
 	 * Setzt den Fachbereich einer Person
 	 * @param fachbereich
 	 */
+	@Override
 	public void setFachbereich(String fachbereich) {
 		this.fachbereich = fachbereich;
 	}
@@ -150,6 +171,7 @@ public abstract class AbstractPerson {
 	 * Gibt die Email-Adresse einer Person zurück
 	 * @return die Email-Adresse
 	 */
+	@Override
 	public EMail getEmailAdresse() {
 		return emailAdresse;
 	}
@@ -158,6 +180,7 @@ public abstract class AbstractPerson {
 	 * Setzt die Email-Adresse einer Person
 	 * @param emailAdresse
 	 */
+	@Override
 	public void setEmailAdresse(EMail emailAdresse) {
 		this.emailAdresse = emailAdresse;
 	}

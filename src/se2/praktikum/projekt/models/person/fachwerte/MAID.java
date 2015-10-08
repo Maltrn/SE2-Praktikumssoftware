@@ -12,7 +12,7 @@ public class MAID {
 	 */
 	private MAID(int maID){
 		
-		//TODO: Preconditions
+		
 		this.maID = maID;
 	}
 	
@@ -22,7 +22,7 @@ public class MAID {
 	 * @return Mitarbeiter-ID
 	 */
 	public static MAID getMitarbeiterID(int maID){
-		
+		//TODO: Preconditions
 		return new MAID(maID);
 	}
 

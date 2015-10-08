@@ -2,6 +2,7 @@ package se2.praktikum.projekt.models.veranstaltung;
 
 import java.util.ArrayList;
 import se2.praktikum.projekt.models.person.AbstractPerson;
+import se2.praktikum.projekt.models.person.Person;
 
 /**
  * Repräsentiert ein Pflichtpraktikum
@@ -31,8 +32,8 @@ public class Praktikum extends AbstractVeranstaltung {
 	 * @param prof
 	 * @param assist
 	 */
-	public Praktikum(Fach fach, AbstractPerson prof, 
-					 AbstractPerson assist)			{
+	public Praktikum(Fach fach, Person prof, 
+					 Person assist)			{
 		
 		this(fach, prof, assist, 0, 0, 0, 0);
 		
@@ -48,8 +49,8 @@ public class Praktikum extends AbstractVeranstaltung {
 	 * @param anzGr : aktuelle Anzahl Gruppen
 	 * @param maxGr : aktuelle max. möglche Gruppenzahl.
 	 */
-	public Praktikum(Fach fach, AbstractPerson prof, 
-					 AbstractPerson assist, int anzTm,
+	public Praktikum(Fach fach, Person prof, 
+					 Person assist, int anzTm,
 					 int maxTm, int anzGr, 
 					 int maxGr)					{
 		

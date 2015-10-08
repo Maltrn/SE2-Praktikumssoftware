@@ -5,7 +5,6 @@ import java.util.List;
 
 import se2.praktikum.projekt.models.person.AbstractPerson;
 import se2.praktikum.projekt.models.team.Team;
-import se2.praktikum.projekt.models.veranstaltung.Fach;
 
 /**
  * Repräsentiert eine Gruppe für eine gegebene Veranstaltung
@@ -14,15 +13,12 @@ import se2.praktikum.projekt.models.veranstaltung.Fach;
  */
 public class Gruppe {
 	
-	
 	// Felder
-	private Fach fach;					// Das zugehörige Fach
 	private List<Termin> termine;		// Die Abgabetermine
 	private List<Team> teams;			// Die zugewiesenen Teams
 	private int grpNr;					// Die Gruppennummer
 	private AbstractPerson professor;	// Der betreuende Professor
 	private AbstractPerson assistent;	// Der betreuende Assistent
-	private String raum;				// Der Raum in dem die Gruppe angeleitet wird -> evtl. eigene Klasse ???
 	private int maxTeams;				// Maximal Anzahl Teams in der Gruppe
 	private int reservTeams;			// Anzahl der Team-Reserveslots
 	private int minTeams;				// Minimale Anzahl Teams
@@ -36,27 +32,25 @@ public class Gruppe {
 	 */
 	public Gruppe(){
 		
-		this(null, 0, null, null);
+		this(0, null, null);
 		
 	}
 	
 	
 	/**
 	 * Initialisiert eine neue Gruppe mit den wichtigsten Parametern
-	 * @param fach   : Das Fach
 	 * @param grpNr : Gruppenummer
 	 * @param prof : Der Professor
 	 * @param assist : Der Assistent
 	 */
-	public Gruppe(Fach fach, int grpNr, 
-				  AbstractPerson prof, AbstractPerson assist) {
+	public Gruppe(int grpNr,AbstractPerson prof, 
+				  AbstractPerson assist) {
 		
-		this(fach, grpNr, prof, assist, null, 0, 0, 0, 0);
+		this(grpNr, prof, assist, null, 0, 0, 0, 0);
 
 	}
 	/**
 	 * Initialisiert eine neue Gruppe mit den übergebenen Parametern
-	 * @param fach : Fach der Gruppe
 	 * @param grpNr : Gruppennummer
 	 * @param prof : Der Professor
 	 * @param assist : der Assistent
@@ -66,17 +60,16 @@ public class Gruppe {
 	 * @param minTeams : min. Teams
 	 * @param anzTeams : aktuelle Anzahl Teams
 	 */
-	public Gruppe(Fach fach, int grpNr,
-				  AbstractPerson prof, AbstractPerson assist,
+	public Gruppe(int grpNr, AbstractPerson prof, 
+				  AbstractPerson assist,
 				  String raum, int maxTeams, 
 				  int resTeams, int minTeams,
 				  int anzTeams)				{
 		
-		this.fach = fach;
+
 		this.grpNr = grpNr;
 		this.professor = prof;
 		this.assistent = assist;
-		this.raum = raum;
 		this.maxTeams = maxTeams;
 		this.reservTeams = resTeams;
 		this.minTeams = minTeams;
@@ -85,14 +78,6 @@ public class Gruppe {
 		this.teams = new ArrayList<>();
 	}
 
-
-	/**
-	 * Gibt das aktuelle Fach zurück
-	 * @return Fach
-	 */
-	public Fach getFach() {
-		return fach;
-	}
 
 	/**
 	 * Gibt alle Termnine zurück
@@ -176,21 +161,6 @@ public class Gruppe {
 		this.assistent = assistent;
 	}
 
-	/**
-	 * Gibt den Raum der Gruppe zurück
-	 * @return Raum
-	 */
-	public String getRaum() {
-		return raum;
-	}
-
-	/**
-	 * Setzt den Raum dieser Gruppe
-	 * @param raum
-	 */
-	public void setRaum(String raum) {
-		this.raum = raum;
-	}
 
 	/**
 	 * Gibt die max. mögliche Anzahl Teams zurück
