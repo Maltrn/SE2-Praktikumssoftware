@@ -10,6 +10,19 @@ Mit A-Kennung anmelden und irgendwas ins Login eintragen.<br/>
 Download -> http://bit.ly/1IYzKZD <- HAW PUB
 
 
+Aktuell (08.10.2015) - Letzter Commit
+=====================================
+
+<li>[POJO-Klassen](/src/se2/praktikum/projekt/models/) hinzugefügt</li>
+<li><strong>Zu Beachten (Für diejenigen die noch keine Remoteverbindung eingerichtet haben):</strong>
+ <ul>
+  <li>Der Ordner backend_resources muss noch angelegt werden (Pfad: siehe .gitignore)</li>
+  <li>Die für den Ordner Datei liegt in der Dropbox im Ordner BackendConfigs</li>
+  <li>Nur die beiden Zeilen A-Kennung und Passwort sind zu beachten</li>
+  <li>Deine A-Kennung und ein Passwort jeweils dort eintragen (ohne Leerzeichen)
+<li>Der Datenbankzugriff wird damit gewährleistet</li>
+ </ul>
+</li>
 
 Aktuell (05.10.2015)
 ====================
