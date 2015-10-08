@@ -43,8 +43,8 @@ public class DBService
 			while(rs.next()){
 				Student stud = new Student();
 				stud.setMatrNr(rs.getInt("MATRNR"));
-				stud.setVorName(rs.getString("VORNAME"));
-				stud.setNachName(rs.getString("NACHNAME"));
+				stud.setVorname(rs.getString("VORNAME"));
+				stud.setNachname(rs.getString("NACHNAME"));
 				studenten.add(stud);
 			}
 			statement.close();
