@@ -1,13 +1,6 @@
 # SE2-Praktikumssoftware
 
 Der SE2-Projekt Ordner mit allen nötigen Libaries und der vorgesehenen Ordnerstruktur.
-<br/>
-<br/>
-Frontend only Demo (Angestellten-Panel) -> http://bit.ly/1JwbrTr <- HAW PUB
-<br/>
-<br/>
-Mit A-Kennung anmelden und irgendwas ins Login eintragen.<br/>
-Download -> http://bit.ly/1IYzKZD <- HAW PUB
 
 
 Aktuell (08.10.2015) - Letzter Commit
