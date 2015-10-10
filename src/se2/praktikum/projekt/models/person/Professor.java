@@ -2,6 +2,9 @@ package se2.praktikum.projekt.models.person;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import se2.praktikum.projekt.models.person.fachwerte.Adresse;
 import se2.praktikum.projekt.models.person.fachwerte.MAID;
 
@@ -10,7 +13,8 @@ import se2.praktikum.projekt.models.person.fachwerte.MAID;
  * @author Jan
  *
  */
-public class Professor extends AbstractAngestellter {
+@JsonRootName(value = "Professor")
+public class Professor extends AbstrAngestellter {
 	
 
 	
@@ -58,7 +62,7 @@ public class Professor extends AbstractAngestellter {
 				   Adresse adresse, String department,
 				   String fachbereich, EMail email)		{
 		
-		this.mitarbeiterID = maID;
+		this.maID = maID;
 		this.vorname = vorname;
 		this.nachname = nachname;
 		this.benutzername = benutzername;
@@ -67,7 +71,8 @@ public class Professor extends AbstractAngestellter {
 		this.adresse = adresse;
 		this.department = department;
 		this.fachbereich = fachbereich;
-		this.emailAdresse = email;
+		this.email = email;
 	}
+
 
 }

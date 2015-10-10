@@ -8,7 +8,7 @@
   var app = angular.module("SE2-Software");
 
   // Servicedefinition
-  var DBGruppTmService = function($http) {
+  var DBGruppTmService = function($http, DBGruppService) {
 
 
     // Locals
@@ -16,7 +16,6 @@
     var fach;
     var gruppe;
     var teilnehmer = []; // Ersetzt später hcTeilnehmer
-    var url = "http://localhost:8080/SE2-Praktikumssoftware/";
     // #######################################################################
 
     // Vorerst Hardcoded Daten zur Demonstration
@@ -116,6 +115,7 @@
     // Ruft die Schnittstelle im Backend auf und übergibt die Informationen
     // für den zu löschenden Studenten
     var loescheTmDB = function(gruppe, student){
+      var veranstaltung = DBGruppService.getVeranstaltung(); // Muss dem Backend mit übergeben werden
       return true;
     }
 
@@ -125,7 +125,7 @@
     // Teilnehmer müssen im Array "teilnehmer" gespeichert werden
     // Diese werden dann automatisch in der View ausgegeben.
     var initTmUebersicht = function(gruppe){
-
+      var veranstaltung = DBGruppService.getVeranstaltung(); // Muss dem Backend mit übergeben werden
       // url = tmUebersicht
     }
 

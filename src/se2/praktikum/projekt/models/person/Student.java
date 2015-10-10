@@ -2,14 +2,18 @@ package se2.praktikum.projekt.models.person;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import se2.praktikum.projekt.models.person.fachwerte.Adresse;
+import se2.praktikum.projekt.models.person.fachwerte.MAID;
 
 /**
  * Repräsentiert einen Studenten
  * @author Jan
  *
  */
-public class Student extends AbstractPerson{
+
+public class Student extends AbstrPerson{
 	
 	// Felder
 	private int matrNr;		// Die Matrikelnummer -> VORERST INT damit DBBeispiel weiterhin
@@ -69,7 +73,7 @@ public class Student extends AbstractPerson{
 		this.adresse = adresse;
 		this.department = department;
 		this.fachbereich = fachbereich;
-		this.emailAdresse = email;
+		this.email = email;
 		
 	}
 	
@@ -88,6 +92,7 @@ public class Student extends AbstractPerson{
 	public void setMatrNr(int matrNr) {
 		this.matrNr = matrNr;
 	}
+
 
 	
 

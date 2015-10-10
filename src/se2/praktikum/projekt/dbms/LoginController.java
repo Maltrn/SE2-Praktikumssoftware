@@ -26,6 +26,7 @@ public class LoginController
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	protected ModelAndView doLogin()
 	{
+		
 		ModelAndView mv = new ModelAndView("login");
 		mv.addObject("welcomeMessage", WELCOME);
 		return mv;

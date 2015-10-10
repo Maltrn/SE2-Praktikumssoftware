@@ -3,103 +3,98 @@ package se2.praktikum.projekt.models.veranstaltung;
 import java.util.List;
 
 import se2.praktikum.projekt.models.gruppe.Gruppe;
-import se2.praktikum.projekt.models.person.Person;
+import se2.praktikum.projekt.models.person.AbstrPerson;
+import se2.praktikum.projekt.models.person.Angestellter;
+import se2.praktikum.projekt.models.person.AbstrPerson;
+import se2.praktikum.projekt.models.person.Professor;
 
 /**
- * Repräsentiert eine Veranstaltung
- * @author jan
+ * Repräsentiert eine Veranstaltung als abstrakte Klasse
+ * @author Jan
  *
  */
-public interface Veranstaltung {
+public class Veranstaltung{
+	
+	
+	// Felder
+	protected Fach fach;					// Das Fach dieser Veranstaltung
+	protected Angestellter professor;			// Modulverantwortlicher Professor
+	protected int anzTm;			// aktuelle Anzahl der Teilnehmer
+	protected int minTm;			// Mindestanzahl der Teilnehmer
+	protected int maxTm; 			// Maximal mögliche Anzahl Teilnehmer
+	protected int anzGr;				// aktuelle Anzahl der Gruppen
+	protected int maxGr;	// max. mögliche Anzahl Gruppen
+	
 
-	/**
-	 * Gibt das Fach einer Veranstaltung zurück
-	 * @return das zugeteilte Fach
-	 */
-	public Fach getFach();
+	public Fach getFach() {
+		return fach;
+	}
+	
 
-	/**
-	 * Setzt das Fach einer Veranstaltung
-	 * @param fach : das zu setzende Fach
-	 */
-	public void setFach(Fach fach);
+	public void setFach(Fach fach) {
+		this.fach = fach;
+	}
+	
 
-	/**
-	 * Gibt den Modulverantwortlichen Professor einer Veranstaltung zurück
-	 * @return der verantwortliche Professor
-	 */
-	public Person getProfessor();
+	public Angestellter getProfessor() {
+		return professor;
+	}
+	
+	
+	
 
-	/**
-	 * Setzt den Modulverantwortlichen Professor
-	 * @param der verantwortliche Professor
-	 */
-	public void setProfessor(Person professor);
+	public int getAnzTm() {
+		return anzTm;
+	}
+	
 
-	/**
-	 *gibt den Assistenten des Professors zurück
-	 * @return der Assistent
-	 */
-	public Person getAssistent();
+	public void setAnzTm(int anzTm) {
+		this.anzTm = anzTm;
+	}
+	
 
-	/**
-	 * Setzt den Assistenten des Professors
-	 * @param der Assistent des Professors
-	 */
-	public void setAssistent(Person assistent);
+	public int getMinTm() {
+		return minTm;
+	}
+	
 
-	/**
-	 * Gibt die Gruppen dieser Veranstaltung zurück
-	 * @return die Gruppen, die zu dieser Veranstaltung gehören
-	 */
-	public List<Gruppe> getGruppen();
+	public void setMinTm(int minTm) {
+		this.minTm = minTm;
+	}
+	
 
-	/**
-	 * Setzt Gruppen für diese Veranstaltung
-	 * @param die zu setzenden Gruppen
-	 */
-	public void setGruppen(List<Gruppe> gruppen);
+	public int getMaxTm() {
+		return maxTm;
+	}
+	
 
-	/**
-	 * Gibt die aktuelle Anzahl der Teilnehmer dieser Veranstaltung zurück
-	 * @return die aktuelle Anzahl der Teilnehmer
-	 */
-	public int getAnzTeilnehmer();
+	public void setMaxTm(int maxTm) {
+		this.maxTm = maxTm;
+	}
+	
 
-	/**
-	 * Setzt die aktuelle Anzahl der Teilnehmer dieser Verantaltung
-	 * @param aktuelle Anzahl der Teilnehmer
-	 */
-	public void setAnzTeilnehmer(int anzTeilnehmer);
+	public int getAnzGr() {
+		return anzGr;
+	}
+	
 
-	/**
-	 * Gibt die aktuelle Anzahl der Gruppen dieser Veranstaltung zurück
-	 * @return die aktuelle Anzahl der Gruppen
-	 */
-	public int getAnzGruppen();
+	public void setAnzGr(int anzGr) {
+		this.anzGr = anzGr;
+	}
+	
 
-	/**
-	 * Gibt die aktuell maximal mögliche Anzahl von Teilnehmer zurück
-	 * @return max. teilnehmer
-	 */
-	int getMaxTeilnehmer();
+	public int getMaxGr() {
+		return maxGr;
+	}
+	
 
-	/**
-	 * Setzt die aktuelle Anzahl der Gruppen dieser Veranstaltung
-	 * @param die aktuelle Anzahl der Gruppen
-	 */
-	public void setAnzGruppen(int anzGruppen);
+	public void setMaxGr(int maxGr) {
+		this.maxGr = maxGr;
+	}
 
-	/**
-	 * Gibt die maximal mögliche Anzahl der Gruppen dieser Veranstaltung zurück
-	 * @return die max. Anzahl der Gruppen
-	 */
-	public int getMaxGruppen();
 
-	/**
-	 * Setzt die maximal mögliche Anzahl der Gruppen zu dieser Veranstaltung
-	 * @param die max. Anzahl der Gruppen
-	 */
-	public void setMaxGruppen(int maxGruppen);
-
+	public void setProfessor(Angestellter professor) {
+		this.professor = professor;
+		
+	}
 }

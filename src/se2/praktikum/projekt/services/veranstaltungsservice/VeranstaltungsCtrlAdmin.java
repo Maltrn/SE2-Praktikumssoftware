@@ -9,8 +9,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import se2.praktikum.projekt.models.gruppe.Gruppe;
-import se2.praktikum.projekt.models.person.AbstractPerson;
-import se2.praktikum.projekt.models.veranstaltung.AbstractVeranstaltung;
+import se2.praktikum.projekt.models.person.AbstrAngestellter;
+import se2.praktikum.projekt.models.person.AbstrPerson;
+import se2.praktikum.projekt.models.person.Angestellter;
+import se2.praktikum.projekt.models.person.Person;
+import se2.praktikum.projekt.models.person.Professor;
+import se2.praktikum.projekt.models.veranstaltung.Veranstaltung;
+import se2.praktikum.projekt.models.veranstaltung.Fach;
+import se2.praktikum.projekt.models.veranstaltung.Praktikum;
+import se2.praktikum.projekt.models.veranstaltung.Veranstaltung;
 
 @Controller
 public class VeranstaltungsCtrlAdmin {
@@ -28,7 +35,7 @@ public class VeranstaltungsCtrlAdmin {
 	 * @return	Liste Veranstaltungen für die übergebenen Parameter
 	 */
 	@RequestMapping(value="/pflichtpraktika", method=RequestMethod.POST)
-	public @ResponseBody List<AbstractVeranstaltung> praktikaAnzeigen(@RequestBody List<String> args){
+	public @ResponseBody List<Veranstaltung> praktikaAnzeigen(@RequestBody List<String> args){
 		
 		AnzeigerSrv srv = anzService;
 		System.out.println(args.toString());
@@ -44,7 +51,7 @@ public class VeranstaltungsCtrlAdmin {
 	 * @return	Liste Veranstaltungen für die übergebenen Parameter
 	 */
 	@RequestMapping(value="/wp", method=RequestMethod.POST)
-	public @ResponseBody List<AbstractVeranstaltung> wpAnzeigen(@RequestBody List<String> args){
+	public @ResponseBody List<Veranstaltung> wpAnzeigen(@RequestBody List<String> args){
 		
 		AnzeigerSrv srv = anzService;
 		// try-catch..
@@ -59,7 +66,7 @@ public class VeranstaltungsCtrlAdmin {
 	 * @return	Liste Veranstaltungen für die übergebenen Parameter
 	 */
 	@RequestMapping(value="/po", method=RequestMethod.POST)
-	public @ResponseBody List<AbstractVeranstaltung> poAnzeigen(@RequestBody List<String> args){
+	public @ResponseBody List<Veranstaltung> poAnzeigen(@RequestBody List<String> args){
 		
 		AnzeigerSrv srv = anzService;
 		
@@ -74,7 +81,7 @@ public class VeranstaltungsCtrlAdmin {
 	 * @return	boolean
 	 */
 	@RequestMapping(value="/vbearbeiten", method=RequestMethod.POST)
-	public boolean veranstaltungBearbeiten(AbstractVeranstaltung veranstaltung){
+	public boolean veranstaltungBearbeiten(@RequestBody Veranstaltung veranstaltung){
 		
 		VeranstaltungsVerwalterSrv srv = veranVerwSrv;
 		
@@ -89,7 +96,7 @@ public class VeranstaltungsCtrlAdmin {
 	 * @return boolean
 	 */
 	@RequestMapping(value="/vErstellen", method=RequestMethod.POST)
-	public boolean veranstaltungErstellen(AbstractVeranstaltung veranstaltung){
+	public @ResponseBody boolean veranstaltungErstellen(@RequestBody Veranstaltung va){
 		
 		VeranstaltungsVerwalterSrv srv = veranVerwSrv;
 		// try-catch..
@@ -103,7 +110,7 @@ public class VeranstaltungsCtrlAdmin {
 	 * @return
 	 */
 	@RequestMapping(value="/vLoeschen", method=RequestMethod.POST)
-	public boolean veranstaltungLoeschen(AbstractVeranstaltung veranstaltung){
+	public boolean veranstaltungLoeschen(@RequestBody Veranstaltung veranstaltung){
 		
 		VeranstaltungsVerwalterSrv srv = veranVerwSrv;
 		// try-catch..
@@ -117,7 +124,7 @@ public class VeranstaltungsCtrlAdmin {
 	 * @return Liste der Veranstaltungen
 	 */
 	@RequestMapping(value="/gruppUebersicht", method=RequestMethod.POST)
-	public @ResponseBody List<Gruppe> gruppenUebersichtAnzeigen(AbstractVeranstaltung veranstaltung){
+	public @ResponseBody List<Gruppe> gruppenUebersichtAnzeigen(@RequestBody Veranstaltung veranstaltung){
 		
 		GruppVerwSrv srv = gruppVerwServ;
 		// try-catch..
@@ -131,13 +138,14 @@ public class VeranstaltungsCtrlAdmin {
 	 * @return boolean
 	 */
 	@RequestMapping(value="/gruppErstellen", method=RequestMethod.POST)
-	public boolean gruppeErstellen(Gruppe gruppe){
+	public void gruppeErstellen(@RequestBody Veranstaltung args){
+		
 		
 		GruppVerwSrv srv = gruppVerwServ;
 		
 		// try-catch..
 		
-		return true;
+
 	}
 	
 	/**
@@ -174,7 +182,7 @@ public class VeranstaltungsCtrlAdmin {
 	 * @return Liste teilnehmende Studenten der Gruppe
 	 */
 	@RequestMapping(value="/tmUebersicht", method=RequestMethod.POST)
-	public @ResponseBody List<AbstractPerson> teilnehmerUebersichtAnzeigen(Gruppe gruppe){
+	public @ResponseBody List<AbstrPerson> teilnehmerUebersichtAnzeigen(Gruppe gruppe){
 		
 		
 		TeamVerwSrv srv = teamVerwSrv;
@@ -189,7 +197,7 @@ public class VeranstaltungsCtrlAdmin {
 	 * @return boolean
 	 */
 	@RequestMapping(value="/tmEntfernen", method=RequestMethod.POST)
-	public boolean tmEntfernen(Gruppe gruppe, AbstractPerson student){
+	public boolean tmEntfernen(Gruppe gruppe, AbstrPerson student){
 		
 		
 		TeamVerwSrv srv = teamVerwSrv;

@@ -2,10 +2,13 @@ package se2.praktikum.projekt.models.person;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import se2.praktikum.projekt.models.person.fachwerte.Adresse;
 
+@JsonDeserialize(as=AbstrPerson.class)
 public interface Person {
-
+	
 	/**
 	 * Gibt den Vornamen einer Person zurück
 	 * @return Vorname
@@ -108,14 +111,16 @@ public interface Person {
 	 * Gibt die Email-Adresse einer Person zurück
 	 * @return die Email-Adresse
 	 */
-	public EMail getEmailAdresse();
+	public EMail getEMail();
 
 	/**
 	 * Setzt die Email-Adresse einer Person
 	 * @param emailAdresse
 	 */
-	public void setEmailAdresse(EMail emailAdresse);
-	
-	
+	public void setEMail(EMail emailAdresse);
+
+	String getVollerName();
+
+	void setVollerName(String vollerName);
 
 }

@@ -9,7 +9,6 @@
   // Servicedefinition
   var DBLeistungService = function($http) {
 
-	var url = "http://localhost:8080/SE2-Praktikumssoftware/";
 
     // Gebe dieses Object zurück und mache die Methoden zugänglich
     // -----------------------------------------------------------------

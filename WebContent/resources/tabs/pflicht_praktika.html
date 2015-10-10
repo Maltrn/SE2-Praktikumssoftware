@@ -67,10 +67,10 @@
                     </thead>
                     <tbody>
                       <tr ng-repeat="veranstaltung in veranstaltungen | filter: searchKeyword">
-                        <td>{{veranstaltung.fach}}</td>
-                        <td>{{veranstaltung.dozent}}</td>
-                        <td>{{veranstaltung.curr}} / {{veranstaltung.max}}</td>
-                        <td>{{veranstaltung.currGr}} / {{veranstaltung.maxGr}}</td>
+                        <td>{{veranstaltung.fach.fachKuerzel}}</td>
+                        <td>{{veranstaltung.professor.vollerName}}</td>
+                        <td>{{veranstaltung.anzTm}} / {{veranstaltung.maxTm}}</td>
+                        <td>{{veranstaltung.anzGr}} / {{veranstaltung.maxGr}}</td>
                         <td>
                           <button type="button" class="btn btn-my-default btn-sm" ng-click="initGruppenUebersicht(veranstaltung.fach); switchToGruppen()" data-placement="bottom" title="Weiter zur Gruppenübersicht" onmouseenter="$(this).tooltip('show')">
                             <span class="glyphicon glyphicon-forward"></span>

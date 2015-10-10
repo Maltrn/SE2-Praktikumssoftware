@@ -3,7 +3,7 @@ package se2.praktikum.projekt.models.gruppe;
 import java.util.ArrayList;
 import java.util.List;
 
-import se2.praktikum.projekt.models.person.AbstractPerson;
+import se2.praktikum.projekt.models.person.AbstrPerson;
 import se2.praktikum.projekt.models.team.Team;
 
 /**
@@ -17,8 +17,8 @@ public class Gruppe {
 	private List<Termin> termine;		// Die Abgabetermine
 	private List<Team> teams;			// Die zugewiesenen Teams
 	private int grpNr;					// Die Gruppennummer
-	private AbstractPerson professor;	// Der betreuende Professor
-	private AbstractPerson assistent;	// Der betreuende Assistent
+	private AbstrPerson professor;	// Der betreuende Professor
+	private AbstrPerson assistent;	// Der betreuende Assistent
 	private int maxTeams;				// Maximal Anzahl Teams in der Gruppe
 	private int reservTeams;			// Anzahl der Team-Reserveslots
 	private int minTeams;				// Minimale Anzahl Teams
@@ -43,8 +43,8 @@ public class Gruppe {
 	 * @param prof : Der Professor
 	 * @param assist : Der Assistent
 	 */
-	public Gruppe(int grpNr,AbstractPerson prof, 
-				  AbstractPerson assist) {
+	public Gruppe(int grpNr,AbstrPerson prof, 
+				  AbstrPerson assist) {
 		
 		this(grpNr, prof, assist, null, 0, 0, 0, 0);
 
@@ -60,8 +60,8 @@ public class Gruppe {
 	 * @param minTeams : min. Teams
 	 * @param anzTeams : aktuelle Anzahl Teams
 	 */
-	public Gruppe(int grpNr, AbstractPerson prof, 
-				  AbstractPerson assist,
+	public Gruppe(int grpNr, AbstrPerson prof, 
+				  AbstrPerson assist,
 				  String raum, int maxTeams, 
 				  int resTeams, int minTeams,
 				  int anzTeams)				{
@@ -133,7 +133,7 @@ public class Gruppe {
 	 * Gibt den betreuenden Professor zurück
 	 * @return betreuender Professor
 	 */
-	public AbstractPerson getProfessor() {
+	public AbstrPerson getProfessor() {
 		return professor;
 	}
 
@@ -141,7 +141,7 @@ public class Gruppe {
 	 * Setzt den betreuenden Professor
 	 * @param professor
 	 */
-	public void setProfessor(AbstractPerson professor) {
+	public void setProfessor(AbstrPerson professor) {
 		this.professor = professor;
 	}
 
@@ -149,7 +149,7 @@ public class Gruppe {
 	 * Gibt den betreuenden Assistenten zurück
 	 * @return Assistent
 	 */
-	public AbstractPerson getAssistent() {
+	public AbstrPerson getAssistent() {
 		return assistent;
 	}
 
@@ -157,7 +157,7 @@ public class Gruppe {
 	 * Setzt den betreuenden Assistenten
 	 * @param assistent
 	 */
-	public void setAssistent(AbstractPerson assistent) {
+	public void setAssistent(AbstrPerson assistent) {
 		this.assistent = assistent;
 	}
 

@@ -21,7 +21,6 @@
       $http.get(url).
       	// Funktion, falls gültige Daten zurückkommen
         then(function(response){
-        	console.log(response);
         	for(i = 0; i < response.data.length; i++){
         		var data = response.data;
         		$scope.students.push({matrNr: data[i].matrNr, vorName: data[i].vorName, nachName: data[i].nachName});

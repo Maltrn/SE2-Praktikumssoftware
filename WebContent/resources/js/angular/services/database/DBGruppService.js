@@ -17,8 +17,9 @@
     var dozenten = ["Padberg", "Zukunft", "Kleine", "Gerken", "Huebner"];
     var assistenten = ["Blank", "Oelker", "Schulz"];
     var grNummern = [1,2,3,4,5,6];
+    var va; // Die zugehörige Veranstaltung -> Wird als Paramter übergeben (initGruppen())
 
-    var url = "http://localhost:8080/SE2-Praktikumssoftware/"; // URL um Backend anzusprechen
+    var url = "http://localhost:8080/"; // URL um Backend anzusprechen
     var gruppen = []; // Hier werden die ermittelten Daten temporär gespeichert um schnelles Anzeigen zu gewährleisten
                               // Ersetzt HC-Gruppendaten
     var error = false; // Flag zur Fehlererkennung
@@ -133,6 +134,10 @@
     // ###########################################################################################################
 
 
+    function getVeranstaltung(){
+      return va;
+    }
+
     function getFach(){
       console.log(fach);
       return fach;
@@ -216,6 +221,12 @@
 
     function getAppointment(newAppDate, start, end){
       return new Appointment(newAppDate, start, end);
+    }
+
+    function initFaecherTabelle(va){
+      for(i = 0; i < hcGruppenDaten.length; i++){
+        hcGruppenDaten[i].fach = va.fach;
+      }
     }
 
     // ###########################################################################################################
@@ -327,8 +338,25 @@
 
     // Gruppe zur Datenbank hinzufügen
     // Ruft die Schnittstelle im Backend auf und übergibt die Informationen
-    // der Gruppe als Json
+    // der Gruppe + Veranstaltung als Json-Array
     var addGruppeDB = function(gruppe){
+
+      var veranstaltung = getVeranstaltung(); // Muss dem Backend mit übergeben werden
+
+      // JSOM Data
+      var args = [veranstaltung, gruppe];
+
+      $http.post(url+"gruppErstellen", angular.toJson(args)).
+        // Funktion, falls gültige Daten zurückkommen
+      then(function(response) {
+          // Daten aus dem Response-Object in das Veranstaltungen-Array pushen
+          for (i = 0; i < response.data.length; i++) {
+          }
+        },
+        // Funktion bei Fehler
+        function(response) {
+          error = true; // Setze error-flag, dass von der view abgefragt wird
+        });
 
       // url = gruppErstellen
       return true;
@@ -336,18 +364,22 @@
 
     // Gruppe in der Datenbank bearbeiten
     // Ruft die Schnittstelle im Backend auf und übergibt die Informationen
-    // der Gruppe als Json
+    // der Gruppe + Veranstaltung als Json-Array
     // Geänderte gruppe wird automatisch in der View aktualisiert
     var editGruppeDB = function(gruppe){
+
+      var veranstaltung = getVeranstaltung(); // Muss dem Backend mit übergeben werden
 
       return true;
     }
 
     // gruppe aus der Datenbank löschen
     // Ruft die Schnittstelle im Backend auf und übergibt die Informationen
-    // der zu löschenden Gruppe als Json
+    // der Gruppe + Veranstaltung als Json-Array
     // Gruppe wird automatisch aus der View gelöscht
     var loescheGruppeDB = function(gruppe){
+
+      var veranstaltung = getVeranstaltung(); // Muss dem Backend mit übergeben werden
 
       // url = gruppLoeschen
       return true;
@@ -358,7 +390,13 @@
     // zu einer übergebenen Veranstaltung
     // Gruppen müssen in Array "gruppen" gespeichert werden (Json-Format)
     // Werden dann automatisch in der View ausgegeben
+    // =========================================================================
+    // ACHTUNG: Feld fach für jedes Gruppenobjekt ist kein Feld der Java-Klasse
+    // "Gruppe" (Dient hier nur zur Darstellung)
+    // =========================================================================
     var initGruppen = function(veranstaltung){
+      va = veranstaltung;
+      initFaecherTabelle(va);
 
       // url = gruppUebersicht
       // Gruppendaten aus der Datenbank holen
@@ -369,6 +407,7 @@
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
+
     // Gruppe einer Veranstaltung hinufügen
     var addGruppe = function(gruppe){
 
@@ -377,6 +416,7 @@
       if (!addGruppeDB(gruppe)) {
         return false;
       }else{ // Dann Tabelle aktualisieren
+        gruppe.fach = getVeranstaltung().fach;
         hcGruppenDaten.push(gruppe); // Erst Tabelle aktualisieren
         return true;
       }
@@ -432,6 +472,7 @@
       getAppointment: getAppointment,
       getFach: getFach,
       setFach: setFach,
+      getVeranstaltung: getVeranstaltung,
       initGruppen: initGruppen,
       sucheGruppe: sucheGruppe
     };

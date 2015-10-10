@@ -1,15 +1,16 @@
 package se2.praktikum.projekt.models.veranstaltung;
 
 import java.util.ArrayList;
-import se2.praktikum.projekt.models.person.AbstractPerson;
-import se2.praktikum.projekt.models.person.Person;
+import se2.praktikum.projekt.models.person.AbstrPerson;
+import se2.praktikum.projekt.models.person.AbstrPerson;
+import se2.praktikum.projekt.models.person.Professor;
 
 /**
  * Repräsentiert ein Pflichtpraktikum
  * @author Jan
  *
  */
-public class Praktikum extends AbstractVeranstaltung {
+public class Praktikum extends Veranstaltung {
 	
 	
 	
@@ -20,7 +21,7 @@ public class Praktikum extends AbstractVeranstaltung {
 	 */
 	public Praktikum() {
 		
-		this(null, null, null);
+		this(null, null);
 		
 	}
 	
@@ -32,10 +33,9 @@ public class Praktikum extends AbstractVeranstaltung {
 	 * @param prof
 	 * @param assist
 	 */
-	public Praktikum(Fach fach, Person prof, 
-					 Person assist)			{
+	public Praktikum(Fach fach, Professor prof)			{
 		
-		this(fach, prof, assist, 0, 0, 0, 0);
+		this(fach, prof, 0, 0, 0, 0);
 		
 	}
 	
@@ -49,18 +49,15 @@ public class Praktikum extends AbstractVeranstaltung {
 	 * @param anzGr : aktuelle Anzahl Gruppen
 	 * @param maxGr : aktuelle max. möglche Gruppenzahl.
 	 */
-	public Praktikum(Fach fach, Person prof, 
-					 Person assist, int anzTm,
-					 int maxTm, int anzGr, 
-					 int maxGr)					{
+	public Praktikum(Fach fach, Professor prof, 
+					 int anzTm, int maxTm, 
+					 int anzGr, int maxGr)					{
 		
 		this.fach = fach;
 		this.professor = prof;
-		this.assistent = assist;
-		this.gruppen = new ArrayList<>();
-		this.anzTeilnehmer = anzTm;
-		this.anzGruppen = anzGr;
-		this.maxGruppen = maxGr;
+		this.anzTm = anzTm;
+		this.anzGr = anzGr;
+		this.maxGr = maxGr;
 	}
 
 }

@@ -77,10 +77,6 @@
       // Initialisert die Gruppenübersicht zu einer Veranstaltung
         $scope.initGruppenUebersicht = function(fach) {
 
-         // Temporär -> nur solange keine DB vorhanden
-          for(i = 0; i < DBGruppService.hcGruppenDaten.length; i++){
-            DBGruppService.hcGruppenDaten[i].fach = fach;
-          }
           var vaIndex = DBVeranstService.sucheVA(fach);
           var va = DBVeranstService.hcVeranstaltungsDaten[vaIndex];
 
@@ -94,15 +90,16 @@
     $scope.initVeranBearbeitenPopup = function(fach) {
 
       indexEdit = DBVeranstService.sucheVA(fach);
-      $scope.va.dozent = DBVeranstService.hcVeranstaltungsDaten[indexEdit].dozent;
-      $scope.va.min = DBVeranstService.hcVeranstaltungsDaten[indexEdit].min;
-      $scope.va.max = DBVeranstService.hcVeranstaltungsDaten[indexEdit].max;
+      $scope.va.dozent = DBVeranstService.hcVeranstaltungsDaten[indexEdit].professor.vollerName;
+      $scope.va.min = DBVeranstService.hcVeranstaltungsDaten[indexEdit].minTm;
+      $scope.va.curr = DBVeranstService.hcVeranstaltungsDaten[indexEdit].anzTm;
+      $scope.va.max = DBVeranstService.hcVeranstaltungsDaten[indexEdit].maxTm;
     }
 
     // Fügt eine neue Veranstaltung in die Tabelle ein -> TODO: Preconditions
     $scope.addVeranstaltung = function() {
 
-      var va = {};
+      va = {};
       va.fach = $scope.va.fach;
       va.dozent = $scope.va.dozent;
       va.semester = $scope.va.semester;
@@ -135,6 +132,11 @@
       if (!DBVeranstService.editVeranstaltung(indexEdit, edit)) {
         // Fehlermeldung
       }
+
+      // Modal schließen forcieren, bug über normalen Weg (data-dismiss-tag) TODO: FIX
+      $('#modalBearbeiten').modal('hide');
+      $('body').removeClass('modal-open');
+      $('.modal-backdrop').remove();
     }
 
     // Initialisiert den Index der zu löschenden Veranstaltung
@@ -144,6 +146,7 @@
 
     $scope.loescheVeranstaltung = function() {
 
+        console.log(loesch);
         if (!DBVeranstService.loescheVeranstaltung(loesch)) {
           // Fehlermeldung
         }

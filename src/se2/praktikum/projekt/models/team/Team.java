@@ -3,7 +3,7 @@ package se2.praktikum.projekt.models.team;
 import java.util.ArrayList;
 import java.util.List;
 
-import se2.praktikum.projekt.models.person.AbstractPerson;
+import se2.praktikum.projekt.models.person.AbstrPerson;
 import se2.praktikum.projekt.models.team.fachwerte.TeamID;
 
 /**
@@ -15,7 +15,7 @@ public class Team {
 	
 	// Felder
 	private TeamID teamID;				// Die TeamID
-	private List<AbstractPerson> mitglieder;	// Die Mitglieder des Teams
+	private List<AbstrPerson> mitglieder;	// Die Mitglieder des Teams
 	private int minTeiln;				// min. Anzahl Teilnehmer
 	private int maxTeiln;				// max. Anzahl Teilnehmer
 	private List<Aufgabe> aufgaben;		// Die Aufgaben eines Teams
@@ -78,7 +78,7 @@ public class Team {
 	 * Gibt eine Liste aller Mitglieder zurück
 	 * @return Liste aller Mitglieder
 	 */
-	public List<AbstractPerson> getMitglieder() {
+	public List<AbstrPerson> getMitglieder() {
 		return mitglieder;
 	}
 
@@ -86,7 +86,7 @@ public class Team {
 	 * Setzt die Mitglieder eines Teams
 	 * @param Liste Mitglieder
 	 */
-	public void setMitglieder(List<AbstractPerson> mitglieder) {
+	public void setMitglieder(List<AbstrPerson> mitglieder) {
 		this.mitglieder = mitglieder;
 	}
 

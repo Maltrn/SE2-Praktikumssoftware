@@ -3,7 +3,7 @@ package se2.praktikum.projekt.models.team.fachwerte;
 import java.util.List;
 
 import se2.praktikum.projekt.models.gruppe.Gruppe;
-import se2.praktikum.projekt.models.person.AbstractPerson;
+import se2.praktikum.projekt.models.person.AbstrPerson;
 
 /**
  * Die Klasse repräsentiert den Fachwert TeamID 
@@ -32,7 +32,7 @@ public class TeamID {
 	 * @param gruppe : Die zugehörige Gruppe
 	 * @return
 	 */
-	public static TeamID getTeamID(List<AbstractPerson> studenten, Gruppe gruppe){
+	public static TeamID getTeamID(List<AbstrPerson> studenten, Gruppe gruppe){
 		
 		// TODO: Berechnung
 		int id = 21414124;

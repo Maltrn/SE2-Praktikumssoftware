@@ -2,6 +2,8 @@ package se2.praktikum.projekt.models.person;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import se2.praktikum.projekt.models.person.fachwerte.Adresse;
 import se2.praktikum.projekt.models.person.fachwerte.MAID;
 
@@ -10,7 +12,8 @@ import se2.praktikum.projekt.models.person.fachwerte.MAID;
  * @author Jan
  *
  */
-public class Assistent extends AbstractAngestellter {
+
+public class Assistent extends AbstrAngestellter {
 	
 	
 	/**
@@ -57,7 +60,7 @@ public class Assistent extends AbstractAngestellter {
 				     Adresse adresse, String department,
 				     String fachbereich, EMail email)		{
 		
-		this.mitarbeiterID = maID;
+		this.maID = maID;
 		this.vorname = vorname;
 		this.nachname = nachname;
 		this.benutzername = benutzername;
@@ -66,7 +69,9 @@ public class Assistent extends AbstractAngestellter {
 		this.adresse = adresse;
 		this.department = department;
 		this.fachbereich = fachbereich;
-		this.emailAdresse = email;
+		this.email = email;
 	}
+
+
 
 }

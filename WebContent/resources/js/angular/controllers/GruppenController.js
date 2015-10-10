@@ -84,8 +84,7 @@
       if ($scope.isValidNumber(x)) {
         var i;
         for (i = 0; i < DBGruppService.hcGruppenDaten.length; i++) {
-          if ($scope.gr.grpNr == DBGruppService.hcGruppenDaten[i].grpNr
-              && $scope.gr.fach == DBGruppService.hcGruppenDaten[i].fach) {
+          if ($scope.gr.grpNr == DBGruppService.hcGruppenDaten[i].grpNr) {
             return false;
           }
         }

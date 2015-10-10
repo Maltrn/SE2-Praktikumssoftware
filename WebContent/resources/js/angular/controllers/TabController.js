@@ -7,7 +7,7 @@
   var app = angular.module("SE2-Software");
 
   // $scope = model object
-  var TabController = function($scope, DBVeranstService, DBGruppService) {
+  var TabController = function($scope, DBVeranstService) {
 
     // Togglepoint
     $scope.switch = {};

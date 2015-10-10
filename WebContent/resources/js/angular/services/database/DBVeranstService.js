@@ -11,13 +11,73 @@
   var DBVeranstService = function($http) {
 
 
+    // POJO-Klassen
+    // ====================================================================================
+
+    function Fach(fachKuerzel){
+
+      this.fachKuerzel = fachKuerzel;
+      this.fachBezeichnung = null;
+      this.fachBereich = null;
+      this.semester = null;
+    }
+
+    function Angestellter(vorname, nachname){
+
+      this.maID = null;
+      this.vorname = vorname;
+      this.nachname = nachname;
+      this.vollerName = this.vorname + " " + this.nachname;
+      this.benutzername = null;
+      this.gebDatum = null;
+      this. gebOrt = null;
+      this.adresse = null;
+      this.department = null;
+      this.fachbereich = null;
+      this.email = null;
+    }
+
+    function Veranstaltung(fach, prof, anzTm, maxTm, minTm, anzGr, maxGr){
+
+      this.fach = fach;
+      this.professor = prof;
+      this.anzTm = anzTm;
+      this.maxTm = maxTm;
+      this.minTm = minTm;
+      this.anzGr = anzGr;
+      this.maxGr = maxGr;
+    }
+
+    function MAID(id){
+
+      this.id = id;
+
+    }
+
+    function EMail(email){
+      this.email = email;
+    }
+
+    function PLZ(plz){
+      this.plz = plz;
+    }
+
+    function Adresse(strasse, hausNr, plz, stadt, land){
+
+      this.strasse = strasse;
+      this.hausNr = hausNr;
+      this.plz = plz;
+      this.stadt = stadt;
+      this.land = land;
+    }
+
     // Helper
     // ====================================================================================
 
       var sucheVA = function(fach){
 
         for(i = 0; i < hcVeranstaltungsDaten.length; i++){
-          if(hcVeranstaltungsDaten[i].fach == fach){
+          if(hcVeranstaltungsDaten[i].fach.fachKuerzel == fach.fachKuerzel){
             return i;
           }
         }
@@ -30,6 +90,18 @@
 
       var getSemester = function(){
         return sem;
+      }
+
+      var getAngesteller = function(vollerName){
+
+        var name = vollerName.split(" ");
+        var vorname = name[0];
+        var nachname = name[1];
+        var prof = new Angestellter(vorname, nachname);
+        prof.vollerName = vollerName;
+
+        return prof;
+
       }
 
 
@@ -52,48 +124,32 @@
     // Später dynamische Ermittlung durch Spring MVC
     // ====================================================================================
 
+    var gka = new Fach("GKAP");
+    var ad = new Fach("ADP");
+    var bs = new Fach("BSP");
+    var se = new Fach("SEP1");
+    var bw = new Fach("BWP2");
+
+    var id = new MAID(10);
+    var plz = new PLZ(11111);
+    var email = new EMail("test@test.de");
+    var gebDatum = new Date();
+    var adresse = new Adresse("Straße", 7, 1111, "Stadt", "Land");
+    var padberg = new Angestellter("Julia", "Padberg");
+    var kleine = new Angestellter("Martin", "Kleine");
+    var huebner = new Angestellter("Martin", "Huebner");
+    var zukunft = new Angestellter("Olaf", "Zukunft");
+    var gerken = new Angestellter("Wolfgang", "Gerken");
+
+    var gkap = new Veranstaltung(gka, padberg, 60, 80,10, 6, 10);
+    var adp = new Veranstaltung(ad, kleine, 50, 60, 10, 6, 10);
+    var bsp = new Veranstaltung(bs, huebner, 70, 80, 10, 6, 10);
+    var sep = new Veranstaltung(se, zukunft, 0, 80, 10, 6, 10);
+    var bwp = new Veranstaltung(bw, gerken, 50, 80, 10, 6, 10);
+
+
     // Array aus Veranstaltungsobjekten
-    var hcVeranstaltungsDaten = [{
-      fach: "GKAP",
-      dozent: "Prof. Dr. Julia Padberg",
-      currGr: 6,
-      maxGr: 10,
-      min: 10,
-      curr: 60,
-      max: 80
-    }, {
-      fach: "ADP",
-      dozent: "Prof. Dr. Martin Kleine",
-      currGr: 6,
-      maxGr: 10,
-      min: 10,
-      curr: 50,
-      max: 60
-    }, {
-      fach: "BSP",
-      dozent: "Prof Dr. Martin Huebner",
-      currGr: 6,
-      maxGr: 10,
-      min: 10,
-      curr: 70,
-      max: 80
-    }, {
-      fach: "SEP",
-      dozent: "Prof. Dr. Olaf Zukunft",
-      currGr: 6,
-      maxGr: 10,
-      min: 10,
-      curr: 0,
-      max: 80
-    }, {
-      fach: "BWP",
-      dozent: "Prof. Dr. Wolfgang Gerken",
-      currGr: 6,
-      maxGr: 10,
-      min: 10,
-      curr: 50,
-      max: 80
-    }];
+    var hcVeranstaltungsDaten = [gkap, adp, bsp, sep, bwp];
     // ====================================================================================
 
 
@@ -156,6 +212,29 @@
 
     }
 
+    // Speichert eine Veranstaltung in der Datenbank
+    // TODO: implement
+    function addVeranstaltungDB(veranstaltung) {
+
+      
+
+      console.log(veranstaltung.professor);
+      veranstaltung.professor.type = "Professor";
+      var obj = angular.toJson(veranstaltung);
+      console.log(obj);
+      $http.post(url+"vErstellen", angular.toJson(veranstaltung))
+      .then(function(){
+        // Prüfe ob Daten eingefügt
+        return true;  // Gibt true zurück, wenn Speicherung erfolgreich
+      },
+      function(){
+        return false;
+      });
+
+      return true; // Vorerst nur true zurückgeben, darunterliegender Code nicht betrachtet
+
+    }
+
     // Editiert eine Veranstaltung in der Datenbank
     // Editierte Veranstaltung wird dem Backend übergeben (Json-Format)
     // View wird automatisch aktualisiert
@@ -178,7 +257,17 @@
 
 
     // Speichert eine neue Veranstaltung
-    var addVeranstaltung = function(veranstaltung) {
+    var addVeranstaltung = function(veranstaltungsInfo) {
+
+      var profname = va.dozent;
+      var fach = new Fach(veranstaltungsInfo.fach);
+      fach.semester = veranstaltungsInfo.semester;
+      fach.fachBereich = veranstaltungsInfo.fachbereich
+
+      var prof = getAngesteller(profname);
+
+      var veranstaltung = new Veranstaltung(fach, prof, va.curr, va.max, va.min, 6, 10);
+
       //  Erst Eintrag in die Datenbank einfügen
       // -> Wenn nicht erfolgreich -> false
       if (!addVeranstaltungDB(veranstaltung)) {
@@ -193,12 +282,23 @@
 
     // Editiiert eine vorhndene Veranstaltung
     var editVeranstaltung = function(index, va){
+
+      var profname = va.dozent;
+      var prof = getAngesteller(profname);
+      var fach = hcVeranstaltungsDaten[index].fach
+      var curr = hcVeranstaltungsDaten[index].anzTm;
+      var max = va.max;
+      var min = va.min;
+      var anzGr = hcVeranstaltungsDaten[index].anzGr;
+      var maxGr = hcVeranstaltungsDaten[index].maxGr;
+      var veranstaltung = new Veranstaltung(fach, prof, curr, max, min, anzGr, maxGr);
+
+      console.log(max);
+
       if(!editVeranstaltungDB(va)){
         return false;
       }else{
-        hcVeranstaltungsDaten[index].dozent = va.dozent;
-        hcVeranstaltungsDaten[index].min = va.min;
-        hcVeranstaltungsDaten[index].max = va.max;
+        hcVeranstaltungsDaten[index] = veranstaltung;
         return true;
       }
     }
@@ -208,10 +308,8 @@
 
       var va = {};                  // Veranstaltung initialisieren
       var index = sucheVA(fach);    // Suche Index der VA
-      console.log(fach);
-      console.log(index);
 
-      if(index > 0){
+      if(index > -1){
         va = hcVeranstaltungsDaten[index];  // Weise VA zu
       }else{
         return false;
@@ -224,25 +322,6 @@
       }
     }
 
-    // Speichert eine Veranstaltung in der Datenbank
-    // TODO: implement
-    function addVeranstaltungDB(Veranstaltung) {
-
-      return true; // Vorerst nur true zurückgeben, darunterliegender Code nicht betrachtet
-
-      /*
-      // erzeuge data object
-      $http.post(url+"vErstellen", veranstaltung)
-      .then(function(){
-        // Prüfe ob Daten eingefügt
-        return true;  // Gibt true zurück, wenn Speicherung erfolgreich
-      },
-      function(){
-        return false;
-      });
-      */
-
-    }
 
     // #########################################################################################################################
 
