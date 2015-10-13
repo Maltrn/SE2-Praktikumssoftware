@@ -63,15 +63,6 @@ public class Team {
 	public TeamID getTeamID() {
 		return teamID;
 	}
-
-	/**
-	 * Setzt die TeamID
-	 * @param teamID
-	 */
-	public void setTeamID(TeamID teamID) {
-		this.teamID = teamID;
-	}
-
 	
 	/**
 	 * Gibt eine Liste aller Mitglieder zurück

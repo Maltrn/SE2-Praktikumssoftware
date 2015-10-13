@@ -18,6 +18,8 @@ Aktuell (13.10.2015) - Letzter Commit
 =====================================
 
 <li>Die Frontend-Backend-Kommunikation für den Veranstaltungsservice sollte jetzt soweit debuggt sein.</li>
+<li>Die Klasse AbstrVeranstaltung enthält aus Performancegründen keine Gruppenliste, da dann für jede Veranstaltung in der Übersicht die Gruppenliste geholt werden müsste, obwohl dies evtl garnicht nötig ist (z. B. Man klickt nicht weiter zur Gruppenübersicht). Es reicht diese Information in der Datenbank gespeichert zu haben.
+<li>Gleiches bei Klasse Gruppe (keine Liste von Teams)
 <li>[POJO-Klassen](/src/se2/praktikum/projekt/models/) korrigiert</li>
 <li>Angular-Schnittstellen für erste Komponente (Veranstaltungsservice):
  <ul> 

@@ -27,7 +27,7 @@
     }
     
     function Team(teamId, minTeiln, maxTeiln, mitglieder){
-    	this.teamId = teamId;
+    	this.teamId = null;
     	this.minTeiln = minTeiln;
     	this.maxTeiln = maxTeiln;
     	this.mitglieder = mitglieder;
