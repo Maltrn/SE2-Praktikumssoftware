@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import se2.praktikum.projekt.models.person.fachwerte.Adresse;
 import se2.praktikum.projekt.models.person.fachwerte.MAID;
+import se2.praktikum.projekt.models.person.fachwerte.MatrikelNr;
 
 /**
  * Repräsentiert einen Studenten
@@ -16,7 +17,7 @@ import se2.praktikum.projekt.models.person.fachwerte.MAID;
 public class Student extends AbstrPerson{
 	
 	// Felder
-	private int matrNr;		// Die Matrikelnummer -> VORERST INT damit DBBeispiel weiterhin
+	private MatrikelNr matrNr;		// Die Matrikelnummer -> VORERST INT damit DBBeispiel weiterhin
 							//					     funktioniert
 							//					  -> Später fachlicher Datentyp "MatrikelNr"
 	
@@ -26,7 +27,7 @@ public class Student extends AbstrPerson{
 	 */
 	public Student(){
 		
-		this(0, null, null);
+		this(null, null, null);
 	}
 	
 	/**
@@ -36,7 +37,7 @@ public class Student extends AbstrPerson{
 	 * @param vorname : Der Vorname
 	 * @param nachname : Der Nachname
 	 */
-	public Student(int matrNr, String vorname,
+	public Student(MatrikelNr matrNr, String vorname,
 				   String nachname)				 {
 		
 		this(matrNr, vorname, nachname, 
@@ -58,7 +59,7 @@ public class Student extends AbstrPerson{
 	 * @param fachbereich : Fachbereich 
 	 * @param email : EMail-Adresse
 	 */
-	public Student(int matrNr, String vorname,
+	public Student(MatrikelNr matrNr, String vorname,
 				   String nachname, String benutzername,
 				   Date gebDatum, String gebOrt,
 				   Adresse adresse, String department,
@@ -81,16 +82,16 @@ public class Student extends AbstrPerson{
 	 * Gibt die Matrikelnummer eines Studenten zurück
 	 * @return Matrikelnummer
 	 */
-	public int getMatrNr() {
+	public MatrikelNr getMatrNr() {
 		return matrNr;
 	}
 	
 	/**
 	 * Setzt die Matrikelnummer eines Studenten
-	 * @param matrNr : Die Matrikelnummer
+	 * @param matrikelNr : Die Matrikelnummer
 	 */
-	public void setMatrNr(int matrNr) {
-		this.matrNr = matrNr;
+	public void setMatrNr(MatrikelNr matrikelNr) {
+		this.matrNr = matrikelNr;
 	}
 
 

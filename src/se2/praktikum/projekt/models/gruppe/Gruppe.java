@@ -240,6 +240,4 @@ public class Gruppe {
 	public void setFachkuerzel(String fachkuerzel) {
 		this.fachkuerzel = fachkuerzel;
 	}
-	
-	
 }

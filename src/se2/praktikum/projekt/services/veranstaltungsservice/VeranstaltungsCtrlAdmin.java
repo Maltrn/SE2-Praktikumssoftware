@@ -12,6 +12,8 @@ import se2.praktikum.projekt.models.gruppe.Gruppe;
 import se2.praktikum.projekt.models.person.Angestellter;
 import se2.praktikum.projekt.models.person.Person;
 import se2.praktikum.projekt.models.person.Professor;
+import se2.praktikum.projekt.models.person.fachwerte.MatrikelNr;
+import se2.praktikum.projekt.models.team.Team;
 import se2.praktikum.projekt.models.veranstaltung.AbstrVeranstaltung;
 import se2.praktikum.projekt.models.veranstaltung.Veranstaltung;
 import se2.praktikum.projekt.tools.Mapper;
@@ -134,6 +136,8 @@ public class VeranstaltungsCtrlAdmin {
 	public @ResponseBody boolean veranstaltungErstellen(@RequestBody Veranstaltung va){
 		
 		VeranstaltungsVerwalterSrv srv = veranVerwSrv;
+		System.out.println(va.getProfessor().getVollerName());
+		System.out.println(va.getProfessor().getMaID());
 		// try-catch...
 		
 		return true;
@@ -177,11 +181,7 @@ public class VeranstaltungsCtrlAdmin {
 		
 		Gruppe gr = Mapper.mapGruppe(gruppe);
 		GruppVerwSrv srv = gruppVerwServ;
-		
-		System.out.println(gr.getTermine().get(0).getRaum());
-		System.out.println(gr.getTermine().get(1).getRaum());
-		System.out.println(gr.getTermine().get(2).getRaum());
-		System.out.println(gr.getTermine().get(3).getRaum());
+	
 		
 		
 		return true;
@@ -196,7 +196,7 @@ public class VeranstaltungsCtrlAdmin {
 	 * @return boolean
 	 */
 	@RequestMapping(value="/gruppBearbeiten", method=RequestMethod.POST)
-	public boolean gruppeBearbeiten(@RequestBody String gruppe){
+	public @ResponseBody boolean gruppeBearbeiten(@RequestBody String gruppe){
 		Gruppe gr = Mapper.mapGruppe(gruppe);
 		GruppVerwSrv srv = gruppVerwServ;
 		// try-catch..
@@ -210,7 +210,7 @@ public class VeranstaltungsCtrlAdmin {
 	 * @return boolean 
 	 */
 	@RequestMapping(value="/gruppLoeschen", method=RequestMethod.POST)
-	public boolean gruppeLoeschen(@RequestBody String gruppe){
+	public @ResponseBody boolean gruppeLoeschen(@RequestBody String gruppe){
 		Gruppe gr = Mapper.mapGruppe(gruppe);
 		GruppVerwSrv srv = gruppVerwServ;
 		// try-catch..
@@ -219,12 +219,12 @@ public class VeranstaltungsCtrlAdmin {
 	}
 	
 	/**
-	 * Ermittelt alle Teilnehmer einer Gruppe aus der Datenbank
+	 * Ermittelt alle Teams einer Gruppe aus der Datenbank
 	 * @param gruppe : Die gruppe der Teilnehmer
-	 * @return Liste teilnehmende Studenten der Gruppe
+	 * @return Liste Teams der Gruppe
 	 */
 	@RequestMapping(value="/tmUebersicht", method=RequestMethod.POST)
-	public @ResponseBody List<Person> teilnehmerUebersichtAnzeigen(@RequestBody String gruppe){
+	public @ResponseBody List<Team> teilnehmerUebersichtAnzeigen(@RequestBody String gruppe){
 		Gruppe gr = Mapper.mapGruppe(gruppe);
 		TeamVerwSrv srv = teamVerwSrv;
 		// try-catch..
@@ -233,13 +233,16 @@ public class VeranstaltungsCtrlAdmin {
 	}
 	
 	/**
-	 * Entfernt einen Teilnehmer aus einer Gruppe 
+	 * Entfernt einen Teilnehmer aus einer Gruppe und Team
 	 * 
-	 * @param args : args[0] = gruppe, args[1] = matrikelNr
+	 * @param args : args[0] = TeamID, args[1] = MatrikelNummer
 	 * @return boolean
 	 */
 	@RequestMapping(value="/tmEntfernen", method=RequestMethod.POST)
-	public boolean tmEntfernen(@RequestBody List<String> args){
+	public @ResponseBody boolean tmEntfernen(@RequestBody List<String> args){
+		
+		Team team = Mapper.mapTeam(args.get(0));
+		MatrikelNr matrNr = MatrikelNr.getMatrikelNr(Integer.parseInt(args.get(1)));
 		
 		TeamVerwSrv srv = teamVerwSrv;
 		// try-catch..

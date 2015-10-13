@@ -226,8 +226,6 @@
         return false;
       });
 
-      return true; // Vorerst nur true zurückgeben, darunterliegender Code nicht betrachtet
-
     }
     
     // holt alle Professoren für eine Veranstaltung und ein Semester
@@ -240,6 +238,7 @@
     }
     
     // Listet alle Profs in der Livesuche anhand des keywords
+    // Nutzt dazu den Puffer "professoren
     var getProfsLiveSuche = function(keyword){
     	
     }

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import se2.praktikum.projekt.models.person.Student;
+import se2.praktikum.projekt.models.person.fachwerte.MatrikelNr;
 
 /**
  * Service der für Abfragen/Anlegen und Prüfen von Daten in der Datenbank zuständig ist.
@@ -42,7 +43,7 @@ public class DBService
 			
 			while(rs.next()){
 				Student stud = new Student();
-				stud.setMatrNr(rs.getInt("MATRNR"));
+				stud.setMatrNr(MatrikelNr.getMatrikelNr(rs.getInt("MATRNR")));
 				stud.setVorname(rs.getString("VORNAME"));
 				stud.setNachname(rs.getString("NACHNAME"));
 				studenten.add(stud);

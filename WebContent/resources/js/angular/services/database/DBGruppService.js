@@ -100,6 +100,7 @@
     	this.fachkuerzel = fachkuerzel;
     	this.grpNr = grNr;
     	this.termine = termine;
+    	this.teams = null;
     	this.dozent = prof;
     	this.assistent = assist;
     	this.minTeams = minTeams;
@@ -155,12 +156,12 @@
 
     
     var gr1 = new Gruppe("", 1, termine, 
-    				     prof1, assist1, 
+    					 prof1, assist1, 
     				     10, 20, 
     				     10, 0);
     
     var gr2 = new Gruppe("", 2, termine, 
-		     			 prof2, assist2, 
+    					 prof2, assist2, 
 		     			 10, 20, 
 		     			 10, 0);
     
@@ -284,7 +285,8 @@
       }
     }
 
-    // ###########################################################################################################
+// ###########################################################################################################
+
 // SCHNITTSTELLE
 // ###########################################################################################################
 
@@ -327,11 +329,10 @@
 
     // gruppe aus der Datenbank löschen
     // Ruft die Schnittstelle im Backend auf und übergibt die Informationen
-    // der Gruppe + Veranstaltung als Json-Array
+    // der Gruppe als Json-Array
     // Gruppe wird automatisch aus der View gelöscht
     var loescheGruppeDB = function(gruppe){
 
-      var veranstaltung = getVeranstaltung(); // Muss dem Backend mit übergeben werden
 
       // url = gruppLoeschen
       return true;
@@ -358,6 +359,9 @@
 
       // url = gruppUebersicht
       // Gruppendaten aus der Datenbank holen
+      
+      // Teams den Gruppen in der For-Schleife zuorden
+      // -> gruppe.teams = response.data
 
       return true;
     }

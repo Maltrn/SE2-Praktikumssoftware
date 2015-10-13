@@ -2,8 +2,11 @@ package se2.praktikum.projekt.models.team.fachwerte;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import se2.praktikum.projekt.models.gruppe.Gruppe;
-import se2.praktikum.projekt.models.person.AbstrPerson;
+import se2.praktikum.projekt.models.person.Person;
 
 /**
  * Die Klasse repräsentiert den Fachwert TeamID 
@@ -28,11 +31,11 @@ public class TeamID {
 	/**
 	 * Berechnet eine TeamID für ein gegebenes Team.
 	 * TODO: Berechungsweg finden
-	 * @param studenten : Liste der Mitglieder des Teams
+	 * @param teilnehmer : Liste der Mitglieder des Teams
 	 * @param gruppe : Die zugehörige Gruppe
 	 * @return
 	 */
-	public static TeamID getTeamID(List<AbstrPerson> studenten, Gruppe gruppe){
+	public static TeamID getTeamID(List<Person> teilnehmer, int grpNr){
 		
 		// TODO: Berechnung
 		int id = 21414124;

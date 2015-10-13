@@ -295,8 +295,6 @@
 
       var index = DBGruppService.sucheGruppe(grpNr);
       var gruppe = DBGruppService.hcGruppenDaten[index];
-      DBGruppTmService.setFach(gruppe.fach);
-      DBGruppTmService.setGruppe(gruppe.grpNr);
       DBGruppTmService.initTmUebersicht(gruppe);
 
     }

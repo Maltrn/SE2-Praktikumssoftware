@@ -11,6 +11,7 @@ import java.util.List;
 import se2.praktikum.projekt.dbms.DBConnector;
 import se2.praktikum.projekt.models.gruppe.Gruppe;
 import se2.praktikum.projekt.models.person.*;
+import se2.praktikum.projekt.models.person.fachwerte.MatrikelNr;
 import se2.praktikum.projekt.models.veranstaltung.*;
 
 public class AnzeigerSrv 
@@ -196,7 +197,7 @@ public class AnzeigerSrv
 			
 			while(rs.next()){
 				Student std= new Student();
-				std.setMatrNr(rs.getInt("MATRNR"));
+				std.setMatrNr(MatrikelNr.getMatrikelNr(rs.getInt("MATRNR")));
 				std.setVorname(rs.getString("VORNAME"));
 				std.setNachname(rs.getString("NACHNAME"));
 				personen.add(std);

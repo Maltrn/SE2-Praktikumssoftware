@@ -18,11 +18,13 @@
   // $scope = model object, $http: holt JSON Daten via SpringMVC Backend -> folgt später
   var TMUebersichtController = function($scope, autoscroller, DBGruppTmService /*, $http*/ ) {
 
-    // Scope-Felder
+    
+	// Scope-Felder
     // ------------------
     $scope.tm = {};
-    $scope.tm.fach = DBGruppTmService.getFach();
-    $scope.tm.grpNr = DBGruppTmService.getGruppe();
+    $scope.gruppe = DBGruppTmService.getGruppe();
+    console.log("Gruppe:");
+    console.log($scope.gruppe);
     $scope.tm.matrNr;
     $scope.tm.vorn;
     $scope.tm.nachn;
@@ -32,58 +34,19 @@
     $scope.tm.note;
     $scope.entfIndex;
     $scope.teilnehmer = DBGruppTmService.hcTeilnehmer;
-    // ------------------
+    // -------------------------------------------------
 
-
-    // Funktionen um Ergebnisse darzustellen
-    // --------------------------------------------------
-    // Gibt den PVL-Status eines Teilnehmers in der Liste zurück
-    $scope.getPVL = function(ngIndex) {
-
-      return $scope.teilnehmer[ngIndex].pvl;
-    }
-
-    // Gibt das Success-Icon zurück
-    $scope.getSuccess = function() {
-      return "resources/icons/success.html";
-    }
-
-    // Gibt das Fail-Icon zurück
-    $scope.getFail = function() {
-      return "resources/icons/fail.html";
-    }
-
-    // Gibt das Open-Icon zurück
-    $scope.getOpen = function() {
-      return "resources/icons/open.html";
-    }
-
-    // Prüft ob Teilnehmer benotet wurde
-    $scope.isOpen = function(ngIndex) {
-      return $scope.teilnehmer[ngIndex].note === -1;
-    }
-
-    // Prüft ob Teilnehmer Klausur bestanden hat
-    $scope.isSuccess = function(ngIndex) {
-      return $scope.teilnehmer[ngIndex].note > 4;
-    }
 
     // Iinitlaisiert das Teilnehmer-Detail-Popup
     $scope.initTmDetails = function(matrNr) {
 
       var index = DBGruppTmService.sucheStudent(matrNr);
-      $scope.tm.matrNr = DBGruppTmService.hcTeilnehmer[index].matrNr;
-      $scope.tm.vorn = DBGruppTmService.hcTeilnehmer[index].vorn;
-      $scope.tm.nachn = DBGruppTmService.hcTeilnehmer[index].nachn;
-      $scope.tm.tmNr = DBGruppTmService.hcTeilnehmer[index].tmNr;
-      $scope.tm.tmPartner = DBGruppTmService.hcTeilnehmer[index].tmPartner;
-      $scope.tm.pvl = DBGruppTmService.hcTeilnehmer[index].pvl;
-
-      if (DBGruppTmService.hcTeilnehmer[index].note == -1) {
-        $scope.tm.note = "offen";
-      } else {
-        $scope.tm.note = DBGruppTmService.hcTeilnehmer[index].note;
-      }
+      $scope.tm.matrNr = $scope.teilnehmer[index].student.matrNr;
+      $scope.tm.vorn = $scope.teilnehmer[index].student.vorname;
+      $scope.tm.nachn = $scope.teilnehmer[index].student.nachname;
+      $scope.tm.tmNr = $scope.teilnehmer[index].teamID;
+      
+      $scope.tm.tmPartner = DBGruppTmService.sucheTeamPartner($scope.tm.tmNr, matrNr);  
     }
 
     // Initlalisiert den Index des zu entfernden Eintrags

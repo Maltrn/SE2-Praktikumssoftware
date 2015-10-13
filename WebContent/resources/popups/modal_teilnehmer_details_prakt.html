@@ -23,19 +23,33 @@
                 </tr>
                 <tr ng-model="tm.matrNr">
                   <td>Matrikel-Nr.</td>
-                  <td>{{tm.matrNr}}</td>
+                  <td>{{tm.matrNr.matrNr}}</td>
                 </tr>
                 <tr ng-model="tm.tmNr">
                   <td>Team-Nr.</td>
-                  <td>{{tm.tmNr}}</td>
-                </tr>
-                <tr ng-model="tm.tmPartner">
-                  <td>Partner</td>
-                  <td>{{tm.tmPartner}}</td>
+                  <td>{{tm.tmNr.id}}</td>
                 </tr>
               </tbody>
             </table>
           </div>
+        </div>
+        <div class="row">
+        <br />
+         <div class="col-sm-12">
+          <div class="text text-muted">
+            TeamPartner:
+          </div>
+         </div>
+        </div>
+        <div class="row">
+         <div class="col-sm-12">
+          <table class="table table-bordered table-striped" style="margin: 0px;">
+           <tr ng-repeat="partner in tm.tmPartner">
+           	<td>Name</td>
+           	<td>{{partner.vollerName}}</td>
+           </tr>
+          </table>
+         </div>
         </div>
         <div class="row">
           <div class="col-sm-12">

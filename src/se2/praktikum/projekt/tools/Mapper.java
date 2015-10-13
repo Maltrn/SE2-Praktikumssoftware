@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import se2.praktikum.projekt.models.gruppe.Gruppe;
+import se2.praktikum.projekt.models.team.Team;
 
 public class Mapper {
 	
@@ -14,8 +15,7 @@ public class Mapper {
 	
 	public static Gruppe mapGruppe(String obj){
 		
-		mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
-		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		config();
 		Gruppe gr = null;
 		
 		try {
@@ -26,6 +26,26 @@ public class Mapper {
 		}
 		
 		return gr;
+	}
+
+	public static Team mapTeam(String team) {
+		
+		config();
+		
+		Team t = null;
+		
+		try {
+			t = mapper.readValue(team, Team.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return t;
+	}
+	
+	private static void config(){
+		
+		mapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 	}
 
 }

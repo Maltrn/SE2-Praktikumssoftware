@@ -10,12 +10,21 @@ public class MAID {
 	 * Initialisiert eine Mitarbeiter-ID
 	 * @param maID : Die Mitarbeiter-ID
 	 */
-	public MAID(int maID){
+	private MAID(int maID){
 		
 		
 		this.id = maID;
 	}
 	
+	
+	/**
+	 * Referenziert eine neue Mitarbeiter ID
+	 */
+	public MAID getMAID(int id){
+		
+		// TODO: Preconditions
+		return new MAID(id);
+	}
 
 	/**
 	 * Gibt den Wert einer Mitarbeiter-ID zurück

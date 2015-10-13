@@ -2,9 +2,38 @@
 
 Der SE2-Projekt Ordner mit allen nötigen Libaries und der vorgesehenen Ordnerstruktur.
 
+Allgemeine Info
+===============
+<li><strong>Zu Beachten (Für diejenigen die noch keine Remoteverbindung eingerichtet haben):</strong>
+ <ul>
+  <li>Der Ordner backend_resources muss noch angelegt werden (Pfad: siehe .gitignore)</li>
+  <li>Die für den Ordner Datei liegt in der Dropbox im Ordner BackendConfigs</li>
+  <li>Nur die beiden Zeilen A-Kennung und Passwort sind zu beachten</li>
+  <li>Deine A-Kennung und ein Passwort jeweils dort eintragen (ohne Leerzeichen)
+<li>Der Datenbankzugriff wird damit gewährleistet</li>
+ </ul>
+</li>
 
-Aktuell (08.10.2015) - Letzter Commit
+Aktuell (13.10.2015) - Letzter Commit
 =====================================
+
+<li>Die Frontend-Backend-Kommunikation für den Veranstaltungsservice sollte jetzt soweit debuggt sein.</li>
+<li>[POJO-Klassen](/src/se2/praktikum/projekt/models/) korrigiert</li>
+<li>Angular-Schnittstellen für erste Komponente (Veranstaltungsservice):
+ <ul> 
+  <li>[Veranstaltungsservice](/WebContent/resources/js/angular/services/database/DBVeranstService.js) - Zeile 155 - 264</li>
+  <li>[Gruppenservice](/WebContent/resources/js/angular/services/database/DBGruppService.js) - Zeile 289 - 365</li>
+  <li>[Gruppenteilnehmerservice](/WebContent/resources/js/angular/services/database/DBGruppTmService.js) - Zeile 162 - 194</li>
+ </ul>
+</li>
+<li>Spring MVC-Schnittstellen für erste Komponente (Veranstaltungsservice):
+ <ul>
+  <li>[Veranstaltungsservice](/src/se2/praktikum/projekt/services/veranstaltungsservice/VeranstaltungsCtrlAdmin.java)</li>
+ </ul>
+</li>
+
+Aktuell (08.10.2015)
+====================
 
 <li>[POJO-Klassen](/src/se2/praktikum/projekt/models/) hinzugefügt</li>
 <li><strong>Zu Beachten (Für diejenigen die noch keine Remoteverbindung eingerichtet haben):</strong>
