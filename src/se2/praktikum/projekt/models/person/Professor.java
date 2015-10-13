@@ -4,6 +4,7 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import se2.praktikum.projekt.models.person.fachwerte.Adresse;
 import se2.praktikum.projekt.models.person.fachwerte.MAID;
@@ -13,7 +14,7 @@ import se2.praktikum.projekt.models.person.fachwerte.MAID;
  * @author Jan
  *
  */
-@JsonRootName(value = "Professor")
+@JsonTypeName("professor")
 public class Professor extends AbstrAngestellter {
 	
 

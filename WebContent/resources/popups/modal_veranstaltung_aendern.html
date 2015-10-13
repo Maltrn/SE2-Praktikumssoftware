@@ -11,23 +11,30 @@
       <form class="form-horizontal" role="form">
         <div class="modal-body">
           <div class="row">
-            <div class="col-sm-12 text text-muted">
-              <small>Fach-Verantworlichen ändern/hinzufügen</small>
+            <div class="col-sm-6 text text-muted">
+              <small>Fach-Verantworlicher:</small>
+            </div>
+            <div class="col-sm-6 text text-muted">
+              <small>Teamgöße ändern:</small>
             </div>
           </div>
           <div class="row">
-            <div class="col-sm-12 inner-addon right-addon">
+            <div class="col-sm-6 inner-addon right-addon">
               <span class="glyphicon glyphicon-search"></span>
               <input type="text" class="form-control" placeholder="Live-Suche" ng-model="va.dozent" , name="dozent" />
+            </div>
+            <div class="col-sm-6">
+              <input type="number" class="form-control" placeholder="Teamgröße eingeben" ng-model="va.teamKap" , name="teamKap" />
+              <p class="help-box" ng-show="!isValidAnzTeilnehmer(va.teamKap)"><span class="text text-danger"> <small>Mindestens 2 und maximal 10 Teilnehmer</small></span></p>
             </div>
           </div>
           <div class="row">
             <br />
             <div class="col-sm-6 text text-muted">
-              <small>Min. Teilnehmer</small>
+              <small>Min. Teilnehmer:</small>
             </div>
             <div class="col-sm-6 text text-muted">
-              <small>Max. Teilnehmer</small>
+              <small>Max. Teilnehmer:</small>
             </div>
           </div>
           <div class="row">

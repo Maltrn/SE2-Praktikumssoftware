@@ -1,100 +1,50 @@
 package se2.praktikum.projekt.models.veranstaltung;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import se2.praktikum.projekt.models.gruppe.Gruppe;
-import se2.praktikum.projekt.models.person.AbstrPerson;
 import se2.praktikum.projekt.models.person.Angestellter;
-import se2.praktikum.projekt.models.person.AbstrPerson;
-import se2.praktikum.projekt.models.person.Professor;
 
-/**
- * Repräsentiert eine Veranstaltung als abstrakte Klasse
- * @author Jan
- *
- */
-public class Veranstaltung{
-	
-	
-	// Felder
-	protected Fach fach;					// Das Fach dieser Veranstaltung
-	protected Angestellter professor;			// Modulverantwortlicher Professor
-	protected int anzTm;			// aktuelle Anzahl der Teilnehmer
-	protected int minTm;			// Mindestanzahl der Teilnehmer
-	protected int maxTm; 			// Maximal mögliche Anzahl Teilnehmer
-	protected int anzGr;				// aktuelle Anzahl der Gruppen
-	protected int maxGr;	// max. mögliche Anzahl Gruppen
-	
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonSubTypes(value = {
+    @JsonSubTypes.Type(name = "praktikum", value = Praktikum.class),
+    @JsonSubTypes.Type(name = "wp", value = WP.class),
+    @JsonSubTypes.Type(name = "projekt", value = Projekt.class)
+}) 
+public interface Veranstaltung {
+ 
+	public Fach getFach();
 
-	public Fach getFach() {
-		return fach;
-	}
-	
+	public void setFach(Fach fach);
 
-	public void setFach(Fach fach) {
-		this.fach = fach;
-	}
-	
+	public Angestellter getProfessor();
 
-	public Angestellter getProfessor() {
-		return professor;
-	}
-	
-	
-	
+	public int getAnzTm();
 
-	public int getAnzTm() {
-		return anzTm;
-	}
-	
+	public void setAnzTm(int anzTm);
 
-	public void setAnzTm(int anzTm) {
-		this.anzTm = anzTm;
-	}
+	public int getMinTm();
+
+	public void setMinTm(int minTm);
+
+	public int getMaxTm();
+
+	public void setMaxTm(int maxTm);
+
+	public int getAnzGr();
+
+	public void setAnzGr(int anzGr);
+
+	public int getMaxGr();
+
+	public void setMaxGr(int maxGr);
+
+	public void setProfessor(Angestellter professor);
+
+	int getTeamKap();
+
+	void setTeamKap(int teamKap);
+	
 	
 
-	public int getMinTm() {
-		return minTm;
-	}
-	
-
-	public void setMinTm(int minTm) {
-		this.minTm = minTm;
-	}
-	
-
-	public int getMaxTm() {
-		return maxTm;
-	}
-	
-
-	public void setMaxTm(int maxTm) {
-		this.maxTm = maxTm;
-	}
-	
-
-	public int getAnzGr() {
-		return anzGr;
-	}
-	
-
-	public void setAnzGr(int anzGr) {
-		this.anzGr = anzGr;
-	}
-	
-
-	public int getMaxGr() {
-		return maxGr;
-	}
-	
-
-	public void setMaxGr(int maxGr) {
-		this.maxGr = maxGr;
-	}
-
-
-	public void setProfessor(Angestellter professor) {
-		this.professor = professor;
-		
-	}
 }

@@ -18,6 +18,10 @@
 
     // Felder initialisiern
     // ###########################################################################################################
+    $scope.veranstaltungen = DBVeranstService.hcVeranstaltungsDaten;
+    $scope.fachbereiche = DBVeranstService.fachbereiche;
+    $scope.semester = DBVeranstService.getSemester();
+    
     $scope.va = {}; // Veranstaltungsobject anlegen
     $scope.va.fach = ""; // Attribut Fach anlegen und initialsieren
     $scope.va.dozent = ""; // ...
@@ -27,10 +31,9 @@
     $scope.va.curr = 0;
     $scope.va.max = 60;
     $scope.va.fachbereich = DBVeranstService.getFachbereich();
-    $scope.va.sem = DBVeranstService.getSemester();
-    $scope.veranstaltungen = DBVeranstService.hcVeranstaltungsDaten;
-    $scope.fachbereiche = DBVeranstService.fachbereiche;
-    $scope.semester = DBVeranstService.semester;
+    $scope.va.sem = $scope.semester[0];
+    $scope.va.teamKap = 2;
+
     // ###########################################################################################################
 
 
@@ -60,12 +63,18 @@
       return true;
 
     }
+    
+    $scope.isValidAnzTeilnehmer = function(anzTeiln) {
+        return anzTeiln > 1 && anzTeiln < 11;
+      }
 
     // Bedingung um den Speichern-Button zu aktivieren/deaktivieren
     // TODO: Muss noch um restliche Felder ergänzt werden
     $scope.filledComplete = function() {
 
-      return $scope.isValidMin($scope.va.min) && $scope.isValidMax($scope.va.max);
+      return $scope.isValidMin($scope.va.min) 
+      			&& $scope.isValidMax($scope.va.max) 
+      			&& $scope.isValidAnzTeilnehmer($scope.va.teamKap);
     }
     // ###########################################################################################################-
 
@@ -76,10 +85,9 @@
 
       // Initialisert die Gruppenübersicht zu einer Veranstaltung
         $scope.initGruppenUebersicht = function(fach) {
-
+          
           var vaIndex = DBVeranstService.sucheVA(fach);
           var va = DBVeranstService.hcVeranstaltungsDaten[vaIndex];
-
           if(!DBGruppService.initGruppen(va)){
             // Fehlermeldung
           }
@@ -107,6 +115,7 @@
       va.min = $scope.va.min;
       va.curr = 0; // Später dynamische Ermittlung
       va.max = $scope.va.max;
+      va.teamKap = $scope.va.teamKap;
 
       // TODO: implementiere Berechnung
       va.maxGr = 10;
@@ -128,6 +137,7 @@
       edit.dozent = $scope.va.dozent;
       edit.min = $scope.va.min;
       edit.max = $scope.va.max;
+      edit.teamKap = $scope.va.teamKap;
 
       if (!DBVeranstService.editVeranstaltung(indexEdit, edit)) {
         // Fehlermeldung

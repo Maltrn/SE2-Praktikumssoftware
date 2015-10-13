@@ -1,9 +1,7 @@
 package se2.praktikum.projekt.models.veranstaltung;
 
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
-import se2.praktikum.projekt.models.person.AbstrPerson;
-import se2.praktikum.projekt.models.person.AbstrPerson;
 import se2.praktikum.projekt.models.person.Professor;
 
 
@@ -12,7 +10,8 @@ import se2.praktikum.projekt.models.person.Professor;
  * @author Jan
  *
  */
-public class WP extends Veranstaltung {
+@JsonTypeName("wp")
+public class WP extends AbstrVeranstaltung {
 	
 	/**
 	 * Default-Konstruktor

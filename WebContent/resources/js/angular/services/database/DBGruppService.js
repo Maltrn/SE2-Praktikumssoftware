@@ -7,19 +7,20 @@
   var app = angular.module("SE2-Software");
 
   // Servicedefinition
-  var DBGruppService = function($http) {
-
+  var DBGruppService = function($http, DBVeranstService) {
 
     // Locals
     // ########################################################################################################
     var fach; // aktuelles Fach
-    var raeume = ["0660", "1180", "1070", "0770"];
+    var raeume = ["0660", "1080", "0760", "1002"];
     var dozenten = ["Padberg", "Zukunft", "Kleine", "Gerken", "Huebner"];
     var assistenten = ["Blank", "Oelker", "Schulz"];
-    var grNummern = [1,2,3,4,5,6];
-    var va; // Die zugehörige Veranstaltung -> Wird als Paramter übergeben (initGruppen())
+    var semester = [1,2,3,4,5,6];
+    var grNummern = [1,2,3,4,5,6]; // Muss ermittelt werden durch DB
+    var va; // Die zugehörige Veranstaltung -> Wird als Paramter übergeben (initGruppen())r
+    var currGrpNr;
 
-    var url = "http://localhost:8080/"; // URL um Backend anzusprechen
+    var url = "http://localhost:8080/SE2-Praktikumssoftware/"; // URL um Backend anzusprechen
     var gruppen = []; // Hier werden die ermittelten Daten temporär gespeichert um schnelles Anzeigen zu gewährleisten
                               // Ersetzt HC-Gruppendaten
     var error = false; // Flag zur Fehlererkennung
@@ -65,69 +66,124 @@
         return dateString;
       }
 
-    // Uhrzeiten
-    function Time(h, m) {
 
-      this.hours = h;
-      this.min = m;
 
-      this.getHour = function() {
-        return this.hours;
-      }
-      this.getMinute = function() {
-        return this.min;
-      }
-
-      this.setHours = function(hour) {
-        this.hours = hour;
-      }
-      this.setMinutes = function(minutes) {
-        this.min = minutes;
-      }
-
-      this.getString = function() {
-
-        var time = "";
-        if (this.hours < 10) {
-          time += "0";
-        }
-        return time += this.hours + ":" + this.min;
-      }
-    }
-
-    // Termine
-    function Appointment(date, start, end, room) {
-
-      var days = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
-
-      this.date = date;
-      this.dateString = this.date.getString();
-
-      this.timeStart = start;
-      this.timeEnd = end;
-
-      this.timeStartString = this.timeStart.getString();
-
-      this.timeEndString = this.timeEnd.getString();
-
-      this.kw = "" + this.date.getWeek();
-
-      this.setDate = function(date) {
-        this.date = date;
-      }
-
-      this.setTimeStart = function(timeStart) {
-        this.timeStart = timeStart;
-      }
-
-      this.setTimeEnd = function(timeEnd) {
-        this.timeEnd = timeEnd;
-      }
-
-      this.formattedDateString = days[this.date.getDay()] + ", " + this.dateString;
-    }
 
     // ###########################################################################################################
+
+
+    // Vorerst Hardcoded Daten zur Demonstration
+    // Später dynamische Ermittlung durch Spring MVC
+    // ###########################################################################################################
+ 
+    
+    function Uhrzeit(stunden, minuten){
+    	this.stunden = stunden,
+    	this.minuten = minuten
+    	this.string = this.stunden+":"+this.minuten;
+    }
+    
+    function Termin(raum, datum, start, ende){
+    	var days = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
+    	this.datum = datum;
+    	this.start = start;
+    	this.ende = ende;
+    	this.kw = datum.getWeek();
+    	this.raum = raum;
+    	this.formattedDateString = days[this.datum.getDay()] + ", " + this.datum.getString();
+    }
+    
+    function Gruppe(fachkuerzel, grNr, termine, prof, assist, 
+	        		 minTeams, maxTeams,
+	        		 resTeams, anzTeams){
+
+    	this.fachkuerzel = fachkuerzel;
+    	this.grpNr = grNr;
+    	this.termine = termine;
+    	this.dozent = prof;
+    	this.assistent = assist;
+    	this.minTeams = minTeams;
+    	this.maxTeams = maxTeams;
+    	this.reservTeams = resTeams;
+    	this.anzTeams = anzTeams;
+    }
+    
+
+    
+    var start1 = new Uhrzeit(8, 15);
+    var end1 = new Uhrzeit(11, 30);
+    var start2 = new Uhrzeit(12, 30);
+    var end2 = new Uhrzeit(15, 45);
+    var start3 = new Uhrzeit(16, 30);
+    var end3 = new Uhrzeit(19, 30);
+    
+    var timesStart = [start1, start2, start3];
+    var timesEnd = [end1, end2, end3];
+    
+    var date1 = new Date();
+    var date2 = new Date();
+    date2.setDate(date1.getDate() + 7);
+
+    var date3 = new Date();
+    date3.setDate(date2.getDate() + 7);
+
+    var date4 = new Date();
+    date4.setDate(date3.getDate() + 7);
+    
+
+    
+    var raum1 = "0660";
+    var raum2 = "1080";
+    var raum3 = "0760";
+    var raum4 = "1002";
+    
+    var termin1 = new Termin(raum1, date1, start1, end1);
+    var termin2 = new Termin(raum2, date2, start2, end2);
+    var termin3 = new Termin(raum3, date3, start3, end3);
+    var termin4 = new Termin(raum4, date4, start1, end1);
+    
+    var prof1 = DBVeranstService.getAngestellter("professor", "Julia Padberg");
+    var assist1 = DBVeranstService.getAngestellter("assistent", "Gerhard Oelker");
+    
+    var prof2 = DBVeranstService.getAngestellter("professor","Olaf Zukunft");
+    var assist2 = DBVeranstService.getAngestellter("assistent","Ilona Blank");
+    
+    var prof3 = DBVeranstService.getAngestellter("professor","Martin Kleine");
+    var assist3 = DBVeranstService.getAngestellter("assistent","Ilona Blank");
+    
+    var termine = [termin1, termin2, termin3, termin4];
+
+    
+    var gr1 = new Gruppe("", 1, termine, 
+    				     prof1, assist1, 
+    				     10, 20, 
+    				     10, 0);
+    
+    var gr2 = new Gruppe("", 2, termine, 
+		     			 prof2, assist2, 
+		     			 10, 20, 
+		     			 10, 0);
+    
+    var gr3 = new Gruppe("", 3, termine, 
+		     			 prof3, assist3, 
+		     			 10, 20, 
+		     			 10, 0);
+    
+    var gr4 = new Gruppe("", 4, termine, 
+		     			 prof1, assist1, 
+		     			 10, 20, 
+		     			 10, 0);
+    
+    gr1.kw = toStr(gr1.termine);
+    gr2.kw = toStr(gr2.termine);
+    gr3.kw = toStr(gr3.termine);
+    gr4.kw = toStr(gr4.termine);
+    
+    // Vorhandene Hardcoded Daten (in Tabelle gelistet)
+    var hcGruppenDaten = [gr1, gr2, gr3, gr4];
+    
+// ###########################################################################################################
+
 
 
     // Helper
@@ -139,7 +195,6 @@
     }
 
     function getFach(){
-      console.log(fach);
       return fach;
     }
 
@@ -147,10 +202,10 @@
       fach = f;
     }
 
-    var sucheGruppe = function(fach, grpNr){
+    var sucheGruppe = function(grpNr){
 
       for(i = 0; i < hcGruppenDaten.length; i++){
-        if(hcGruppenDaten[i].fach == fach && hcGruppenDaten[i].grpNr == grpNr){
+        if(hcGruppenDaten[i].fachkuerzel == fach.fachKuerzel && hcGruppenDaten[i].grpNr == grpNr){
           return i;
         }
       }
@@ -171,10 +226,10 @@
       var dateTm4 = new Date();
       dateTm4.setDate(dateTm3.getDate() + 7);
 
-      var tm1 = new Appointment(dateTm1, timeStart1, timeEnd1);
-      var tm2 = new Appointment(dateTm2, timeStart2, timeEnd2);
-      var tm3 = new Appointment(dateTm3, timeStart3, timeEnd3);
-      var tm4 = new Appointment(dateTm4, timeStart1, timeEnd1);
+      var tm1 = new Termin(raum1, dateTm1, start1, end1);
+      var tm2 = new Termin(raum2, dateTm2, start2, end2);
+      var tm3 = new Termin(raum3, dateTm3, start3, end3);
+      var tm4 = new Termin(raum4, dateTm4, start1, end1);
 
       term.push(tm1);
       term.push(tm2);
@@ -188,7 +243,7 @@
     function getAppointments(termine) {
       var appointments = [];
       for (i = 0; i < termine.length; i++) {
-        appointments.push(new Appointment(termine[i].date, termine[i].timeStart, termine[i].timeEnd));
+        appointments.push(new Termin(termine[i].raum, termine[i].datum, termine[i].start, termine[i].ende));
       }
       return appointments;
     }
@@ -220,116 +275,16 @@
     }
 
     function getAppointment(newAppDate, start, end){
-      return new Appointment(newAppDate, start, end);
+      return new Termin(newAppDate, start, end);
     }
 
     function initFaecherTabelle(va){
       for(i = 0; i < hcGruppenDaten.length; i++){
-        hcGruppenDaten[i].fach = va.fach;
+        hcGruppenDaten[i].fachkuerzel = va.fach.fachKuerzel;
       }
     }
 
     // ###########################################################################################################
-
-
-    // Vorerst Hardcoded Daten zur Demonstration
-    // Später dynamische Ermittlung durch Spring MVC
-    // ###########################################################################################################
-
-    // Example-Times
-    // -------------------------------------------------------------------------
-    var timeStart1 = new Time(8, 15);
-    var timeEnd1 = new Time(11, 45);
-
-    var timeStart2 = new Time(12, 30);
-    var timeEnd2 = new Time(15, 45);
-
-    var timeStart3 = new Time(16, 15);
-    var timeEnd3 = new Time(19, 30);
-
-    var timesStart = [timeStart1, timeStart2, timeStart3];
-    var timesEnd = [timeEnd1, timeEnd2, timeEnd3];
-    // -------------------------------------------------------------------------
-
-
-    // Example-Dates
-    // -------------------------------------------------------------------------
-    var dateTm1 = new Date();
-
-    var dateTm2 = new Date();
-    dateTm2.setDate(dateTm1.getDate() + 7);
-
-    var dateTm3 = new Date();
-    dateTm3.setDate(dateTm2.getDate() + 7);
-
-    var dateTm4 = new Date();
-    dateTm4.setDate(dateTm3.getDate() + 7);
-
-    var kws = [
-      dateTm1.getWeek(),
-      dateTm2.getWeek(),
-      dateTm3.getWeek(),
-      dateTm4.getWeek()
-    ];
-
-    term = [];
-    var tm1 = new Appointment(dateTm1, timeStart1, timeEnd1);
-    var tm2 = new Appointment(dateTm2, timeStart2, timeEnd2);
-    var tm3 = new Appointment(dateTm3, timeStart3, timeEnd3);
-    var tm4 = new Appointment(dateTm4, timeStart1, timeEnd1);
-
-    term.push(tm1);
-    term.push(tm2);
-    term.push(tm3);
-    term.push(tm4);
-    // -------------------------------------------------------------------------
-
-
-    // Vorhandene Hardcoded Daten (in Tabelle gelistet)
-    var hcGruppenDaten = [{
-      fach: "",
-      grpNr: 1,
-      termine: term,
-      kw: toStr(term),
-      dozent: "Padberg",
-      assistent: "Oelker",
-      raum: "0660",
-      minGr: 6,
-      maxGr: 10
-    }, {
-      fach: "",
-      grpNr: 2,
-      termine: term,
-      kw: toStr(term),
-      dozent: "Zukunft",
-      assistent: "Blank",
-      raum: "0660",
-      minGr: 3,
-      maxGr: 10
-    }, {
-      fach: "",
-      grpNr: 3,
-      termine: term,
-      kw: toStr(term),
-      dozent: "Kleine",
-      assistent: "Blank",
-      raum: "0660",
-      minGr: 3,
-      maxGr: 10
-    }, {
-      fach: "",
-      grpNr: 4,
-      termine: term,
-      kw: toStr(term),
-      dozent: "Kleine",
-      assistent: "Blank",
-      raum: "0660",
-      minGr: 3,
-      maxGr: 10
-    }];
-// ###########################################################################################################
-
-
 // SCHNITTSTELLE
 // ###########################################################################################################
 
@@ -341,12 +296,9 @@
     // der Gruppe + Veranstaltung als Json-Array
     var addGruppeDB = function(gruppe){
 
-      var veranstaltung = getVeranstaltung(); // Muss dem Backend mit übergeben werden
-
       // JSOM Data
-      var args = [veranstaltung, gruppe];
-
-      $http.post(url+"gruppErstellen", angular.toJson(args)).
+      console.log(angular.toJson(gruppe));
+      $http.post(url+"gruppErstellen", angular.toJson(gruppe)).
         // Funktion, falls gültige Daten zurückkommen
       then(function(response) {
           // Daten aus dem Response-Object in das Veranstaltungen-Array pushen
@@ -395,8 +347,14 @@
     // "Gruppe" (Dient hier nur zur Darstellung)
     // =========================================================================
     var initGruppen = function(veranstaltung){
-      va = veranstaltung;
+      var va = veranstaltung;
+      fach = va.fach;
+      currGrpNr = hcGruppenDaten[hcGruppenDaten.length-1].grpNr;
+      currGrpNr++;
+      console.log(currGrpNr);
       initFaecherTabelle(va);
+      
+      console.log(fach);
 
       // url = gruppUebersicht
       // Gruppendaten aus der Datenbank holen
@@ -409,30 +367,64 @@
 
 
     // Gruppe einer Veranstaltung hinufügen
-    var addGruppe = function(gruppe){
-
+    var addGruppe = function(gruppenInfo){
+    	
+      console.log(gruppenInfo.dozent.vollerName);
+      var fachkuerzel = fach.fachKuerzel;
+      var grpNr = currGrpNr;
+      var termine = getAppointments(gruppenInfo.termine);
+      var dozent = DBVeranstService.getAngestellter("professor", gruppenInfo.dozent);
+      var assistent = DBVeranstService.getAngestellter("assistent", gruppenInfo.assistent);
+      var minTeams = gruppenInfo.minTeams;
+      var maxTeams = gruppenInfo.maxTeams;
+      var resTeams = gruppenInfo.resTeams;
+      var anzTeams = gruppenInfo.anzTeams;
+      
+      var gruppe = new Gruppe(fachkuerzel, grpNr,
+    		  				  termine, dozent,
+    		  				  assistent, minTeams, 
+    		  				  maxTeams, resTeams, 
+    		  				  anzTeams);
+      
       //  Erst Eintrag in die Datenbank einfügen
       // -> Wenn nicht erfolgreich -> false
+      
       if (!addGruppeDB(gruppe)) {
         return false;
       }else{ // Dann Tabelle aktualisieren
-        gruppe.fach = getVeranstaltung().fach;
+    	gruppe.kw = toStr(gruppe.termine);
+    	console.log(gruppe.kw);
         hcGruppenDaten.push(gruppe); // Erst Tabelle aktualisieren
+        currGrpNr++;
         return true;
       }
     }
 
     // gruppe einer Veranstaltung editieren
-    var editGruppe = function(index, gruppe){
-
+    var editGruppe = function(index, gruppenInfo){
+    	
+    	console.log(fach);
+    	console.log(gruppenInfo);
+        var fachkuerzel = fach.fachKuerzel;
+        var grpNr = gruppenInfo.grpNr;
+        var termine = getAppointments(gruppenInfo.termine);
+        var dozent = gruppenInfo.dozent;
+        var assistent = gruppenInfo.assistent;
+        var minTeams = gruppenInfo.minTeams;
+        var maxTeams = gruppenInfo.maxTeams;
+        var resTeams = gruppenInfo.resTeams;
+        var anzTeams = gruppenInfo.anzTeams;
+        
+        var gruppe = new Gruppe(fachkuerzel, grpNr,
+      		  				  	termine, dozent,
+      		  				  	assistent, minTeams, 
+      		  				  	maxTeams, resTeams, 
+      		  				  	anzTeams);
       if(!editGruppeDB(gruppe)){
         return false;
       }else{
-        var termine = getAppointments(gruppe.termine);
-        hcGruppenDaten[index].anzTm = gruppe.anzTm;
-        hcGruppenDaten[index].termine = termine;
-        hcGruppenDaten[index].kw = toStr(termine);
-        hcGruppenDaten[index].raum = gruppe.raum;
+    	gruppe.kw = toStr(gruppe.termine);
+        hcGruppenDaten[index] = gruppe;
         return true;
       }
     }
@@ -466,7 +458,7 @@
       grNummern: grNummern,
       assistenten: assistenten,
       hcGruppenDaten: hcGruppenDaten,
-      term: term,
+      termine: termine,
       gruppeLoeschen: gruppeLoeschen,
       getDate: getDate,
       getAppointment: getAppointment,
@@ -474,7 +466,9 @@
       setFach: setFach,
       getVeranstaltung: getVeranstaltung,
       initGruppen: initGruppen,
-      sucheGruppe: sucheGruppe
+      sucheGruppe: sucheGruppe,
+      semester: semester,
+      currGrpNr: currGrpNr
     };
     // ###########################################################################################################
   };

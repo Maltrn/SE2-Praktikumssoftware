@@ -24,15 +24,11 @@
                 </tr>
                 <tr ng-model="gr.dozent">
                   <td>Dozent</td>
-                  <td>{{gr.dozent}}</td>
+                  <td>{{gr.dozent.vollerName}}</td>
                 </tr>
                 <tr ng-model="gr.assistent">
                   <td>Assistent</td>
-                  <td>{{gr.assistent}}</td>
-                </tr>
-                <tr ng-model="gr.raum">
-                  <td>Raum</td>
-                  <td>{{gr.raum}}</td>
+                  <td>{{gr.assistent.vollerName}}</td>
                 </tr>
               </tbody>
             </table>
@@ -52,14 +48,16 @@
                   <th>Datum</th>
                   <th>Start</th>
                   <th>Ende</th>
+                  <th>Raum</th>
                 </tr>
               </thead>
               <tbody>
                 <tr ng-repeat="termin in gr.termine">
                   <td>{{$index + 1}}</td>
                   <td>{{termin.formattedDateString}}</td>
-                  <td>{{termin.timeStartString}}</td>
-                  <td>{{termin.timeEndString}}</td>
+                  <td>{{termin.start.string}}</td>
+                  <td>{{termin.ende.string}}</td>
+                  <td>{{termin.raum}}</td>
                 </tr>
               </tbody>
             </table>

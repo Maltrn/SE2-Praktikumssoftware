@@ -2,6 +2,11 @@ package se2.praktikum.projekt.models.gruppe;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import se2.praktikum.projekt.models.gruppe.fachwerte.Uhrzeit;
 
 /**
@@ -13,7 +18,7 @@ public class Termin {
 	
 	private Date datum;
 	private Uhrzeit start;
-	private Uhrzeit end;
+	private Uhrzeit ende;
 	private String raum;
 	
 	/**
@@ -33,12 +38,15 @@ public class Termin {
 	 * @param end : Die enduhrzeit
 	 * @param raum : Der Raum
 	 */
-	public Termin(Date datum, Uhrzeit start,
-				  Uhrzeit end, String raum)	  {
+	@JsonCreator
+	public Termin(@JsonProperty("datum") Date datum, 
+				  @JsonProperty("start") Uhrzeit start,
+				  @JsonProperty("ende") Uhrzeit end,
+				  @JsonProperty("raum") String raum)	  {
 		
 		this.datum = datum;
 		this.start = start;
-		this.end = end;
+		this.ende = end;
 		this.raum = raum;
 		
 	}
@@ -79,16 +87,16 @@ public class Termin {
 	/**
 	 * Gibt die Enduhrzeit eines Termins zurück
 	 */
-	public Uhrzeit getEnd() {
-		return end;
+	public Uhrzeit getEnde() {
+		return ende;
 	}
 
 	/**
 	 * Setzt die Enduhrzeit eines Termins
 	 * @param end Die Enduhrzeit
 	 */
-	public void setEnd(Uhrzeit end) {
-		this.end = end;
+	public void setEnde(Uhrzeit end) {
+		this.ende = end;
 	}
 
 	/**
@@ -107,10 +115,4 @@ public class Termin {
 		this.raum = raum;
 	}
 	
-	
-	
-	
-	
-	
-
 }

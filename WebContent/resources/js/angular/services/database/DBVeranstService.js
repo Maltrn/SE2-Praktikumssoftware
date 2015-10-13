@@ -10,6 +10,18 @@
   // Servicedefinition
   var DBVeranstService = function($http) {
 
+	   // Locls
+	   // ####################################################################################
+	   var semester = [1, 2, 3, 4, 5, 6];
+	   var fachbereiche = ["AI", "TI", "WI"];
+
+	   var fachbereich = fachbereiche[0];
+	   var url = "http://localhost:8080/SE2-Praktikumssoftware/"; // URL um Backend anzusprechen
+	   var veranstaltungen = []; // Hier werden die ermittelten Daten temporär gespeichert um schnelles Anzeigen zu gewährleisten
+	   var professoren = [] // Puffer für die Livesuche
+	                              // Ersetzt HC-Gruppendaten
+	   var error = false; // Flag zur Fehlererkennung
+	    // ####################################################################################
 
     // POJO-Klassen
     // ====================================================================================
@@ -22,8 +34,9 @@
       this.semester = null;
     }
 
-    function Angestellter(vorname, nachname){
+    function Angestellter(type, vorname, nachname){
 
+      this.type = type;
       this.maID = null;
       this.vorname = vorname;
       this.nachname = nachname;
@@ -37,13 +50,15 @@
       this.email = null;
     }
 
-    function Veranstaltung(fach, prof, anzTm, maxTm, minTm, anzGr, maxGr){
+    function Veranstaltung(type, fach, prof, anzTm, maxTm, minTm, teamKap, anzGr, maxGr){
 
+      this.type = type;
       this.fach = fach;
       this.professor = prof;
       this.anzTm = anzTm;
       this.maxTm = maxTm;
       this.minTm = minTm;
+      this.teamKap = teamKap;
       this.anzGr = anzGr;
       this.maxGr = maxGr;
     }
@@ -89,35 +104,19 @@
       }
 
       var getSemester = function(){
-        return sem;
+        return semester;
       }
 
-      var getAngesteller = function(vollerName){
-
+      var getAngestellter = function(typ, vollerName){
         var name = vollerName.split(" ");
         var vorname = name[0];
         var nachname = name[1];
-        var prof = new Angestellter(vorname, nachname);
+        var prof = new Angestellter(typ, vorname, nachname);
         prof.vollerName = vollerName;
 
         return prof;
 
       }
-
-
-    // Locls
-    // ####################################################################################
-    var semester = [1, 2, 3, 4, 5, 6];
-    var fachbereiche = ["AI", "TI", "WI"];
-
-    var fachbereich = fachbereiche[0];
-    var sem = semester[0];
-
-    var url = "http://localhost:8080/SE2-Praktikumssoftware/"; // URL um Backend anzusprechen
-    var veranstaltungen = []; // Hier werden die ermittelten Daten temporär gespeichert um schnelles Anzeigen zu gewährleisten
-                              // Ersetzt HC-Gruppendaten
-    var error = false; // Flag zur Fehlererkennung
-    // ####################################################################################
 
 
     // Vorerst Hardcoded Daten zur Demonstration
@@ -135,17 +134,17 @@
     var email = new EMail("test@test.de");
     var gebDatum = new Date();
     var adresse = new Adresse("Straße", 7, 1111, "Stadt", "Land");
-    var padberg = new Angestellter("Julia", "Padberg");
-    var kleine = new Angestellter("Martin", "Kleine");
-    var huebner = new Angestellter("Martin", "Huebner");
-    var zukunft = new Angestellter("Olaf", "Zukunft");
-    var gerken = new Angestellter("Wolfgang", "Gerken");
+    var padberg = new Angestellter("professor", "Julia", "Padberg");
+    var kleine = new Angestellter("professor", "Martin", "Kleine");
+    var huebner = new Angestellter("professor", "Martin", "Huebner");
+    var zukunft = new Angestellter("professor", "Olaf", "Zukunft");
+    var gerken = new Angestellter("professor", "Wolfgang", "Gerken");
 
-    var gkap = new Veranstaltung(gka, padberg, 60, 80,10, 6, 10);
-    var adp = new Veranstaltung(ad, kleine, 50, 60, 10, 6, 10);
-    var bsp = new Veranstaltung(bs, huebner, 70, 80, 10, 6, 10);
-    var sep = new Veranstaltung(se, zukunft, 0, 80, 10, 6, 10);
-    var bwp = new Veranstaltung(bw, gerken, 50, 80, 10, 6, 10);
+    var gkap = new Veranstaltung("praktikum", gka, padberg, 60, 80,10, 2, 6, 10);
+    var adp = new Veranstaltung("praktikum", ad, kleine, 50, 60, 10, 2, 6, 10);
+    var bsp = new Veranstaltung("praktikum", bs, huebner, 70, 80, 10, 2, 6, 10);
+    var sep = new Veranstaltung("praktikum", se, zukunft, 0, 80, 10, 2, 6, 10);
+    var bwp = new Veranstaltung("praktikum", bw, gerken, 50, 80, 10, 2, 6, 10);
 
 
     // Array aus Veranstaltungsobjekten
@@ -216,12 +215,8 @@
     // TODO: implement
     function addVeranstaltungDB(veranstaltung) {
 
-      
-
-      console.log(veranstaltung.professor);
-      veranstaltung.professor.type = "Professor";
-      var obj = angular.toJson(veranstaltung);
-      console.log(obj);
+      veranstaltung.professor.gebDatum = new Date();
+      console.log(angular.toJson(veranstaltung));
       $http.post(url+"vErstellen", angular.toJson(veranstaltung))
       .then(function(){
         // Prüfe ob Daten eingefügt
@@ -233,6 +228,20 @@
 
       return true; // Vorerst nur true zurückgeben, darunterliegender Code nicht betrachtet
 
+    }
+    
+    // holt alle Professoren für eine Veranstaltung und ein Semester
+    var getProfsDB = function(){
+    	
+    	var fb = fachbereich;
+    	var sem = semester;
+    	
+    	// url = profs
+    }
+    
+    // Listet alle Profs in der Livesuche anhand des keywords
+    var getProfsLiveSuche = function(keyword){
+    	
     }
 
     // Editiert eine Veranstaltung in der Datenbank
@@ -263,11 +272,15 @@
       var fach = new Fach(veranstaltungsInfo.fach);
       fach.semester = veranstaltungsInfo.semester;
       fach.fachBereich = veranstaltungsInfo.fachbereich
+      var curr = veranstaltungsInfo.curr;
+      var max = veranstaltungsInfo.max;
+      var min = veranstaltungsInfo.min;
+      var teamKap = va.teamKap = veranstaltungsInfo.teamKap;
+      
+      var prof = getAngestellter("professor", profname);
 
-      var prof = getAngesteller(profname);
-
-      var veranstaltung = new Veranstaltung(fach, prof, va.curr, va.max, va.min, 6, 10);
-
+      var veranstaltung = new Veranstaltung("praktikum", fach, prof, curr, max, min, teamKap, 6, 10);
+      console.log(veranstaltung);
       //  Erst Eintrag in die Datenbank einfügen
       // -> Wenn nicht erfolgreich -> false
       if (!addVeranstaltungDB(veranstaltung)) {
@@ -284,16 +297,19 @@
     var editVeranstaltung = function(index, va){
 
       var profname = va.dozent;
-      var prof = getAngesteller(profname);
+      var prof = getAngestellter("professor", profname);
       var fach = hcVeranstaltungsDaten[index].fach
       var curr = hcVeranstaltungsDaten[index].anzTm;
       var max = va.max;
       var min = va.min;
       var anzGr = hcVeranstaltungsDaten[index].anzGr;
       var maxGr = hcVeranstaltungsDaten[index].maxGr;
-      var veranstaltung = new Veranstaltung(fach, prof, curr, max, min, anzGr, maxGr);
+      var teamKap = va.teamKap;
+      var veranstaltung = new Veranstaltung("praktikum", fach, prof, curr, max, min, teamKap, anzGr, maxGr);
 
-      console.log(max);
+      console.log(prof);
+      console.log(veranstaltung);
+      console.log(hcVeranstaltungsDaten[index]);
 
       if(!editVeranstaltungDB(va)){
         return false;
@@ -339,7 +355,10 @@
       getSemester: getSemester,
       initPraktika: initPraktika,
       initWP: initWP,
-      initPO: initPO
+      initPO: initPO,
+      getProfsLiveSuche: getProfsLiveSuche,
+      getAngestellter: getAngestellter
+      
     };
     // -----------------------------------------------------------------------------------
   };

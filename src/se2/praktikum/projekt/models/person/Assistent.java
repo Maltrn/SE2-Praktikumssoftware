@@ -3,6 +3,7 @@ package se2.praktikum.projekt.models.person;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import se2.praktikum.projekt.models.person.fachwerte.Adresse;
 import se2.praktikum.projekt.models.person.fachwerte.MAID;
@@ -12,7 +13,7 @@ import se2.praktikum.projekt.models.person.fachwerte.MAID;
  * @author Jan
  *
  */
-
+@JsonTypeName("assistent")
 public class Assistent extends AbstrAngestellter {
 	
 	

@@ -36,11 +36,16 @@
     </div>
     <div class="row">
       <br/>
-      <div class="col-sm-12 text text-muted"><small>Fachbezeichnung:</small></div>
+      <div class="col-sm-6 text text-muted"><small>Fachbezeichnung:</small></div>
+      <div class="col-sm-6 text text-muted"><small>Teamgröße:</small></div>
     </div>
     <div class="row">
-      <div class="col-sm-12 inner-addon right-addon">
+      <div class="col-sm-6 inner-addon right-addon">
         <input type="text" class="form-control" placeholder="Fach eintragen" ng-model="va.fach" name="fach" ng-init="''"/>
+      </div>
+       <div class="col-sm-6 inner-addon right-addon">
+        <input type="number" class="form-control" placeholder="Teamgröße eintragen" ng-model="va.teamKap" name="fach" ng-init="''"/>
+      	<p class="help-box"ng-show="!isValidAnzTeilnehmer(va.teamKap)"><span class="text text-danger"> <small>Mindestens 2 und maximal 10 Teilnehmer</small></span></p>
       </div>
     </div>
     <div class="row">

@@ -1,5 +1,8 @@
 package se2.praktikum.projekt.models.gruppe.fachwerte;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * Repräsentiert den Fachwert Uhrzeit
  * @author Jan
@@ -10,13 +13,17 @@ public class Uhrzeit {
 	// Felder
 	private int stunden;	// Stunden
 	private int minuten;	// Minuten
+	private String string;
 	
 	/**
 	 * Initialisiert eine neue Uhrzeit mit den übergebenen Parametern
 	 * @param stunden : Die Stunden
 	 * @param minuten : Die Minuten
 	 */
-	private Uhrzeit(int stunden, int minuten){
+	@JsonCreator
+	public Uhrzeit(@JsonProperty("stunden") int stunden, 
+					@JsonProperty("minuten") int minuten,
+					@JsonProperty("string") String string){
 		
 		this.stunden = stunden;
 		this.minuten = minuten;
@@ -31,7 +38,7 @@ public class Uhrzeit {
 	public static Uhrzeit getUhrzeit(int stunden, int minuten){
 		
 		if(istGueltigeUhrzeit(stunden, minuten)){
-			return new Uhrzeit(stunden, minuten);
+			return new Uhrzeit(stunden, minuten, stunden+":"+minuten);
 		}
 		throw new IllegalArgumentException("Ungültige Uhrzeit!");
 	}
@@ -109,6 +116,14 @@ public class Uhrzeit {
 			throw new IllegalArgumentException("Ungültige Minuten!");
 		}
 		
+	}
+
+	public String getString() {
+		return string;
+	}
+
+	public void setString(String string) {
+		this.string = string;
 	}
 	
 	

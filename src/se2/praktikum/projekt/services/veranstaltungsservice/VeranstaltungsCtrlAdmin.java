@@ -9,15 +9,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import se2.praktikum.projekt.models.gruppe.Gruppe;
-import se2.praktikum.projekt.models.person.AbstrAngestellter;
-import se2.praktikum.projekt.models.person.AbstrPerson;
 import se2.praktikum.projekt.models.person.Angestellter;
 import se2.praktikum.projekt.models.person.Person;
 import se2.praktikum.projekt.models.person.Professor;
+import se2.praktikum.projekt.models.veranstaltung.AbstrVeranstaltung;
 import se2.praktikum.projekt.models.veranstaltung.Veranstaltung;
-import se2.praktikum.projekt.models.veranstaltung.Fach;
-import se2.praktikum.projekt.models.veranstaltung.Praktikum;
-import se2.praktikum.projekt.models.veranstaltung.Veranstaltung;
+import se2.praktikum.projekt.tools.Mapper;
 
 @Controller
 public class VeranstaltungsCtrlAdmin {
@@ -38,9 +35,47 @@ public class VeranstaltungsCtrlAdmin {
 	public @ResponseBody List<Veranstaltung> praktikaAnzeigen(@RequestBody List<String> args){
 		
 		AnzeigerSrv srv = anzService;
-		System.out.println(args.toString());
 		// try-catch-Block
 		// bei SQLException -> false zurückgeben
+		return null;
+	}
+	
+	/**
+	 * holt alle Professoren für eine gegebenes Semester und Fachbereich
+	 * @param args : args[0] = semester, args[1] = fachbereich
+	 * @return	Liste Veranstaltungen für die übergebenen Parameter
+	 */
+	@RequestMapping(value="/profs", method=RequestMethod.POST)
+	public @ResponseBody List<Angestellter> getProfessoren(@RequestBody List<String> args){
+		
+	
+		return null;
+		
+	}
+	
+	
+	/**
+	 * holt alle Assistenten für eine gegebenes Semester und Fachbereich
+	 * @param args : args[0] = semester, args[1] = fachbereich
+	 * @return	Liste Veranstaltungen für die übergebenen Parameter
+	 */
+	@RequestMapping(value="/assistenten", method=RequestMethod.POST)
+	public @ResponseBody List<Angestellter> getAssistenten(@RequestBody List<String> args){
+		
+	
+		return null;
+		
+	}
+	
+	/**
+	 * holt alle Gruppennummern für eine gegebene Veranstaltung
+	 * @param va: Die Veranstaltung
+	 * @return	Liste Veranstaltungen für die übergebenen Parameter
+	 */
+	@RequestMapping(value="/grNummern", method=RequestMethod.POST)
+	public @ResponseBody List<Integer> getAssistenten(@RequestBody Veranstaltung va){
+		
+	
 		return null;
 		
 	}
@@ -99,7 +134,7 @@ public class VeranstaltungsCtrlAdmin {
 	public @ResponseBody boolean veranstaltungErstellen(@RequestBody Veranstaltung va){
 		
 		VeranstaltungsVerwalterSrv srv = veranVerwSrv;
-		// try-catch..
+		// try-catch...
 		
 		return true;
 	}
@@ -138,11 +173,18 @@ public class VeranstaltungsCtrlAdmin {
 	 * @return boolean
 	 */
 	@RequestMapping(value="/gruppErstellen", method=RequestMethod.POST)
-	public void gruppeErstellen(@RequestBody Veranstaltung args){
+	public @ResponseBody boolean gruppeErstellen(@RequestBody String gruppe){
 		
-		
+		Gruppe gr = Mapper.mapGruppe(gruppe);
 		GruppVerwSrv srv = gruppVerwServ;
 		
+		System.out.println(gr.getTermine().get(0).getRaum());
+		System.out.println(gr.getTermine().get(1).getRaum());
+		System.out.println(gr.getTermine().get(2).getRaum());
+		System.out.println(gr.getTermine().get(3).getRaum());
+		
+		
+		return true;
 		// try-catch..
 		
 
@@ -154,8 +196,8 @@ public class VeranstaltungsCtrlAdmin {
 	 * @return boolean
 	 */
 	@RequestMapping(value="/gruppBearbeiten", method=RequestMethod.POST)
-	public boolean gruppeBearbeiten(Gruppe gruppe){
-		
+	public boolean gruppeBearbeiten(@RequestBody String gruppe){
+		Gruppe gr = Mapper.mapGruppe(gruppe);
 		GruppVerwSrv srv = gruppVerwServ;
 		// try-catch..
 		
@@ -168,8 +210,8 @@ public class VeranstaltungsCtrlAdmin {
 	 * @return boolean 
 	 */
 	@RequestMapping(value="/gruppLoeschen", method=RequestMethod.POST)
-	public boolean gruppeLoeschen(Gruppe gruppe){
-		
+	public boolean gruppeLoeschen(@RequestBody String gruppe){
+		Gruppe gr = Mapper.mapGruppe(gruppe);
 		GruppVerwSrv srv = gruppVerwServ;
 		// try-catch..
 		
@@ -182,9 +224,8 @@ public class VeranstaltungsCtrlAdmin {
 	 * @return Liste teilnehmende Studenten der Gruppe
 	 */
 	@RequestMapping(value="/tmUebersicht", method=RequestMethod.POST)
-	public @ResponseBody List<AbstrPerson> teilnehmerUebersichtAnzeigen(Gruppe gruppe){
-		
-		
+	public @ResponseBody List<Person> teilnehmerUebersichtAnzeigen(@RequestBody String gruppe){
+		Gruppe gr = Mapper.mapGruppe(gruppe);
 		TeamVerwSrv srv = teamVerwSrv;
 		// try-catch..
 		
@@ -193,12 +234,12 @@ public class VeranstaltungsCtrlAdmin {
 	
 	/**
 	 * Entfernt einen Teilnehmer aus einer Gruppe 
-	 * @param gruppe, student
+	 * 
+	 * @param args : args[0] = gruppe, args[1] = matrikelNr
 	 * @return boolean
 	 */
 	@RequestMapping(value="/tmEntfernen", method=RequestMethod.POST)
-	public boolean tmEntfernen(Gruppe gruppe, AbstrPerson student){
-		
+	public boolean tmEntfernen(@RequestBody List<String> args){
 		
 		TeamVerwSrv srv = teamVerwSrv;
 		// try-catch..

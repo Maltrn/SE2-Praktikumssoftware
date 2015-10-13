@@ -7,7 +7,7 @@
   var app = angular.module("SE2-Software");
 
   // $scope = model object, $http: holt JSON Object vom SpringMVC Backend -> folgt später
-  var GruppenController = function($scope, autoscroller, DBGruppTmService, DBGruppService /*, $http*/ ) {
+  var GruppenController = function($scope, autoscroller, DBGruppTmService, DBGruppService, DBVeranstService /*, $http*/ ) {
 
 
     // Locals
@@ -17,7 +17,7 @@
     // ############################################################################################################
 
 
-    $scope.termine = DBGruppService.term;
+    $scope.termine = DBGruppService.termine;
     $scope.grNummern = DBGruppService.grNummern;
     $scope.anzTmTeam = DBGruppService.anzTmTeam;
     $scope.startZeiten = [DBGruppService.timesStart[0], DBGruppService.timesStart[1], DBGruppService.timesStart[2]];
@@ -29,13 +29,14 @@
 
     // SelectBox-Titles
     // ############################################################################################################
-    $scope.selBoxAnzTeamTitle = "Anzahl Teammitglieder:";
-    $scope.termWaehlenTitle = "Termne wählen (KW) ...";
-    $scope.tagWaehlenTitle = "Tag:";
-    $scope.uhrzBeginTitle = "Uhrzeit (Beginn):";
-    $scope.uhrzEndeTitle = "Uhrzeit (Ende):";
+    $scope.selBoxAnzTeamTitle = "Anzahl Teammitglieder: ";
+    $scope.termWaehlenTitle = "Termne wählen (KW) ... ";
+    $scope.tagWaehlenTitle = "Tag: ";
+    $scope.uhrzBeginTitle = "Uhrzeit (Beginn): ";
+    $scope.uhrzEndeTitle = "Uhrzeit (Ende): ";
     $scope.raumWaehlenTitle = "Raum:";
     $scope.selBoxFBTitle = "Fachbereich:"
+    $scope.selBoxGrpNrTitle = "Gruppenummer eingeben: ";
 
     var terminTitle = ". Termin";
     $scope.tm1Title = "1" + terminTitle;
@@ -51,16 +52,15 @@
     // ############################################################################################################
     $scope.gr = {};
     $scope.gr.sem;
-    $scope.gr.fach = DBGruppService.getFach();
     $scope.gr.grpNr = DBGruppService.grNummern[0];
     $scope.gr.termine = $scope.termine;
-    $scope.gr.dozent = DBGruppService.dozenten[0];
-    $scope.gr.assistent = DBGruppService.assistenten[0];
+    $scope.gr.dozent;
+    $scope.gr.assistent;
     $scope.gr.raum = DBGruppService.raeume[0];
-    $scope.gr.minGr = 0;
-    $scope.gr.maxGr = 10;
-    $scope.gr.anzTm = 2;
-
+    $scope.gr.minTeams = 0;
+    $scope.gr.maxTeams = 10;
+    $scope.gr.resTeams = 5;
+    $scope.gr.anzTeams = 2;
     // ############################################################################################################
 
 
@@ -97,26 +97,22 @@
     $scope.isValidDate = function(index) {
 
       if (index < $scope.gr.termine.length - 1) {
-        if ($scope.gr.termine[index].date.getMonth() == $scope.gr.termine[index + 1].date.getMonth()) {
-          return $scope.gr.termine[index].date.getDate() < $scope.gr.termine[index + 1].date.getDate()
-                  && $scope.gr.termine[index].date.getTime() < $scope.gr.termine[index + 1].date.getTime();
+        if ($scope.gr.termine[index].datum.getMonth() == $scope.gr.termine[index + 1].datum.getMonth()) {
+          return $scope.gr.termine[index].datum.getDate() < $scope.gr.termine[index + 1].datum.getDate()
+                  && $scope.gr.termine[index].datum.getTime() < $scope.gr.termine[index + 1].datum.getTime();
         }
-        return $scope.gr.termine[index].date.getTime() < $scope.gr.termine[index + 1].date.getTime();
+        return $scope.gr.termine[index].datum.getTime() < $scope.gr.termine[index + 1].datum.getTime();
       }
 
       return true;
     }
 
-    $scope.isValidAnzTeilnehmer = function(anzTeiln) {
-      return anzTeiln > 1 && anzTeiln < 11;
-    }
-
     $scope.isValidStartTime = function(ngIndex) {
 
-      var start = $scope.gr.termine[ngIndex].timeStart;
-      var end = $scope.gr.termine[ngIndex].timeEnd;
+      var start = $scope.gr.termine[ngIndex].start;
+      var end = $scope.gr.termine[ngIndex].ende;
 
-      return start.getHour() < end.getHour();
+      return start.stunden < end.stunden;
 
     }
 
@@ -156,8 +152,7 @@
 
     // Aktiviert/Deaktiviert den Speichern-Button
     $scope.isFilledCompleteErstellen = function() {
-      return $scope.isValidDateComplete() && $scope.isValidStartTimeComplete()
-              && $scope.isValidGrpNumber($scope.gr.grpNr);
+      return $scope.isValidDateComplete() && $scope.isValidStartTimeComplete();
     }
 
 
@@ -176,15 +171,16 @@
         $scope.gr.termine.splice(ngIndex, 1);
       }
 
-      // Fügt einen weiteren Termin hinzu
+      
+    // Fügt einen weiteren Termin hinzu
     $scope.terminHinzufuegen = function() {
-        var lastAppDate = $scope.gr.termine[$scope.termine.length - 1].date;
+        var lastAppDate = $scope.gr.termine[$scope.gr.termine.length - 1].datum;
         var ndTemp = DBGruppService.getDate(lastAppDate);
         ndTemp.setDate(lastAppDate.getDate() + 1);
         var newAppDate = DBGruppService.getDate(ndTemp);
-        var start = $scope.gr.termine[$scope.termine.length - 1].timeStart;
-        var end = $scope.gr.termine[$scope.termine.length - 1].timeEnd;
-        var app = DBGruppService.getAppointment(newAppDate, start, end);
+        var start = $scope.gr.termine[$scope.gr.termine.length - 1].start;
+        var ende = $scope.gr.termine[$scope.gr.termine.length - 1].ende;
+        var app = DBGruppService.getAppointment(newAppDate, start, ende);
         $scope.gr.termine.push(app);
       }
 
@@ -192,27 +188,24 @@
     $scope.addGruppe = function() {
 
       // Zufällige Dozenten erzeugen -> Nur vorläufig
-      $scope.gr.dozent = DBGruppService.dozenten[DBGruppService.genRdIndex(DBGruppService.dozenten)];
-      $scope.gr.assistent = DBGruppService.assistenten[DBGruppService.genRdIndex(DBGruppService.assistenten)];
+      //$scope.gr.dozent = DBGruppService.dozenten[DBGruppService.genRdIndex(DBGruppService.dozenten)];
+      //$scope.gr.assistent = DBGruppService.assistenten[DBGruppService.genRdIndex(DBGruppService.assistenten)];
 
       // Abgabetermine erzeugen
       var term = DBGruppService.getAppointments($scope.gr.termine);
 
       var gr = {};
-      gr.fach = $scope.gr.fach;
-      gr.grpNr = $scope.gr.grpNr;
       gr.termine = term;
-      gr.kw = DBGruppService.toStr(term);
       gr.dozent = $scope.gr.dozent;
       gr.assistent = $scope.gr.assistent;
-      gr.raum = $scope.gr.raum;
-      gr.minGr = $scope.gr.minGr;
-      gr.maxGr = $scope.gr.maxGr;
-
+      gr.minTeams = $scope.gr.minTeams;
+      gr.maxTeams = $scope.gr.maxTeams
+      gr.resTeams = $scope.gr.resTeams;
+      gr.anzTeams = $scope.gr.anzTeams;
       if (!DBGruppService.addGruppe(gr)) {
         // Fehlermeldung -> TODO: implement
       }
-
+     
       autoscroller.erstellen = null;
 
       // Termine zurücksetzen
@@ -221,26 +214,28 @@
 
 
     // initialisiert das Popup mit den vorhandenen Werten
-    $scope.initGruppeEdit = function(fach, grpNr) {
-      indexGrEdit = DBGruppService.sucheGruppe(fach, grpNr);
-      $scope.gr.maxGr = DBGruppService.hcGruppenDaten[indexGrEdit].maxGr;
+    $scope.initGruppeEdit = function(grpNr) {
+      indexGrEdit = DBGruppService.sucheGruppe(grpNr);
+      $scope.gr.grpNr = DBGruppService.hcGruppenDaten[indexGrEdit].grpNr;
       $scope.gr.termine = DBGruppService.hcGruppenDaten[indexGrEdit].termine;
-      $scope.gr.tag = DBGruppService.hcGruppenDaten[indexGrEdit].tag;
-      $scope.gr.startUhrzeit = DBGruppService.hcGruppenDaten[indexGrEdit].startUhrzeit;
-      $scope.gr.endUhrzeit = DBGruppService.hcGruppenDaten[indexGrEdit].endUhrzeit;
-      $scope.gr.raum = DBGruppService.hcGruppenDaten[indexGrEdit].raum;
+      $scope.gr.dozent = DBGruppService.hcGruppenDaten[indexGrEdit].dozent.vollerName;
+      $scope.gr.assistent = DBGruppService.hcGruppenDaten[indexGrEdit].assistent.vollerName;
+      $scope.gr.minTeams = DBGruppService.hcGruppenDaten[indexGrEdit].minTeams;
+      $scope.gr.maxTeams = DBGruppService.hcGruppenDaten[indexGrEdit].maxTeams
+      $scope.gr.resTeams = DBGruppService.hcGruppenDaten[indexGrEdit].resTeams;
+      $scope.gr.anzTeams = DBGruppService.hcGruppenDaten[indexGrEdit].anzTeams;
+      
 
     }
 
     // Initialisert das popup mit den Gruppendetails mit den vorhandenen Werten
-    $scope.initGruppeDetails = function(fach, grpNr) {
+    $scope.initGruppeDetails = function(grpNr) {
 
-      var ngIndex = DBGruppService.sucheGruppe(fach, grpNr);
+      var ngIndex = DBGruppService.sucheGruppe(grpNr);
       $scope.gr.grpNr = DBGruppService.hcGruppenDaten[ngIndex].grpNr;
       $scope.gr.termine = DBGruppService.hcGruppenDaten[ngIndex].termine;
       $scope.gr.dozent = DBGruppService.hcGruppenDaten[ngIndex].dozent;
       $scope.gr.assistent = DBGruppService.hcGruppenDaten[ngIndex].assistent;
-      $scope.gr.tag = DBGruppService.hcGruppenDaten[ngIndex].tag;
       $scope.gr.raum = DBGruppService.hcGruppenDaten[ngIndex].raum;
     }
 
@@ -250,10 +245,14 @@
       var term = DBGruppService.getAppointments($scope.gr.termine);
 
       var gr = {};
-      gr.anzTm = $scope.gr.anzTm;
-      gr.termine = $scope.gr.termine;
-      gr.kw = DBGruppService.toStr(gr.termine);
-      gr.raum = $scope.gr.raum;
+      gr.grpNr = $scope.gr.grpNr;
+      gr.termine = term;
+      gr.dozent = DBVeranstService.getAngestellter("professor", $scope.gr.dozent);
+      gr.assistent = DBVeranstService.getAngestellter("assistent", $scope.gr.assistent);
+      gr.minTeams = $scope.gr.minTeams;
+      gr.maxTeams = $scope.gr.maxTeams
+      gr.resTeams = $scope.gr.resTeams;
+      gr.anzTeams = $scope.gr.anzTeams;
 
       if(!DBGruppService.editGruppe(indexGrEdit, gr)){
 
@@ -262,11 +261,16 @@
 
       // Termine zurücksetzen
       $scope.gr.termine = DBGruppService.resetAppValues();
+      
+      // Modal schließen forcieren, bug über normalen Weg (data-dismiss-tag) TODO: FIX
+      $('#gruppeBearbeiten').modal('hide');
+      $('body').removeClass('modal-open');
+      $('.modal-backdrop').remove();
     }
 
     // Speichert den Index des zu loeschenden Gruppeneintrags
-    $scope.initGruppeLoeschen = function(fach, grpNr) {
-      indexGrLoeschen = DBGruppService.sucheGruppe(fach, grpNr);
+    $scope.initGruppeLoeschen = function(grpNr) {
+      indexGrLoeschen = DBGruppService.sucheGruppe(grpNr);
     }
 
 
@@ -287,9 +291,9 @@
 
     // Initialsiert die Teilnehmerübersicht für die gewählte Gruppe
     // TODO: Wird noch um einige Funktionen erweitert
-    $scope.initTmUebersicht = function(fach, grpNr) {
+    $scope.initTmUebersicht = function(grpNr) {
 
-      var index = DBGruppService.sucheGruppe(fach, grpNr);
+      var index = DBGruppService.sucheGruppe(grpNr);
       var gruppe = DBGruppService.hcGruppenDaten[index];
       DBGruppTmService.setFach(gruppe.fach);
       DBGruppTmService.setGruppe(gruppe.grpNr);

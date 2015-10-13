@@ -3,7 +3,12 @@ package se2.praktikum.projekt.models.gruppe;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import se2.praktikum.projekt.models.person.AbstrPerson;
+import se2.praktikum.projekt.models.person.Angestellter;
 import se2.praktikum.projekt.models.team.Team;
 
 /**
@@ -14,11 +19,11 @@ import se2.praktikum.projekt.models.team.Team;
 public class Gruppe {
 	
 	// Felder
+	private String fachkuerzel;
 	private List<Termin> termine;		// Die Abgabetermine
-	private List<Team> teams;			// Die zugewiesenen Teams
 	private int grpNr;					// Die Gruppennummer
-	private AbstrPerson professor;	// Der betreuende Professor
-	private AbstrPerson assistent;	// Der betreuende Assistent
+	private Angestellter professor;	// Der betreuende Professor
+	private Angestellter assistent;	// Der betreuende Assistent
 	private int maxTeams;				// Maximal Anzahl Teams in der Gruppe
 	private int reservTeams;			// Anzahl der Team-Reserveslots
 	private int minTeams;				// Minimale Anzahl Teams
@@ -32,7 +37,7 @@ public class Gruppe {
 	 */
 	public Gruppe(){
 		
-		this(0, null, null);
+		this(null, 0, null, null);
 		
 	}
 	
@@ -43,10 +48,10 @@ public class Gruppe {
 	 * @param prof : Der Professor
 	 * @param assist : Der Assistent
 	 */
-	public Gruppe(int grpNr,AbstrPerson prof, 
-				  AbstrPerson assist) {
+	public Gruppe(String fachkuerzel, int grpNr,Angestellter prof, 
+				Angestellter assist) {
 		
-		this(grpNr, prof, assist, null, 0, 0, 0, 0);
+		this(fachkuerzel, grpNr, null, prof, assist, 0, 0, 0, 0);
 
 	}
 	/**
@@ -60,13 +65,18 @@ public class Gruppe {
 	 * @param minTeams : min. Teams
 	 * @param anzTeams : aktuelle Anzahl Teams
 	 */
-	public Gruppe(int grpNr, AbstrPerson prof, 
-				  AbstrPerson assist,
-				  String raum, int maxTeams, 
-				  int resTeams, int minTeams,
-				  int anzTeams)				{
+	@JsonCreator
+	public Gruppe(@JsonProperty("fachkuerzel") String fachkuerzel, 
+				  @JsonProperty("grpNr") int grpNr, 
+				  @JsonProperty("termine") List<Termin> termine,
+				  @JsonProperty("dozent") Angestellter prof, 
+				  @JsonProperty("assistent") Angestellter assist,
+				  @JsonProperty("minTeams") int minTeams, 
+				  @JsonProperty("maxTeams") int maxTeams, 
+				  @JsonProperty("reservTeams") int resTeams, 
+				  @JsonProperty("anzTeams") int anzTeams)				{
 		
-
+		this.fachkuerzel = fachkuerzel;
 		this.grpNr = grpNr;
 		this.professor = prof;
 		this.assistent = assist;
@@ -74,8 +84,7 @@ public class Gruppe {
 		this.reservTeams = resTeams;
 		this.minTeams = minTeams;
 		this.anzTeams = anzTeams;
-		this.termine = new ArrayList<>();
-		this.teams = new ArrayList<>();
+		this.termine = termine;
 	}
 
 
@@ -93,22 +102,6 @@ public class Gruppe {
 	 */
 	public void setTermine(List<Termin> termine) {
 		this.termine = termine;
-	}
-
-	/**
-	 * Gibt alle Teams dieser Gruppe zurück
-	 * @return alle Teams dieser Gruppe
-	 */
-	public List<Team> getTeams() {
-		return teams;
-	}
-
-	/**
-	 * Setzt die Teams dieser Gruppe
-	 * @param Teams
-	 */
-	public void setTeams(List<Team> teams) {
-		this.teams = teams;
 	}
 
 
@@ -133,7 +126,7 @@ public class Gruppe {
 	 * Gibt den betreuenden Professor zurück
 	 * @return betreuender Professor
 	 */
-	public AbstrPerson getProfessor() {
+	public Angestellter getProfessor() {
 		return professor;
 	}
 
@@ -141,7 +134,7 @@ public class Gruppe {
 	 * Setzt den betreuenden Professor
 	 * @param professor
 	 */
-	public void setProfessor(AbstrPerson professor) {
+	public void setProfessor(Angestellter professor) {
 		this.professor = professor;
 	}
 
@@ -149,7 +142,7 @@ public class Gruppe {
 	 * Gibt den betreuenden Assistenten zurück
 	 * @return Assistent
 	 */
-	public AbstrPerson getAssistent() {
+	public Angestellter getAssistent() {
 		return assistent;
 	}
 
@@ -157,7 +150,7 @@ public class Gruppe {
 	 * Setzt den betreuenden Assistenten
 	 * @param assistent
 	 */
-	public void setAssistent(AbstrPerson assistent) {
+	public void setAssistent(Angestellter assistent) {
 		this.assistent = assistent;
 	}
 
@@ -231,9 +224,22 @@ public class Gruppe {
 	public void setAnzTeams(int anzTeams) {
 		this.anzTeams = anzTeams;
 	}
-	
-	
-	
-	
 
+	/**
+	 * Gibt das zugehörige Fachkürzel einer Gruppe zurück
+	 * @return fachkuerzel
+	 */
+	public String getFachkuerzel() {
+		return fachkuerzel;
+	}
+
+	/**
+	 * Setzt das zugehörige Fachkürzel
+	 * @param fachkuerzel
+	 */
+	public void setFachkuerzel(String fachkuerzel) {
+		this.fachkuerzel = fachkuerzel;
+	}
+	
+	
 }

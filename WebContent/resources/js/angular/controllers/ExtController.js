@@ -7,7 +7,7 @@
   // $scope = model: das Model-Objekt
   var app = angular.module("SE2-Software");
 
-  var ExtController = function($scope, autoscroller) {
+  var ExtController = function($scope, autoscroller, DBVeranstService) {
 
 
     // Scope Fields
@@ -81,6 +81,8 @@
     }
 
     $scope.veranErstellen = function() {
+    	
+      DBVeranstService.getAlle	
       if (autoscroller.erstellen != veranErstellen) {
         autoscroller.erstellen = veranErstellen;
         autoscroller.scrollTo(scrollVeranErstellen);

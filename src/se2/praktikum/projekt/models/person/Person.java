@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import se2.praktikum.projekt.models.person.fachwerte.Adresse;
 
-@JsonDeserialize(as=AbstrPerson.class)
+//@JsonDeserialize(as=AbstrPerson.class)
 public interface Person {
 	
 	/**

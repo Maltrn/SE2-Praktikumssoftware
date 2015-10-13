@@ -2,6 +2,8 @@ package se2.praktikum.projekt.models.person;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import se2.praktikum.projekt.models.person.fachwerte.Adresse;
 import se2.praktikum.projekt.models.person.fachwerte.MAID;
 
@@ -18,11 +20,12 @@ public abstract class AbstrPerson implements Person{
 	protected String vollerName; 		// Vor- und Zuname
 	protected String benutzername;		// Benutzername
 	protected Date gebDatum;			// Geburtsdatum
+	
 	protected String gebOrt;			// Geburtsort
 	protected Adresse adresse;			// Adresse
 	protected String department;		// Department
 	protected String fachbereich;		// Fachbereich
-	protected EMail email;		// Emailadresse
+	protected EMail email;				// Emailadresse
 	
 	/**
 	 * Gibt den Vornamen einer Person zurück
