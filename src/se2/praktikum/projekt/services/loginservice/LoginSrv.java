@@ -82,4 +82,37 @@ public class LoginSrv {
 		LeistungenCtrlAdmin.setLeistungenAnzSrv(leistAnzSrv);
 	}
 
+
+	/**
+	 * Lädt das Panel, was dem User entspricht (Angestellter oder Student)
+	 * HINWEIS: Erstmal wird für beide Benutzer die gleiche View geladen,
+	 * da Studentpanel noch nicht erstellt
+	 * @param user der angemeldete User
+	 * @return View
+	 */
+	public ModelAndView ladePanel(Person user) {
+		
+		ModelAndView mv = null;
+		
+		if(user != null){
+			// Panels je nach usertyp laden
+			if(user instanceof Student){
+				mv = new ModelAndView("main"); // Später anderer Parameter
+			}else if(user instanceof Angestellter){
+				mv = new ModelAndView("main"); // Später anderer Parameter
+			}
+		}else{
+			mv = new ModelAndView("main"); // False passwort/user falsch -> null
+		}								
+		
+		if(mv != null){
+			erzeugeServices();
+		}else{
+			mv = new ModelAndView("fail");
+			// informiere... (zb "fail"-View laden -> muss erst noch erstellt werden)
+		}
+
+		return mv;
+	}
+
 }

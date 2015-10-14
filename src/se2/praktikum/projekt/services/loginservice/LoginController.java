@@ -37,7 +37,9 @@ public class LoginController {
 	}
 	
 	/**
-	 * Beschreibung und Parameter folgen
+	 * Loggt einen User ein und lädt die entsprechende View
+	 * HINWEIS: Erstmal wird für beide Benutzer die gleiche View geladen,
+	 * da Studentpanel noch nicht erstellt
 	 * @param	username: Der Benutzername
 	 * 			password: Das Passwort
 	 * @return	ModelAndView-Objekt, welches die eingegebenen Daten hält.
@@ -45,31 +47,15 @@ public class LoginController {
 	@RequestMapping(value="/main", method = RequestMethod.POST)
 	public ModelAndView einloggen(){
 		
-		String username = "user";
-		String password = "password";
-		ModelAndView mv = null;
+		String username = "user";	// Erstmal hardcoded -> Später Übergabeparameter
+		String password = "password"; // Erstmal hardcoded -> -> Später Übergabeparameter
 		Person user = srv.login(username, password);
+		ModelAndView mv = srv.ladePanel(user);
 		
-		if(user != null){
-			// Panels je nach usertyp laden
-			if(user instanceof Student){
-				mv = new ModelAndView("main"); // Später anderer Parameter
-			}else if(user instanceof Angestellter){
-				mv = new ModelAndView("main"); // Später anderer Parameter
-			}
-		}else{
-			mv = new ModelAndView("main"); // False passwort/user falsch -> null
-		}								
-		
-		if(mv != null){
-			srv.erzeugeServices();
-		}else{
-			// informiere... (zB andere View laden -> muss erst noch erstellt werden)
-		}
-
 		return mv;
 	}
-	
+
+
 	/**
 	 * Beschreibung und Parameter folgen
 	 * @param	username: Der Benutzername
