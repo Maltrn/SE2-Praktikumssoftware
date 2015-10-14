@@ -21,13 +21,12 @@ import se2.praktikum.projekt.tools.Mapper;
 @Controller
 public class VeranstaltungsCtrlAdmin {
 	
+	private static AnzeigerSrv anzeigeSrv;
 	
-	private AnzeigerSrv anzService = new AnzeigerSrv();
-	private TeamVerwSrv teamVerwSrv = new TeamVerwSrv();
-	private GruppVerwSrv gruppVerwServ = new GruppVerwSrv();
-	private VeranstaltungsVerwalterSrv veranVerwSrv = new VeranstaltungsVerwalterSrv();
-	
-	
+	private static GruppVerwSrv gruppVerwSrv;
+	private static TeamVerwSrv teamVerwSrv;
+	private static VeranstaltungsVerwalterSrv veranVerwSrv;
+
 	/**
 	 * holt alle Pflichtpraktika für eine gegebenes Semester und Fachbereich
 	 * @param args : args[0] = semester, args[1] = fachbereich
@@ -36,9 +35,10 @@ public class VeranstaltungsCtrlAdmin {
 	@RequestMapping(value="/pflichtpraktika", method=RequestMethod.POST)
 	public @ResponseBody List<Veranstaltung> praktikaAnzeigen(@RequestBody List<String> args){
 		
-		AnzeigerSrv srv = anzService;
-		// try-catch-Block
-		// bei SQLException -> false zurückgeben
+		AnzeigerSrv srv = anzeigeSrv;
+		//int semester = Integer.parseInt(args.get(0));
+		//List<Veranstaltung> veranstaltungen = srv.getAllPraktika(semester, args.get(1));
+		
 		return null;
 	}
 	
@@ -50,7 +50,10 @@ public class VeranstaltungsCtrlAdmin {
 	@RequestMapping(value="/profs", method=RequestMethod.POST)
 	public @ResponseBody List<Angestellter> getProfessoren(@RequestBody List<String> args){
 		
-	
+		AnzeigerSrv srv = anzeigeSrv;
+		int semester = Integer.parseInt(args.get(0));
+		//List<Angestellter> profs = srv.getAlleProfessoren(semester, args.get(0));
+		
 		return null;
 		
 	}
@@ -64,23 +67,14 @@ public class VeranstaltungsCtrlAdmin {
 	@RequestMapping(value="/assistenten", method=RequestMethod.POST)
 	public @ResponseBody List<Angestellter> getAssistenten(@RequestBody List<String> args){
 		
-	
+		AnzeigerSrv srv = anzeigeSrv;
+		int semester = Integer.parseInt(args.get(0));
+		// List<Angestellter> profs = srv.getAlleAssistenten(semester, args.get(0));
+		
 		return null;
 		
 	}
 	
-	/**
-	 * holt alle Gruppennummern für eine gegebene Veranstaltung
-	 * @param va: Die Veranstaltung
-	 * @return	Liste Veranstaltungen für die übergebenen Parameter
-	 */
-	@RequestMapping(value="/grNummern", method=RequestMethod.POST)
-	public @ResponseBody List<Integer> getAssistenten(@RequestBody Veranstaltung va){
-		
-	
-		return null;
-		
-	}
 	
 	/**
 	 * holt alle WP für eine gegebenes Semester und Fachbereich
@@ -90,8 +84,9 @@ public class VeranstaltungsCtrlAdmin {
 	@RequestMapping(value="/wp", method=RequestMethod.POST)
 	public @ResponseBody List<Veranstaltung> wpAnzeigen(@RequestBody List<String> args){
 		
-		AnzeigerSrv srv = anzService;
-		// try-catch..
+		AnzeigerSrv srv = anzeigeSrv;
+		int semester = Integer.parseInt(args.get(0));
+		List<Veranstaltung> veranstaltungen = srv.getAllWP(semester, args.get(1));
 		
 		return null;
 	}
@@ -105,7 +100,9 @@ public class VeranstaltungsCtrlAdmin {
 	@RequestMapping(value="/po", method=RequestMethod.POST)
 	public @ResponseBody List<Veranstaltung> poAnzeigen(@RequestBody List<String> args){
 		
-		AnzeigerSrv srv = anzService;
+		AnzeigerSrv srv = anzeigeSrv;
+		int semester = Integer.parseInt(args.get(0));
+		List<Veranstaltung> veranstaltungen = srv.getAllPO(semester, args.get(1));
 		
 		// try-catch..
 		
@@ -133,7 +130,7 @@ public class VeranstaltungsCtrlAdmin {
 	 * @return boolean
 	 */
 	@RequestMapping(value="/vErstellen", method=RequestMethod.POST)
-	public @ResponseBody boolean veranstaltungErstellen(@RequestBody Veranstaltung va){
+	public static @ResponseBody boolean veranstaltungErstellen(@RequestBody Veranstaltung va){
 		
 		VeranstaltungsVerwalterSrv srv = veranVerwSrv;
 		System.out.println(va.getProfessor().getVollerName());
@@ -165,7 +162,8 @@ public class VeranstaltungsCtrlAdmin {
 	@RequestMapping(value="/gruppUebersicht", method=RequestMethod.POST)
 	public @ResponseBody List<Gruppe> gruppenUebersichtAnzeigen(@RequestBody Veranstaltung veranstaltung){
 		
-		GruppVerwSrv srv = gruppVerwServ;
+		System.out.println(veranstaltung.getFach().getFachKuerzel());
+		GruppVerwSrv srv = gruppVerwSrv;
 		// try-catch..
 		
 		return null;
@@ -180,7 +178,7 @@ public class VeranstaltungsCtrlAdmin {
 	public @ResponseBody boolean gruppeErstellen(@RequestBody String gruppe){
 		
 		Gruppe gr = Mapper.mapGruppe(gruppe);
-		GruppVerwSrv srv = gruppVerwServ;
+		GruppVerwSrv srv = gruppVerwSrv;
 	
 		
 		
@@ -198,7 +196,7 @@ public class VeranstaltungsCtrlAdmin {
 	@RequestMapping(value="/gruppBearbeiten", method=RequestMethod.POST)
 	public @ResponseBody boolean gruppeBearbeiten(@RequestBody String gruppe){
 		Gruppe gr = Mapper.mapGruppe(gruppe);
-		GruppVerwSrv srv = gruppVerwServ;
+		GruppVerwSrv srv = gruppVerwSrv;
 		// try-catch..
 		
 		return true;
@@ -212,7 +210,7 @@ public class VeranstaltungsCtrlAdmin {
 	@RequestMapping(value="/gruppLoeschen", method=RequestMethod.POST)
 	public @ResponseBody boolean gruppeLoeschen(@RequestBody String gruppe){
 		Gruppe gr = Mapper.mapGruppe(gruppe);
-		GruppVerwSrv srv = gruppVerwServ;
+		GruppVerwSrv srv = gruppVerwSrv;
 		// try-catch..
 		
 		return true;
@@ -225,9 +223,12 @@ public class VeranstaltungsCtrlAdmin {
 	 */
 	@RequestMapping(value="/tmUebersicht", method=RequestMethod.POST)
 	public @ResponseBody List<Team> teilnehmerUebersichtAnzeigen(@RequestBody String gruppe){
+		
+		AnzeigerSrv srv = anzeigeSrv;
 		Gruppe gr = Mapper.mapGruppe(gruppe);
-		TeamVerwSrv srv = teamVerwSrv;
-		// try-catch..
+		
+		// List<Team> teams = srv.getAllTeilnehmer(gr);
+		
 		
 		return null;
 	}
@@ -242,12 +243,40 @@ public class VeranstaltungsCtrlAdmin {
 	public @ResponseBody boolean tmEntfernen(@RequestBody List<String> args){
 		
 		Team team = Mapper.mapTeam(args.get(0));
+		
 		MatrikelNr matrNr = MatrikelNr.getMatrikelNr(Integer.parseInt(args.get(1)));
 		
 		TeamVerwSrv srv = teamVerwSrv;
 		// try-catch..
 		
 		return true;
+	}
+	
+	
+
+	public static void setCurrUser() {
+		System.out.println("setted");
+		
+	}
+
+	public static void setAnzeigeSrv(AnzeigerSrv anzSrv) {
+		anzeigeSrv = anzSrv;
+		
+	}
+
+	public static void setGruppVerwSrv(GruppVerwSrv grVwSrv) {
+		gruppVerwSrv = grVwSrv;
+		
+	}
+
+	public static void setTeamVerwSrv(TeamVerwSrv tmVwSrv) {
+		teamVerwSrv = tmVwSrv;
+		
+	}
+
+	public static void setVeranstVwSrv(VeranstaltungsVerwalterSrv vVwSrv) {
+		veranVerwSrv = vVwSrv;
+		
 	}
 	
 	

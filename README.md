@@ -14,7 +14,18 @@ Allgemeine Info
  </ul>
 </li>
 
-Aktuell (13.10.2015) - Letzter Commit
+Aktuell (14.10.2015) - Letzter Commit 
+=====================================
+<li>Weitere [POJO-Klassen](/src/se2/praktikum/projekt/models/)  hinzufügt</li>
+<li>Spring MVC-Schnittstellen für nächste Komponenten (Loginservice, Leistungenservice):
+ <ul>
+  <li>[Loginservice](/src/se2/praktikum/projekt/services/loginservice/LoginController.java)</li>
+<li>[Leistungenservice](/src/se2/praktikum/projekt/services/leistungenservice/LeistungenCtrlAdmin.java)</li>
+ </ul>
+</li>
+
+
+Aktuell (13.10.2015)
 =====================================
 
 <li>Die Frontend-Backend-Kommunikation für den Veranstaltungsservice sollte jetzt soweit debuggt sein.</li>
