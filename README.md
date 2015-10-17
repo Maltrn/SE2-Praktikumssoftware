@@ -16,7 +16,7 @@ Allgemeine Info
 
 Aktuell (17.10.2015) - Letzter Commit
 =====================================
-<li>Angular-Schnittstellen für erste Komponente (Veranstaltungsservice):
+<li>Angular-Schnittstellen für die nächsten Komponenten:
  <ul> 
   <li>[Leistungenservice](/WebContent/resources/js/angular/services/database/DBLeistService.js) - Zeile 201 - 247</li>
   <li>[Loginservice](/WebContent/resources/js/angular/services/database/DBLoginService.js) - Zeile 18 - 49</li>
