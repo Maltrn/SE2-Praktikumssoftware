@@ -54,7 +54,7 @@ public class LeistungenCtrlAdmin {
 	
 	/**
 	 * holt alle Gruppennummern für eine gegebene Veranstaltung und listet diese im Dropdownmenu -> Frontend
-	 * @param args : args[0] = fachbereich, args[1] = typ
+	 * @param fachkuerzel : Das Fachkuerzel
 	 * @return	Liste Veranstaltungen für die übergebenen Parameter
 	 */
 	@RequestMapping(value="/grNummern", method=RequestMethod.POST)

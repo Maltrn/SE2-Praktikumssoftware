@@ -21,7 +21,8 @@
     $scope.veranstaltungen = DBVeranstService.hcVeranstaltungsDaten;
     $scope.fachbereiche = DBVeranstService.fachbereiche;
     $scope.semester = DBVeranstService.getSemester();
-    
+    $scope.professoren = DBVeranstService.professoren;
+
     $scope.va = {}; // Veranstaltungsobject anlegen
     $scope.va.fach = ""; // Attribut Fach anlegen und initialsieren
     $scope.va.dozent = ""; // ...
@@ -63,19 +64,39 @@
       return true;
 
     }
-    
+
     $scope.isValidAnzTeilnehmer = function(anzTeiln) {
         return anzTeiln > 1 && anzTeiln < 11;
       }
+
+      $scope.isValidProfInput = function(expr){
+
+        for(var i = 0; i < DBVeranstService.professoren.length; i++){
+
+          if(DBVeranstService.professoren[i] == expr){
+            return true;
+          }
+        }
+        return false;
+      }
+      
+    $scope.isValidFachkuerzel = function(fachkuerzel){
+    	
+    	return fachkuerzel != "" && fachkuerzel.length < 6 && fachkuerzel.length > 1;
+    }
 
     // Bedingung um den Speichern-Button zu aktivieren/deaktivieren
     // TODO: Muss noch um restliche Felder ergänzt werden
     $scope.filledComplete = function() {
 
-      return $scope.isValidMin($scope.va.min) 
-      			&& $scope.isValidMax($scope.va.max) 
-      			&& $scope.isValidAnzTeilnehmer($scope.va.teamKap);
+      return $scope.isValidMin($scope.va.min)
+      			&& $scope.isValidMax($scope.va.max)
+      			&& $scope.isValidAnzTeilnehmer($scope.va.teamKap)
+            && $scope.isValidProfInput($scope.va.dozent);
     }
+
+
+
     // ###########################################################################################################-
 
 
@@ -85,7 +106,7 @@
 
       // Initialisert die Gruppenübersicht zu einer Veranstaltung
         $scope.initGruppenUebersicht = function(fach) {
-          
+
           var vaIndex = DBVeranstService.sucheVA(fach);
           var va = DBVeranstService.hcVeranstaltungsDaten[vaIndex];
           if(!DBGruppService.initGruppen(va)){

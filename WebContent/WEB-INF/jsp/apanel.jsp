@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap/bootstrap-select.min.css" />" >
   <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap/bootstrap-select.css" />" >
   <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap/ui-bootstrap-csp.css" />" >
-  
+
 </head>
 <body ng-controller="TabController">
   <div class="container">
@@ -109,7 +109,7 @@
   <script src="<c:url value="/resources/js/angular/services/database/DBVeranstService.js" />" ></script>
   <script src="<c:url value="/resources/js/angular/services/database/DBGruppService.js" />" ></script>
   <script src="<c:url value="/resources/js/angular/services/database/DBGruppTmService.js" />" ></script>
-  <script src="<c:url value="/resources/js/angular/services/database/DBLeistungService.js" />" ></script>
+  <script src="<c:url value="/resources/js/angular/services/database/DBLeistService.js" />" ></script>
   <script src="<c:url value="/resources/js/angular/controllers/TabController.js" />" ></script>
   <script src="<c:url value="/resources/js/angular/controllers/ModalController.js" />" ></script>
   <script src="<c:url value="/resources/js/angular/controllers/ExtController.js" />" ></script>

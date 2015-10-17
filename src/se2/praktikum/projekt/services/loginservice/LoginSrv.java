@@ -3,8 +3,10 @@ package se2.praktikum.projekt.services.loginservice;
 import org.springframework.web.servlet.ModelAndView;
 
 import se2.praktikum.projekt.models.person.Angestellter;
+import se2.praktikum.projekt.models.person.Assistent;
 import se2.praktikum.projekt.models.person.Person;
 import se2.praktikum.projekt.models.person.Student;
+import se2.praktikum.projekt.models.person.fachwerte.MAID;
 import se2.praktikum.projekt.services.leistungenservice.LeistungenAnzSrv;
 import se2.praktikum.projekt.services.leistungenservice.LeistungenCtrlAdmin;
 import se2.praktikum.projekt.services.veranstaltungsservice.AnzeigerSrv;
@@ -29,10 +31,8 @@ public class LoginSrv {
 
 		// Authentifizieren
 		
-		Person user = null;
-		
-		// Userobject erzeugen
-		
+		// Falls Fehlschlag -> user = null;
+		Person user = new Assistent(MAID.getMAID(1), "Jan", "Dieckhoff");
 		this.user = user;  // Bei erfolg zuweisen
 		
 		return this.user; // und zurückgeben
@@ -83,34 +83,20 @@ public class LoginSrv {
 	}
 
 
+
+	
 	/**
-	 * Lädt das Panel, was dem User entspricht (Angestellter oder Student)
+	 * Lädt das Mainpanel (Angestellter)
 	 * HINWEIS: Erstmal wird für beide Benutzer die gleiche View geladen,
 	 * da Studentpanel noch nicht erstellt
-	 * @param user der angemeldete User
 	 * @return View
 	 */
-	public ModelAndView ladePanel(Person user) {
+	public ModelAndView ladeMainPanel() {
 		
-		ModelAndView mv = null;
-		
-		if(user != null){
-			// Panels je nach usertyp laden
-			if(user instanceof Student){
-				mv = new ModelAndView("main"); // Später anderer Parameter
-			}else if(user instanceof Angestellter){
-				mv = new ModelAndView("main"); // Später anderer Parameter
-			}
-		}else{
-			mv = new ModelAndView("main"); // False passwort/user falsch -> null
-		}								
-		
-		if(mv != null){
-			erzeugeServices();
-		}else{
-			mv = new ModelAndView("fail");
+		erzeugeServices();
+		ModelAndView mv = new ModelAndView("apanel");
 			// informiere... (zb "fail"-View laden -> muss erst noch erstellt werden)
-		}
+		
 
 		return mv;
 	}

@@ -42,6 +42,7 @@
     <div class="row">
       <div class="col-sm-6 inner-addon right-addon">
         <input type="text" class="form-control" placeholder="Fach eintragen" ng-model="va.fach" name="fach" ng-init="''"/>
+      	<p class="help-box" ng-show="!isValidFachkuerzel(va.fach)"><span class="text text-danger"></small>Mindestens 2 und maximal 5 Zeichen.</span></p>
       </div>
        <div class="col-sm-6 inner-addon right-addon">
         <input type="number" class="form-control" placeholder="Teamgröße eintragen" ng-model="va.teamKap" name="fach" ng-init="''"/>
@@ -55,7 +56,8 @@
     <div class="row">
       <div class="col-sm-12 inner-addon right-addon">
         <span class="glyphicon glyphicon-search"></span>
-        <input type="text" class="form-control" placeholder="Live-Suche" ng-model="va.dozent", name="dozent" ng-init="''" />
+        <input type="text" class="form-control" typeahead="prof for prof in professoren | filter:$viewValue | limitTo:20" placeholder="Live-Suche" ng-model="va.dozent", name="dozent" ng-init="''" />
+        <p class="help-box" ng-show="!isValidProfInput(va.dozent)"><span class="text text-danger"></small>Dozent nicht gefunden!</span></p>
       </div>
     </div>
     <div class="row">

@@ -14,6 +14,21 @@ Allgemeine Info
  </ul>
 </li>
 
+Aktuell (17.10.2015) - Letzter Commit
+=====================================
+<li>Angular-Schnittstellen für erste Komponente (Veranstaltungsservice):
+ <ul> 
+  <li>[Veranstaltungsservice](/WebContent/resources/js/angular/services/database/DBVeranstService.js) - Zeile 155 - 264</li>
+  <li>[Gruppenservice](/WebContent/resources/js/angular/services/database/DBGruppService.js) - Zeile 289 - 365</li>
+  <li>[Gruppenteilnehmerservice](/WebContent/resources/js/angular/services/database/DBGruppTmService.js) - Zeile 162 - 194</li>
+  <li>[Leistungenservice](/WebContent/resources/js/angular/services/database/DBLeistService.js) - Zeile 201 - 247</li>
+  <li>[Loginservice](/WebContent/resources/js/angular/services/database/DBLoginService.js) - Zeile 18 - 49</li>
+ </ul>
+</li>
+<li>Klasse [Note](/src/se2/praktikum/projekt/models/leistungen/Note.java) ergänzt.</li>
+<li>[Loginservice](/src/se2/praktikum/projekt/services/loginservice/LoginController.java) korrigiert</li>
+
+
 Aktuell (14.10.2015) - Letzter Commit 
 =====================================
 <li>Weitere [POJO-Klassen](/src/se2/praktikum/projekt/models/)  hinzufügt</li>
@@ -122,3 +137,4 @@ Tutorials
 =========
 1.  Spring MVC -> https://github.com/jnk111/SpringMVCTutorial
 2.  AngularJS -> https://github.com/jnk111/AngularTutorialGithubViewer
+

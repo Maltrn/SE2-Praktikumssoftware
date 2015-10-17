@@ -75,14 +75,14 @@
     // Vorerst Hardcoded Daten zur Demonstration
     // Später dynamische Ermittlung durch Spring MVC
     // ###########################################################################################################
- 
-    
+
+
     function Uhrzeit(stunden, minuten){
     	this.stunden = stunden,
     	this.minuten = minuten
     	this.string = this.stunden+":"+this.minuten;
     }
-    
+
     function Termin(raum, datum, start, ende){
     	var days = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
     	this.datum = datum;
@@ -92,8 +92,8 @@
     	this.raum = raum;
     	this.formattedDateString = days[this.datum.getDay()] + ", " + this.datum.getString();
     }
-    
-    function Gruppe(fachkuerzel, grNr, termine, prof, assist, 
+
+    function Gruppe(fachkuerzel, grNr, termine, prof, assist,
 	        		 minTeams, maxTeams,
 	        		 resTeams, anzTeams){
 
@@ -108,19 +108,19 @@
     	this.reservTeams = resTeams;
     	this.anzTeams = anzTeams;
     }
-    
 
-    
+
+
     var start1 = new Uhrzeit(8, 15);
     var end1 = new Uhrzeit(11, 30);
     var start2 = new Uhrzeit(12, 30);
     var end2 = new Uhrzeit(15, 45);
     var start3 = new Uhrzeit(16, 30);
     var end3 = new Uhrzeit(19, 30);
-    
+
     var timesStart = [start1, start2, start3];
     var timesEnd = [end1, end2, end3];
-    
+
     var date1 = new Date();
     var date2 = new Date();
     date2.setDate(date1.getDate() + 7);
@@ -130,59 +130,59 @@
 
     var date4 = new Date();
     date4.setDate(date3.getDate() + 7);
-    
 
-    
+
+
     var raum1 = "0660";
     var raum2 = "1080";
     var raum3 = "0760";
     var raum4 = "1002";
-    
+
     var termin1 = new Termin(raum1, date1, start1, end1);
     var termin2 = new Termin(raum2, date2, start2, end2);
     var termin3 = new Termin(raum3, date3, start3, end3);
     var termin4 = new Termin(raum4, date4, start1, end1);
-    
+
     var prof1 = DBVeranstService.getAngestellter("professor", "Julia Padberg");
     var assist1 = DBVeranstService.getAngestellter("assistent", "Gerhard Oelker");
-    
+
     var prof2 = DBVeranstService.getAngestellter("professor","Olaf Zukunft");
     var assist2 = DBVeranstService.getAngestellter("assistent","Ilona Blank");
-    
+
     var prof3 = DBVeranstService.getAngestellter("professor","Martin Kleine");
     var assist3 = DBVeranstService.getAngestellter("assistent","Ilona Blank");
-    
+
     var termine = [termin1, termin2, termin3, termin4];
 
-    
-    var gr1 = new Gruppe("", 1, termine, 
-    					 prof1, assist1, 
-    				     10, 20, 
+
+    var gr1 = new Gruppe("", 1, termine,
+    					 prof1, assist1,
+    				     10, 20,
     				     10, 0);
-    
-    var gr2 = new Gruppe("", 2, termine, 
-    					 prof2, assist2, 
-		     			 10, 20, 
+
+    var gr2 = new Gruppe("", 2, termine,
+    					 prof2, assist2,
+		     			 10, 20,
 		     			 10, 0);
-    
-    var gr3 = new Gruppe("", 3, termine, 
-		     			 prof3, assist3, 
-		     			 10, 20, 
+
+    var gr3 = new Gruppe("", 3, termine,
+		     			 prof3, assist3,
+		     			 10, 20,
 		     			 10, 0);
-    
-    var gr4 = new Gruppe("", 4, termine, 
-		     			 prof1, assist1, 
-		     			 10, 20, 
+
+    var gr4 = new Gruppe("", 4, termine,
+		     			 prof1, assist1,
+		     			 10, 20,
 		     			 10, 0);
-    
+
     gr1.kw = toStr(gr1.termine);
     gr2.kw = toStr(gr2.termine);
     gr3.kw = toStr(gr3.termine);
     gr4.kw = toStr(gr4.termine);
-    
+
     // Vorhandene Hardcoded Daten (in Tabelle gelistet)
     var hcGruppenDaten = [gr1, gr2, gr3, gr4];
-    
+
 // ###########################################################################################################
 
 
@@ -354,12 +354,12 @@
       currGrpNr++;
       console.log(currGrpNr);
       initFaecherTabelle(va);
-      
+
       console.log(fach);
 
       // url = gruppUebersicht
       // Gruppendaten aus der Datenbank holen
-      
+
       // Teams den Gruppen in der For-Schleife zuorden
       // -> gruppe.teams = response.data
 
@@ -372,7 +372,7 @@
 
     // Gruppe einer Veranstaltung hinufügen
     var addGruppe = function(gruppenInfo){
-    	
+
       console.log(gruppenInfo.dozent.vollerName);
       var fachkuerzel = fach.fachKuerzel;
       var grpNr = currGrpNr;
@@ -383,16 +383,16 @@
       var maxTeams = gruppenInfo.maxTeams;
       var resTeams = gruppenInfo.resTeams;
       var anzTeams = gruppenInfo.anzTeams;
-      
+
       var gruppe = new Gruppe(fachkuerzel, grpNr,
     		  				  termine, dozent,
-    		  				  assistent, minTeams, 
-    		  				  maxTeams, resTeams, 
+    		  				  assistent, minTeams,
+    		  				  maxTeams, resTeams,
     		  				  anzTeams);
-      
+
       //  Erst Eintrag in die Datenbank einfügen
       // -> Wenn nicht erfolgreich -> false
-      
+
       if (!addGruppeDB(gruppe)) {
         return false;
       }else{ // Dann Tabelle aktualisieren
@@ -406,7 +406,7 @@
 
     // gruppe einer Veranstaltung editieren
     var editGruppe = function(index, gruppenInfo){
-    	
+
     	console.log(fach);
     	console.log(gruppenInfo);
         var fachkuerzel = fach.fachKuerzel;
@@ -418,11 +418,11 @@
         var maxTeams = gruppenInfo.maxTeams;
         var resTeams = gruppenInfo.resTeams;
         var anzTeams = gruppenInfo.anzTeams;
-        
+
         var gruppe = new Gruppe(fachkuerzel, grpNr,
       		  				  	termine, dozent,
-      		  				  	assistent, minTeams, 
-      		  				  	maxTeams, resTeams, 
+      		  				  	assistent, minTeams,
+      		  				  	maxTeams, resTeams,
       		  				  	anzTeams);
       if(!editGruppeDB(gruppe)){
         return false;

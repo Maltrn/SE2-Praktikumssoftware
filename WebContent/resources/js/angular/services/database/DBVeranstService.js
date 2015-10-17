@@ -18,8 +18,8 @@
 	   var fachbereich = fachbereiche[0];
 	   var url = "http://localhost:8080/SE2-Praktikumssoftware/"; // URL um Backend anzusprechen
 	   var veranstaltungen = []; // Hier werden die ermittelten Daten temporär gespeichert um schnelles Anzeigen zu gewährleisten
-	   var professoren = [] // Puffer für die Livesuche
-	                              // Ersetzt HC-Gruppendaten
+	   var professoren = ["Julia Padberg", "Martin Huebner", "Martin Kleine", "Wolfgang Gerken", "Olaf Zukunft"]; // Puffer für die Livesuche
+	   var assistenten = ["Ilona Blank", "Gerhard Oelker", "Hartmut Schulz"];
 	   var error = false; // Flag zur Fehlererkennung
 	    // ####################################################################################
 
@@ -227,20 +227,20 @@
       });
 
     }
-    
+
     // holt alle Professoren für eine Veranstaltung und ein Semester
     var getProfsDB = function(){
-    	
+
     	var fb = fachbereich;
     	var sem = semester;
-    	
+
     	// url = profs
     }
-    
+
     // Listet alle Profs in der Livesuche anhand des keywords
     // Nutzt dazu den Puffer "professoren
     var getProfsLiveSuche = function(keyword){
-    	
+
     }
 
     // Editiert eine Veranstaltung in der Datenbank
@@ -275,7 +275,7 @@
       var max = veranstaltungsInfo.max;
       var min = veranstaltungsInfo.min;
       var teamKap = va.teamKap = veranstaltungsInfo.teamKap;
-      
+
       var prof = getAngestellter("professor", profname);
 
       var veranstaltung = new Veranstaltung("praktikum", fach, prof, curr, max, min, teamKap, 6, 10);
@@ -356,8 +356,10 @@
       initWP: initWP,
       initPO: initPO,
       getProfsLiveSuche: getProfsLiveSuche,
-      getAngestellter: getAngestellter
-      
+      getAngestellter: getAngestellter,
+      professoren: professoren,
+      assistenten: assistenten
+
     };
     // -----------------------------------------------------------------------------------
   };

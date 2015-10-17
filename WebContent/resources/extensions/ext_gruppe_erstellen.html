@@ -26,11 +26,13 @@
    <div class="row">
     <div class="col-sm-6 inner-addon right-addon">
       <span class="glyphicon glyphicon-search"></span>
-      <input type="text" class="form-control" placeholder="Dozenten suchen..." ng-model="gr.dozent" name="dozent" ng-init="''"/>
+      <input type="text" class="form-control" typeahead="prof for prof in professoren | filter:$viewValue | limitTo:20" placeholder="Dozenten suchen..." ng-model="gr.dozent" name="dozent" ng-init="''"/>
+      <p class="help-box"ng-show="!isValidProfInput(gr.dozent)"><span class="text text-danger"> <small>Dozent nicht gefunden!</small></span></p>
     </div>
     <div class="col-sm-6 inner-addon right-addon">
       <span class="glyphicon glyphicon-search"></span>
-      <input type="text" class="form-control" placeholder="Assistenten suchen..." ng-model="gr.assistent" name="assistent" ng-init="''"/>
+      <input type="text" class="form-control" typeahead="assist for assist in assistenten | filter:$viewValue | limitTo:20" placeholder="Assistenten suchen..." ng-model="gr.assistent" name="assistent" ng-init="''"/>
+      <p class="help-box"ng-show="!isValidAssistInput(gr.assistent)"><span class="text text-danger"> <small>Dozent nicht gefunden!</small></span></p>
     </div>
   </div>
   <div class="row">

@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="SE2-Login">
 <head>
   <title>Login</title>
   <meta charset="utf-8">
@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="<c:url value="/resources/css/custom.css" />" >
 </head>
-<body>
+<body ng-controller="LoginController">
   <div class="container">
     <br>
     <div class="row">
@@ -17,11 +17,12 @@
           <div class="panel-body">
             <h1 class="text-muted">SE2-Praktikumssoftware</h1>
             <br>
-            <form class="form-signin col-sm-8 col-lg-offset-2 text-center" action="main" method="post">
+            <form class="form-signin col-sm-8 col-lg-offset-2 text-center" ng-model="panel" ng-submit="login(username, passwort)" method="post">
               <label for="inputEmail" class="sr-only">Benutzername</label>
-              <input type="username" id="inputUser" class="form-control" placeholder="Benutzername" required autofocus>
+              <input type="username" id="inputUser" class="form-control" placeholder="Benutzername" ng-model="username" required autofocus>
               <label for="inputPassword" class="sr-only">Password</label>
-              <input type="password" id="inputPassword" class="form-control" placeholder="Passwort" required>
+              <input type="password" id="inputPassword" class="form-control" placeholder="Passwort" ng-model="passwort" required>
+              <p class="help-box"ng-show="fail"><span class="text text-danger"> <small>Benutzername und/oder Passwort falsch.</small></span></p>
               <div class="checkbox">
                 <label>
                   <input type="checkbox" value="remember-me">Daten merken
@@ -52,6 +53,12 @@
     </div>
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="<c:url value="/resources/js/bootstrap/ui-bootstrap.min.js" />" ></script>
+  <script src="<c:url value="/resources/js/bootstrap/ui-bootstrap-tpls.js" />" ></script>
+  <script src="<c:url value="/resources/js/bootstrap/ui-bootstrap-tpls.min.js" />" ></script>
+  <script src="<c:url value="/resources/js/angular/app/login.js" />" ></script>
+  <script src="<c:url value="/resources/js/angular/controllers/LoginController.js" />" ></script>
+  <script src="<c:url value="/resources/js/angular/services/database/DBLoginService.js" />" ></script>
 </html>

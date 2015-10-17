@@ -20,7 +20,7 @@ public class MAID {
 	/**
 	 * Referenziert eine neue Mitarbeiter ID
 	 */
-	public MAID getMAID(int id){
+	public static MAID getMAID(int id){
 		
 		// TODO: Preconditions
 		return new MAID(id);

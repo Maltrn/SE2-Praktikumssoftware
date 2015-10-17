@@ -1,11 +1,16 @@
 package se2.praktikum.projekt.services.loginservice;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import se2.praktikum.projekt.models.person.Angestellter;
+import se2.praktikum.projekt.models.person.Assistent;
 import se2.praktikum.projekt.models.person.Person;
 import se2.praktikum.projekt.models.person.Student;
 import se2.praktikum.projekt.services.veranstaltungsservice.AnzeigerSrv;
@@ -37,22 +42,59 @@ public class LoginController {
 	}
 	
 	/**
-	 * Loggt einen User ein und lädt die entsprechende View
+	 * Lädt das Angestelltenpanel
 	 * HINWEIS: Erstmal wird für beide Benutzer die gleiche View geladen,
 	 * da Studentpanel noch nicht erstellt
-	 * @param	username: Der Benutzername
-	 * 			password: Das Passwort
 	 * @return	ModelAndView-Objekt, welches die eingegebenen Daten hält.
 	 */
-	@RequestMapping(value="/main", method = RequestMethod.POST)
-	public ModelAndView einloggen(){
+	@RequestMapping(value="/angestellter", method = RequestMethod.GET)
+	public ModelAndView ladeMainPanel(){
 		
-		String username = "user";	// Erstmal hardcoded -> Später Übergabeparameter
-		String password = "password"; // Erstmal hardcoded -> -> Später Übergabeparameter
-		Person user = srv.login(username, password);
-		ModelAndView mv = srv.ladePanel(user);
+		ModelAndView mv = srv.ladeMainPanel();
+		System.out.println("Called");
+		return mv;
+	}
+	
+	
+	/**
+	 * Lädt das Studentenpanel
+	 * HINWEIS: Erstmal wird für beide Benutzer die gleiche View geladen,
+	 * da Studentpanel noch nicht erstellt
+	 * @return	ModelAndView-Objekt, welches die eingegebenen Daten hält.
+	 */
+	@RequestMapping(value="/student", method = RequestMethod.GET)
+	public ModelAndView ladeStudPanel(){
+		
+		ModelAndView mv = srv.ladeMainPanel();
 		
 		return mv;
+	}
+	
+	
+	/**
+	 * Loggt einen User ein 
+	 * HINWEIS: Erstmal wird für beide Benutzer die gleiche View geladen,
+	 * da Studentpanel noch nicht erstellt
+	 * @param	args : args[0] = username, args[1] = passwort
+	 * @return	ModelAndView-Objekt, welches die eingegebenen Daten hält.
+	 */
+	@RequestMapping(value="/login", method = RequestMethod.POST, produces="text/plain")
+	public @ResponseBody Object einloggen(@RequestBody List<String> args){
+		
+		String panel = ""; // Das zu ladene Panel
+		String username = args.get(0);	// Username
+		String password = args.get(1);  // Passwort
+		
+		Person user = srv.login(username, password); // Benutzer einloggen
+		
+		// Speichere Panel informationen anhand des eingeloggten Benutzertyp -> Wird im Frontend ausgewertet
+		if(user != null && user instanceof Student){
+			panel = "student";
+		}else if(user != null && user instanceof Angestellter){
+			
+			panel = "angestellter";
+		}
+		return panel;
 	}
 
 

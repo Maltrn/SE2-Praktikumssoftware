@@ -230,3 +230,8 @@
  .borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
      border: none;
  }
+
+ .active {
+  background-color: #C44741;
+  color: #f2f2f2;
+}

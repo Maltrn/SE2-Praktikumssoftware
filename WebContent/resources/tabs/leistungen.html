@@ -14,38 +14,49 @@
             </div>
             <div class="panel-body">
               <div class="row">
-                <div class="col-sm-6 text text-muted">
+                <div class="col-sm-4 text text-muted">
                   <small>Fachbereich:</small>
                 </div>
-                <div class="col-sm-6 text text-muted">
+                <div class="col-sm-4 text text-muted">
+                  <small>Typ:</small>
+                </div>
+                <div class="col-sm-4 text text-muted">
                   <small>Semester:</small>
                 </div>
               </div>
               <div class="row">
-                <div class="col-sm-6 text text-muted">
+                <div class="col-sm-4 text-muted">
                   <select class="form-control" data-width="100%" ng-options="fb for fb in fachbereiche" ng-model="ls.fb">
                   </select>
                 </div>
-                <div class="col-sm-6 text text-muted">
+                <div class="col-sm-4 text text-muted">
+                  <select class="form-control" data-width="100%" ng-options="typ for typ in typen" ng-model="ls.typ">
+                  </select>
+                </div>
+                <div class="col-sm-4 text text-muted">
                   <select class="form-control" data-width="100%" ng-options="sem for sem in semester" ng-model="ls.sem">
                   </select>
                 </div>
               </div>
               <div class="row">
-                <br/>
+               <div class="col-sm-12">
+                <hr />
+               </div>
+              </div>
+              <div class="row">
                 <div class="col-sm-6 text text-muted">
                   <small>Fach:</small>
                 </div>
                 <div class="col-sm-6 text text-muted">
-                  <small>Gruppe:</small>
+                  <small>Gruppennummer:</small>
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-6">
+               <div class="col-sm-6">
                   <select class="form-control" data-width="100%" ng-options="fach for fach in faecher" ng-model="ls.fach">
                   </select>
                 </div>
-                <div class="col-md-6">
+                <div class="col-sm-6">
                   <select class="form-control" data-width="100%" ng-options="gruppe for gruppe in gruppen" ng-model="ls.gruppe">
                   </select>
                 </div>
@@ -83,23 +94,23 @@
                     </thead>
                     <tbody>
                       <tr ng-repeat="tm in teilnehmer | filter: searchKeyword">
-                        <td>{{tm.matrNr}}</td>
-                        <td>{{tm.vorn}}</td>
-                        <td>{{tm.nachn}}</td>
-                        <td>{{tm.fach}}</td>
-                        <td>{{tm.grNr}}</td>
+                        <td>{{tm.student.matrNr.matrNr}}</td>
+                        <td>{{tm.student.vorname}}</td>
+                        <td>{{tm.student.nachname}}</td>
+                        <td>{{tm.fach.fachKuerzel}}</td>
+                        <td>{{ls.grpNr}}</td>
                         <td>
                           <div>
-                            <div ng-if="isSuccessPVL($index)">
+                            <div ng-if="isSuccessPVL(tm.student.matrNr)">
                               <div ng-include="getSuccess()">
                               </div>
                             </div>
-                            <div ng-if="!isSuccessPVL($index)">
-                              <div ng-if="isOpenPVL($index)">
+                            <div ng-if="!isSuccessPVL(tm.student.matrNr)">
+                              <div ng-if="isOpenPVL(tm.student.matrNr)">
                                 <div ng-include="getOpen()">
                                 </div>
                               </div>
-                              <div ng-if="!isOpenPVL($index)">
+                              <div ng-if="!isOpenPVL(tm.student.matrNr)">
                                 <div ng-include="getFail()">
                                 </div>
                               </div>
@@ -108,16 +119,16 @@
                         </td>
                         <td>
                           <div>
-                            <div ng-if="isSuccessNote($index)">
+                            <div ng-if="isSuccessNote(tm.student.matrNr)">
                               <div ng-include="getSuccess()">
                               </div>
                             </div>
-                            <div ng-if="!isSuccessNote($index)">
-                              <div ng-if="isOpenNote($index)">
+                            <div ng-if="!isSuccessNote(tm.student.matrNr)">
+                              <div ng-if="isOpenNote(tm.student.matrNr)">
                                 <div ng-include="getOpen()">
                                 </div>
                               </div>
-                              <div ng-if="!isOpenNote($index)">
+                              <div ng-if="!isOpenNote(tm.student.matrNr)">
                                 <div ng-include="getFail()">
                                 </div>
                               </div>
@@ -125,19 +136,19 @@
                           </div>
                         </td>
                         <td>
-                          <button type="button" class="btn btn-my-default btn-sm" ng-click="initTmDetailsLeist($index)" data-toggle="modal" data-target="#modalTmDetailsLeist" data-placement="bottom" title="Teilnehmerdetails zeigen" onmouseenter="$(this).tooltip('show')">
+                          <button type="button" class="btn btn-my-default btn-sm" ng-click="initTmDetailsLeist(tm.student.matrNr)" data-toggle="modal" data-target="#modalTmDetailsLeist" data-placement="bottom" title="Teilnehmerdetails zeigen" onmouseenter="$(this).tooltip('show')">
                             <span class="glyphicon glyphicon-user"></span>
                           </button>
                           <div ng-include="getModalTMLeistungen()"></div>
                         </td>
                         <td>
-                          <button type="button" class="btn btn-my-default btn-sm" ng-disabled="isSuccessPVL($index)" ng-click="initEintragen($index)" data-toggle="modal" data-target="#modalPVL" data-placement="bottom" title="PVL eintragen" onmouseenter="$(this).tooltip('show')">
+                          <button type="button" class="btn btn-my-default btn-sm" ng-disabled="isSuccessPVL(tm.student.matrNr)" ng-click="initEintragen(tm.student.matrNr)" data-toggle="modal" data-target="#modalPVL" data-placement="bottom" title="PVL eintragen" onmouseenter="$(this).tooltip('show')">
                             <span class="glyphicon glyphicon-check"></span>
                           </button>
                           <div ng-include="getModalPVL()"> </div>
                         </td>
                         <td>
-                          <button type="button" class="btn btn-my-default btn-sm" ng-disabled="isSuccessNote($index)" ng-click="initEintragen($index)" data-toggle="modal" data-target="#modalNote" data-placement="bottom" title="Note eintragen" onmouseenter="$(this).tooltip('show')">
+                          <button type="button" class="btn btn-my-default btn-sm" ng-disabled="isSuccessNote(tm.student.matrNr)" ng-click="initEintragen(tm.student.matrNr)" data-toggle="modal" data-target="#modalNote" data-placement="bottom" title="Note eintragen" onmouseenter="$(this).tooltip('show')">
                             <span class="glyphicon glyphicon-edit"></span>
                           </button>
                           <div ng-include="getModalNote()"></div>

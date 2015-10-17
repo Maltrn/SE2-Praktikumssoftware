@@ -24,6 +24,8 @@
     $scope.endZeiten = [DBGruppService.timesEnd[0], DBGruppService.timesEnd[1], DBGruppService.timesEnd[2]];
     $scope.gruppen = DBGruppService.hcGruppenDaten;
     $scope.raeume = DBGruppService.raeume;
+    $scope.professoren = DBVeranstService.professoren;
+    $scope.assistenten = DBVeranstService.assistenten;
 
 
 
@@ -54,8 +56,8 @@
     $scope.gr.sem;
     $scope.gr.grpNr = DBGruppService.grNummern[0];
     $scope.gr.termine = $scope.termine;
-    $scope.gr.dozent;
-    $scope.gr.assistent;
+    $scope.gr.dozent = "";
+    $scope.gr.assistent = "";
     $scope.gr.raum = DBGruppService.raeume[0];
     $scope.gr.minTeams = 0;
     $scope.gr.maxTeams = 10;
@@ -135,6 +137,28 @@
 
       return true;
     }
+    
+    $scope.isValidProfInput = function(expr){
+
+        for(var i = 0; i < DBVeranstService.professoren.length; i++){
+
+          if(DBVeranstService.professoren[i] == expr){
+            return true;
+          }
+        }
+        return false;
+      }
+    
+    $scope.isValidAssistInput = function(expr){
+
+        for(var i = 0; i < DBVeranstService.assistenten.length; i++){
+
+          if(DBVeranstService.assistenten[i] == expr){
+            return true;
+          }
+        }
+        return false;
+      }
 
     // TODO:
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -152,7 +176,9 @@
 
     // Aktiviert/Deaktiviert den Speichern-Button
     $scope.isFilledCompleteErstellen = function() {
-      return $scope.isValidDateComplete() && $scope.isValidStartTimeComplete();
+      return $scope.isValidDateComplete() && $scope.isValidStartTimeComplete()
+      			&& $scope.isValidProfInput($scope.gr.dozent)
+      			 && $scope.isValidAssistInput($scope.gr.assistent);
     }
 
 
