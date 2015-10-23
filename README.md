@@ -14,7 +14,13 @@ Allgemeine Info
  </ul>
 </li>
 
-Aktuell (17.10.2015) - Letzter Commit
+Aktuell (23.10.2015) - Letzter Commit
+=====================================
+<li>Prototyp konfiguriert</li>
+<li>Erste View Studentenpanel erstellt</li>
+<li>Erste Schnittstellen definiert</li>
+
+Aktuell (17.10.2015)
 =====================================
 <li>Angular-Schnittstellen für die nächsten Komponenten:
  <ul> 
@@ -26,7 +32,7 @@ Aktuell (17.10.2015) - Letzter Commit
 <li>[Loginservice](/src/se2/praktikum/projekt/services/loginservice/LoginController.java) korrigiert</li>
 
 
-Aktuell (14.10.2015) - Letzter Commit 
+Aktuell (14.10.2015)
 =====================================
 <li>Weitere [POJO-Klassen](/src/se2/praktikum/projekt/models/)  hinzufügt</li>
 <li>Spring MVC-Schnittstellen für nächste Komponenten (Loginservice, Leistungenservice):

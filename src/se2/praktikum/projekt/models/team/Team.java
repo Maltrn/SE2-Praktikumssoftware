@@ -1,12 +1,10 @@
 package se2.praktikum.projekt.models.team;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import se2.praktikum.projekt.models.person.AbstrPerson;
 import se2.praktikum.projekt.models.person.Person;
 import se2.praktikum.projekt.models.team.fachwerte.TeamID;
 

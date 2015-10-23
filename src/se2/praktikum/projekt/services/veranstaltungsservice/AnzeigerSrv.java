@@ -65,7 +65,9 @@ public class AnzeigerSrv
 		{
 			e.printStackTrace();
 		}
-		return pos;
+		//return pos;
+		
+		return null;
 	}
 	
 	public List<Fach> getAllWps(int semester, String fachbereich)

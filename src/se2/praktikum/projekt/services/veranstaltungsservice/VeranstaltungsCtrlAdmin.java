@@ -86,7 +86,7 @@ public class VeranstaltungsCtrlAdmin {
 		
 		AnzeigerSrv srv = anzeigeSrv;
 		int semester = Integer.parseInt(args.get(0));
-		List<Veranstaltung> veranstaltungen = srv.getAllWP(semester, args.get(1));
+		// List<Veranstaltung> veranstaltungen = srv.getAllWP(semester, args.get(1));
 		
 		return null;
 	}
@@ -102,7 +102,7 @@ public class VeranstaltungsCtrlAdmin {
 		
 		AnzeigerSrv srv = anzeigeSrv;
 		int semester = Integer.parseInt(args.get(0));
-		List<Veranstaltung> veranstaltungen = srv.getAllPO(semester, args.get(1));
+		// List<Veranstaltung> veranstaltungen = srv.getAllPO(semester, args.get(1));
 		
 		// try-catch..
 		

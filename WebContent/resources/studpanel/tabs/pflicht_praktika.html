@@ -1,0 +1,92 @@
+<div class="row" id="veranstaltungen" ng-controller="">
+  <br />
+  <div class="col-md-10 col-md-offset-1" ng-controller="">
+    <div class="panel panel-cust-info">
+      <br />
+      <div class="panel-body">
+        <!--ContentPane start-->
+        <div class="col-md-10 col-md-offset-1">
+          <div class="panel panel-cust-success">
+            <div class="panel-heading">
+              <h2>
+                <strong>Pflichtpraktika-Übersicht</strong>
+              </h2>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-sm-6 text text-muted">
+                  <small>Fach</small>
+                </div>
+                <div class="col-sm-6 text text-muted">
+                  <small>Filter</small>
+                </div>
+              </div>
+              <div class="row">
+                <div class=col-md-6>
+                  <select class="form-control" data-width="100%" ng-model="va.fach.fachKuerzel" ng-options="fach.fachKuerzel for fach in faecher" ng-change="getAlleGruppenFuerFach(va.fach.fachKuerzel)">
+                  </select>
+                </div>
+                <div class="col-sm-6 inner-addon right-addon">
+                  <span class="glyphicon glyphicon-search"></span>
+                  <input type="text" class="form-control" ng-model="searchKeyword" placeholder="Fach oder Gruppennummer eingeben..." />
+                </div>
+              </div>
+              <div class="row">
+                <br/>
+                <div class="col-md-12">
+                  <table class="table table-striped" ng-controller="ModalController">
+                    <thead>
+                      <tr>
+                        <th>Fach</th>
+                        <th>Grp.-Nr.</th>
+                        <th>Termine</th>
+                        <th>Professor</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="gruppe in gruppen">
+                        <td>{{gruppe.fachKuerzel}}</td>
+                        <td>{{gruppe.grpNr}}</td>
+                        <td>{{gruppe.termineString}}</td>
+                        <td>{{gruppe.professor.nachname}}</td>
+                        <td>
+                          <button type="button" class="btn btn-my-default btn-sm" ng-click="initGruppenDetails(gruppe.fach, gruppe.grpNr)" data-placement="bottom" title="Zeige Details dieser Gruppe" onmouseenter="$(this).tooltip('show')">
+                            <span class="glyphicon glyphicon glyphicon-info-sign"></span>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="row">
+                <br />
+                <div class="col-sm-12">
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="">Ueberschneidungen markieren</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <br />
+                <div class="col-sm-12">
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="">Einzelanmeldung</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <button type="button" class="btn btn-my-block" data-toggle="modal" ng-click="zeigeTeamKonfigTab()" data-placement="bottom" title="Weiter zur Teamkonfiguration" onmouseenter="$(this).tooltip('show')">
+                    <span class="glyphicon glyphicon-plus"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--ContentPane end-->
+    </div>
+  </div>
+</div>

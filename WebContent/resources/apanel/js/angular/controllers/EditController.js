@@ -18,8 +18,8 @@
       // --------------------------------------------------------------
 
     // Tabs
-    var newsEdit = "resources/edits/news_edit.html";
-    var newsShow = "resources/tabs/news_show.html";
+    var newsEdit = "resources/apanel/edits/news_edit.html";
+    var newsShow = "resources/apanel/tabs/news_show.html";
 
 
     // Tabs-Getter

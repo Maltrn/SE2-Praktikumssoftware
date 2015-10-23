@@ -81,8 +81,8 @@
     }
 
     $scope.veranErstellen = function() {
-    	
-      DBVeranstService.getAlle	
+
+      DBVeranstService.getAlle
       if (autoscroller.erstellen != veranErstellen) {
         autoscroller.erstellen = veranErstellen;
         autoscroller.scrollTo(scrollVeranErstellen);

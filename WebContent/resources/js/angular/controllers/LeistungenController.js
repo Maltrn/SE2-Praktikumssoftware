@@ -174,44 +174,44 @@
 
     // Trägt eine PVL ein
     $scope.tragePVLEin = function() {
-    	
+
       var datumPVL = new Date(); // Heutiges Datum
       var pvl = getBooleanWertPVL($scope.ls.eintrPVL);
-      
+
       if(!DBLeistService.tragePVLEin(eintrIndex, datumPVL, pvl)){
-    	  
+
         // Fehlermeldung
       }
     }
-    
+
     // Initisalisiert alle Teilnehemr und deren Leistungen anhand der $scope.ls - Paramter
     $scope.initLeistungen = function(){
-    	
+
     	$scope.updateFacher($scope.ls.typ.toLowerCase(), $scope.ls.fb, $scope.ls.sem);
     	$scope.holeGruppenNummern($scope.ls.typ.toLowerCase(), $scope.ls.fach);
     	$scope.leistungenAnzeigen($scope.ls.gruppe, $scope.ls.fach);
     }
-    
+
     // Updated die Faecher im Dropdownmenu andhand von typ, fachbereich und semester
     $scope.updateFaecher = function(){
-    	
+
     	DBLeistService.updateFaecher($scope.ls.typ.toLowerCase(), $scope.ls.fb, $scope.ls.sem);
     	$scope.ls.fach = $scope.faecher[0];
-    } 
-    
-    // Zeigt die Teilnehmner mit ihren Leistungen für eine gegebene Guppe und Fachkuerzel 
+    }
+
+    // Zeigt die Teilnehmner mit ihren Leistungen für eine gegebene Guppe und Fachkuerzel
     $scope.leistungenAnzeigen = function(){
-    	
+
     	if(!DBLeistService.zeigeLeistungenAn($scope.ls.gruppe, $scope.ls.fach)){
     		// Fehlermeldung
     	}
     }
-    
+
     // Holt alle eingetragenen Gruppennummern für ein fach (fachkuerzel)
     $scope.holeGruppenNummern = function(){
-    	
+
     	if(!DBLeistService.gruppennummernDropDown($scope.ls.fach, $scope.ls.gruppe)){
-    		
+
     		// Fehlermeldung
     	}
     }

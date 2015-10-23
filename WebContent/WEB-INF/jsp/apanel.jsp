@@ -72,6 +72,12 @@
           <div ng-switch-when="praktika">
             <div ng-include src="getPraktika()"></div>
           </div>
+          <div ng-switch-when="projekte">
+            <div ng-include src="getProjekte()"></div>
+          </div>
+          <div ng-switch-when="wahlpflicht">
+            <div ng-include src="getWahlpflicht()"></div>
+          </div>
           <div ng-switch-when="gruppen">
             <div ng-include src="getGruppen()"></div>
           </div>
@@ -104,21 +110,21 @@
   <script src="<c:url value="/resources/js/bootstrap/bootstrap-select.min.js" />" ></script>
   <script src="<c:url value="/resources/js/bootstrap/bootstrap-select.js" />" ></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js" ></script>
-  <script src="<c:url value="/resources/js/angular/app/app.js" />" ></script>
-  <script src="<c:url value="/resources/js/angular/services/AutoScrollService.js" />" ></script>
-  <script src="<c:url value="/resources/js/angular/services/database/DBVeranstService.js" />" ></script>
-  <script src="<c:url value="/resources/js/angular/services/database/DBGruppService.js" />" ></script>
-  <script src="<c:url value="/resources/js/angular/services/database/DBGruppTmService.js" />" ></script>
-  <script src="<c:url value="/resources/js/angular/services/database/DBLeistService.js" />" ></script>
-  <script src="<c:url value="/resources/js/angular/controllers/TabController.js" />" ></script>
-  <script src="<c:url value="/resources/js/angular/controllers/ModalController.js" />" ></script>
-  <script src="<c:url value="/resources/js/angular/controllers/ExtController.js" />" ></script>
-  <script src="<c:url value="/resources/js/angular/controllers/EditController.js" />" ></script>
-  <script src="<c:url value="/resources/js/angular/controllers/VeranstaltungsController.js" />" ></script>
-  <script src="<c:url value="/resources/js/angular/controllers/GruppenController.js" />" ></script>
-  <script src="<c:url value="/resources/js/angular/controllers/TMUebersichtController.js" />" ></script>
-  <script src="<c:url value="/resources/js/angular/controllers/DateController.js" />" ></script>
-  <script src="<c:url value="/resources/js/angular/controllers/LeistungenController.js" />" ></script>
+  <script src="<c:url value="/resources/global/app/app.js" />" ></script>
+  <script src="<c:url value="/resources/global/services/AutoScrollService.js" />" ></script>
+  <script src="<c:url value="/resources/apanel/js/angular/services/database/DBVeranstService.js" />" ></script>
+  <script src="<c:url value="/resources/apanel/js/angular/services/database/DBGruppService.js" />" ></script>
+  <script src="<c:url value="/resources/apanel/js/angular/services/database/DBGruppTmService.js" />" ></script>
+  <script src="<c:url value="/resources/apanel/js/angular/services/database/DBLeistService.js" />" ></script>
+  <script src="<c:url value="/resources/apanel/js/angular/controllers/TabController.js" />" ></script>
+  <script src="<c:url value="/resources/apanel/js/angular/controllers/ModalController.js" />" ></script>
+  <script src="<c:url value="/resources/apanel/js/angular/controllers/ExtController.js" />" ></script>
+  <script src="<c:url value="/resources/apanel/js/angular/controllers/EditController.js" />" ></script>
+  <script src="<c:url value="/resources/apanel/js/angular/controllers/VeranstaltungsController.js" />" ></script>
+  <script src="<c:url value="/resources/apanel/js/angular/controllers/GruppenController.js" />" ></script>
+  <script src="<c:url value="/resources/apanel/js/angular/controllers/TMUebersichtController.js" />" ></script>
+  <script src="<c:url value="/resources/apanel/js/angular/controllers/DateController.js" />" ></script>
+  <script src="<c:url value="/resources/apanel/js/angular/controllers/LeistungenController.js" />" ></script>
   <script src="<c:url value="/resources/js/bootstrap/ui-bootstrap.min.js" />" ></script>
   <script src="<c:url value="/resources/js/bootstrap/ui-bootstrap-tpls.js" />" ></script>
   <script src="<c:url value="/resources/js/bootstrap/ui-bootstrap-tpls.min.js" />" ></script>

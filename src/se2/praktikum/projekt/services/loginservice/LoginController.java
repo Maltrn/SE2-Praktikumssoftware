@@ -36,7 +36,7 @@ public class LoginController {
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	protected ModelAndView loadLoginView(){
 		
-		ModelAndView mv = new ModelAndView("login");
+		ModelAndView mv = new ModelAndView("choosepanel");
 		return mv;
 
 	}
@@ -48,25 +48,25 @@ public class LoginController {
 	 * @return	ModelAndView-Objekt, welches die eingegebenen Daten hält.
 	 */
 	@RequestMapping(value="/angestellter", method = RequestMethod.GET)
-	public ModelAndView ladeMainPanel(){
+	public ModelAndView ladeAngestelltenPanel(){
 		
-		ModelAndView mv = srv.ladeMainPanel();
+		ModelAndView mv = srv.ladeAngestPanel();
 		System.out.println("Called");
 		return mv;
 	}
 	
 	
 	/**
-	 * Lädt das Studentenpanel
+	 * Lädt das Angestelltenpanel
 	 * HINWEIS: Erstmal wird für beide Benutzer die gleiche View geladen,
 	 * da Studentpanel noch nicht erstellt
 	 * @return	ModelAndView-Objekt, welches die eingegebenen Daten hält.
 	 */
 	@RequestMapping(value="/student", method = RequestMethod.GET)
-	public ModelAndView ladeStudPanel(){
+	public ModelAndView ladeStudentenPanel(){
 		
-		ModelAndView mv = srv.ladeMainPanel();
-		
+		ModelAndView mv = srv.ladeStudPanel();
+		System.out.println("Called");
 		return mv;
 	}
 	
