@@ -1,5 +1,6 @@
 package se2.praktikum.projekt.services.veranstaltungsservice;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -35,12 +36,52 @@ public class VeranstaltungsCtrlAdmin {
 	@RequestMapping(value="/pflichtpraktika", method=RequestMethod.POST)
 	public @ResponseBody List<Veranstaltung> praktikaAnzeigen(@RequestBody List<String> args){
 		
+	    System.err.println("praktikaAnzeigen");
+	    
 		AnzeigerSrv srv = anzeigeSrv;
 		//int semester = Integer.parseInt(args.get(0));
 		//List<Veranstaltung> veranstaltungen = srv.getAllPraktika(semester, args.get(1));
-		
+
+				
 		return null;
 	}
+	
+	/**
+     * holt alle WP für eine gegebenes Semester und Fachbereich
+     * @param args : args[0] = semester, args[1] = fachbereich
+     * @return  Liste Veranstaltungen für die übergebenen Parameter
+     */
+    @RequestMapping(value="/wp", method=RequestMethod.POST)
+    public @ResponseBody List<Veranstaltung> wpAnzeigen(@RequestBody List<String> args){
+        
+        System.err.println("wpAnzeigen");
+        
+        AnzeigerSrv srv = anzeigeSrv;
+        int semester = Integer.parseInt(args.get(0));
+        List<Veranstaltung> veranstaltungen = srv.getAllWP(semester, args.get(1));
+        
+        return null;
+    }
+    
+    
+    /**
+     * holt alle PO für ein gegebenes Semester und Fachbereich
+     * @param args : args[0] = semester, args[1] = fachbereich
+     * @return  Liste Veranstaltungen für die übergebenen Parameter
+     */
+    @RequestMapping(value="/po", method=RequestMethod.POST)
+    public @ResponseBody List<Veranstaltung> poAnzeigen(@RequestBody List<String> args){
+        
+        System.err.println("poAnzeigen");
+        
+        AnzeigerSrv srv = anzeigeSrv;
+        int semester = Integer.parseInt(args.get(0));
+        List<Veranstaltung> veranstaltungen = srv.getAllPO(semester, args.get(1));
+        
+        // try-catch..
+        
+        return null;
+    }
 	
 	/**
 	 * holt alle Professoren für eine gegebenes Semester und Fachbereich
@@ -74,41 +115,7 @@ public class VeranstaltungsCtrlAdmin {
 		return null;
 		
 	}
-	
-	
-	/**
-	 * holt alle WP für eine gegebenes Semester und Fachbereich
-	 * @param args : args[0] = semester, args[1] = fachbereich
-	 * @return	Liste Veranstaltungen für die übergebenen Parameter
-	 */
-	@RequestMapping(value="/wp", method=RequestMethod.POST)
-	public @ResponseBody List<Veranstaltung> wpAnzeigen(@RequestBody List<String> args){
 		
-		AnzeigerSrv srv = anzeigeSrv;
-		int semester = Integer.parseInt(args.get(0));
-		List<Veranstaltung> veranstaltungen = srv.getAllWP(semester, args.get(1));
-		
-		return null;
-	}
-	
-	
-	/**
-	 * holt alle PO für ein gegebenes Semester und Fachbereich
-	 * @param args : args[0] = semester, args[1] = fachbereich
-	 * @return	Liste Veranstaltungen für die übergebenen Parameter
-	 */
-	@RequestMapping(value="/po", method=RequestMethod.POST)
-	public @ResponseBody List<Veranstaltung> poAnzeigen(@RequestBody List<String> args){
-		
-		AnzeigerSrv srv = anzeigeSrv;
-		int semester = Integer.parseInt(args.get(0));
-		List<Veranstaltung> veranstaltungen = srv.getAllPO(semester, args.get(1));
-		
-		// try-catch..
-		
-		return null;
-	}
-	
 	/**
 	 * Bearbeitet eine Veranstaltung aus der Datenbank
 	 * @param veranstaltung : Die editierte Veranstaltung

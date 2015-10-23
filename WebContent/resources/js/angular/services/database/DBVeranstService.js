@@ -8,7 +8,7 @@
   var app = angular.module("SE2-Software");
 
   // Servicedefinition
-  var DBVeranstService = function($http) {
+  var DBVeranstService = function($http, $log) {
 
 	   // Locls
 	   // ####################################################################################
@@ -18,8 +18,8 @@
 	   var fachbereich = fachbereiche[0];
 	   var url = "http://localhost:8080/SE2-Praktikumssoftware/"; // URL um Backend anzusprechen
 	   var veranstaltungen = []; // Hier werden die ermittelten Daten temporär gespeichert um schnelles Anzeigen zu gewährleisten
-	   var professoren = ["Julia Padberg", "Martin Huebner", "Martin Kleine", "Wolfgang Gerken", "Olaf Zukunft"]; // Puffer für die Livesuche
-	   var assistenten = ["Ilona Blank", "Gerhard Oelker", "Hartmut Schulz"];
+	   var professoren = [] // Puffer für die Livesuche
+	                              // Ersetzt HC-Gruppendaten
 	   var error = false; // Flag zur Fehlererkennung
 	    // ####################################################################################
 
@@ -128,6 +128,8 @@
     var bs = new Fach("BSP");
     var se = new Fach("SEP1");
     var bw = new Fach("BWP2");
+    
+    var sk = new Fach("SKP");
 
     var id = new MAID(10);
     var plz = new PLZ(11111);
@@ -145,13 +147,13 @@
     var bsp = new Veranstaltung("praktikum", bs, huebner, 70, 80, 10, 2, 6, 10);
     var sep = new Veranstaltung("praktikum", se, zukunft, 0, 80, 10, 2, 6, 10);
     var bwp = new Veranstaltung("praktikum", bw, gerken, 50, 80, 10, 2, 6, 10);
-
+    
+    var skp = new Veranstaltung("praktikum", sk, padberg, 15, 22, 10, 2, 6, 10);
 
     // Array aus Veranstaltungsobjekten
     var hcVeranstaltungsDaten = [gkap, adp, bsp, sep, bwp];
     // ====================================================================================
-
-
+    
     // SCHNITTSTELLE
     // #########################################################################################################################
 
@@ -163,52 +165,95 @@
     // Alle Pflichtpraktika zu den übergebenen Parametern ermitteln
     // Ruft Backend-Schnittstelle auf und übergibt die Parameter
     // Ermittelte Pfichtpraktika, werden in Array gespeichert
-    // Diese werden dann automatisch in der View sichtbar
-    var initPraktika = function(sem, fachbereich) {
-
-
-      // JSOM Data
-      var args = [sem, fachbereich];
-
-      $http.post(url+"pflichtpraktika", angular.toJson(args)).
-        // Funktion, falls gültige Daten zurückkommen
-      then(function(response) {
-          // Daten aus dem Response-Object in das Veranstaltungen-Array pushen
-          for (i = 0; i < response.data.length; i++) {
-            var data = response.data;
-            veranstaltungen.push({ /* Veranstaltungsobjekt aus dem Daten-Array */ }); // ergänzen
-          }
-        },
-        // Funktion bei Fehler
-        function(response) {
-          error = true; // Setze error-flag, dass von der view abgefragt wird
-        });
-    }
+    // Diese werden dann automatisch in der View sichtbar      
+    var initPraktika = function(sem, fachbereich) 
+    {
+          $log.log("initPraktika geladen!" + " Semester: "+sem + " Fachbreich: "+fachbereich);
+        
+          // JSON Data
+          var args = [sem, fachbereich];
+        
+          $http.post(url+"pflichtpraktika", angular.toJson(args)).
+          // Funktion, falls gültige Daten zurückkommen
+          then(function(response) {              
+              // Daten aus dem Response-Object in das Veranstaltungen-Array pushen
+              for (i = 0; i < response.data.length; i++) 
+              {
+                var data = response.data;
+                veranstaltungen.push(skp); // ergänzen
+              }
+          },      
+          // Funktion bei Fehler
+          function(response) 
+              {
+                  error = true; // Setze error-flag, dass von der view abgefragt wird          
+              });
+            
+          hcVeranstaltungsDaten.push(skp);
+     }
 
 
     // Alle WP zu den übergebenen Parametern ermitteln
     // Ruft Backend-Schnittstelle auf und übergibt die Parameter
     // Ermittelte WP, werden in Array gespeichert
     // Diese werden dann automatisch in der View sichtbar TODO: View implementieren
-    var initWP = function(sem, fachbereich){
+    var initWP = function(sem, fachbereich)
+    {
 
-      // TODO: Precondition: mindestens Semster 4
+        $log.log("initWP geladen!" + " Semester: "+sem + " Fachbreich: "+fachbereich);
+        
+        // JSON Data
+        var args = [sem, fachbereich];
 
-      // url = wp;
-      // siehe initPraktika
-
+        $http.post(url+"wp", angular.toJson(args)).
+          // Funktion, falls gültige Daten zurückkommen
+        then(function(response) {
+            
+            // Daten aus dem Response-Object in das Veranstaltungen-Array pushen
+            for (i = 0; i < response.data.length; i++) 
+            {
+              var data = response.data;
+              veranstaltungen.push(skp); // ergänzen
+            }
+          },
+          
+          // Funktion bei Fehler
+          function(response) 
+          {
+              error = true; // Setze error-flag, dass von der view abgefragt wird
+          });
     }
 
     // Alle PO zu den übergebenen Parametern ermitteln
     // Ruft Backend-Schnittstelle auf und übergibt die Parameter
-    // Ermittelte WP, werden in Array gespeichert
+    // Ermittelte PO, werden in Array gespeichert
     // Diese werden dann automatisch in der View sichtbar TODO: View implementieren
-    var initPO = function(sem, fachbereich){
+    var initPO = function(sem, fachbereich)
+    {
       // TODO: Precondition: mindestens Semster 5
+        
+      $log.log("initPO geladen!" + " Semester: "+sem + " Fachbreich: "+fachbereich);
+        
+        // JSON Data
+        var args = [sem, fachbereich];
 
-      // url = po
-      // siehe initPraktika
-
+        $http.post(url+"po", angular.toJson(args)).
+          // Funktion, falls gültige Daten zurückkommen
+        then(function(response) {
+            
+            // Daten aus dem Response-Object in das Veranstaltungen-Array pushen
+            for (i = 0; i < response.data.length; i++) 
+            {
+              var data = response.data;
+              veranstaltungen.push(skp); // ergänzen
+            }
+          },
+          
+          // Funktion bei Fehler
+          function(response) 
+          {
+              error = true; // Setze error-flag, dass von der view abgefragt wird
+          });
     }
 
     // Speichert eine Veranstaltung in der Datenbank
@@ -227,20 +272,20 @@
       });
 
     }
-
+    
     // holt alle Professoren für eine Veranstaltung und ein Semester
     var getProfsDB = function(){
-
+    	
     	var fb = fachbereich;
     	var sem = semester;
-
+    	
     	// url = profs
     }
-
+    
     // Listet alle Profs in der Livesuche anhand des keywords
     // Nutzt dazu den Puffer "professoren
     var getProfsLiveSuche = function(keyword){
-
+    	
     }
 
     // Editiert eine Veranstaltung in der Datenbank
@@ -275,7 +320,7 @@
       var max = veranstaltungsInfo.max;
       var min = veranstaltungsInfo.min;
       var teamKap = va.teamKap = veranstaltungsInfo.teamKap;
-
+      
       var prof = getAngestellter("professor", profname);
 
       var veranstaltung = new Veranstaltung("praktikum", fach, prof, curr, max, min, teamKap, 6, 10);
@@ -356,10 +401,8 @@
       initWP: initWP,
       initPO: initPO,
       getProfsLiveSuche: getProfsLiveSuche,
-      getAngestellter: getAngestellter,
-      professoren: professoren,
-      assistenten: assistenten
-
+      getAngestellter: getAngestellter
+      
     };
     // -----------------------------------------------------------------------------------
   };

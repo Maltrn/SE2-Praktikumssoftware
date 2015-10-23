@@ -6,8 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.web.bind.annotation.RequestBody;
+	
 
 import se2.praktikum.projekt.dbms.DBConnector;
 import se2.praktikum.projekt.models.gruppe.Gruppe;
@@ -19,19 +18,7 @@ public class AnzeigerSrv
 {
 	//alle SQL-Namen sollten hier als Klassenvariablen auftauchen.
 	
-	private Connection connection;
-	
-	// Das sind die Table-Namen wie sie sein könnten single point Control:
-	private String veranstaltungenHabenGruppen = "";
-	private String _veranstaltungPrimary = "";
-	private String _FBKuerzel = "";
-	private String _fachbereichBezeichnung = "";
-	private String _matrikelNummer = "";
-	private String _teamNr = "";
-	private String _gruppenHabenTeams = "";
-	private String _gruppenNr = "";
-	private String _semester = "";
-	
+	Connection connection;
 	public void connect(){
 		connection = DBConnector.getConnection();
 	}
@@ -39,10 +26,10 @@ public class AnzeigerSrv
 	{
 		
 		
-		List<Fach> pos = new ArrayList<>();
+		List<Veranstaltung> praktika = new ArrayList<>();
 		Statement statement = null;
-		String qry = "select * from Veranstaltung where Semester =" + semester
-					+ " AND "+ _FBKuerzel + " = " + fachbereich + "And " + _fachbereichBezeichnung + " = Praktikum";
+		String qry = "select * from PRAKTIKUM where Semester =" + semester
+					+ " AND fachbereich = " + fachbereich;
 		
 		try 
 		{
@@ -50,12 +37,17 @@ public class AnzeigerSrv
 			ResultSet rs = statement.executeQuery(qry);
 			
 			while(rs.next()){
-				Fach vrst = new Fach();
+				Veranstaltung vrst = new Praktikum();
 				
-				vrst.setFachKuerzel(rs.getString("Fachkürzel"));
+				/**
+				 * TODO: Fehler korrigieren
+				 *
+				vrst.setVeranstaltungsNr(rs.getInt("VERANSTALTUNGSNR"));
 				vrst.setFachbereich(rs.getString("FACHBEREICH"));
 				vrst.setSemester(rs.getInt("SEMESTER"));
-				pos.add(vrst);
+				vrst.setTyp("Praktikum");
+				praktika.add(vrst);
+				**/
 				
 			
 			}
@@ -65,17 +57,23 @@ public class AnzeigerSrv
 		{
 			e.printStackTrace();
 		}
-		return pos;
+		return praktika;
 	}
 	
-	public List<Fach> getAllWps(int semester, String fachbereich)
+	/**
+	 * TODO: Fehler korrigieren siehe ersten pullrequest
+	 * @param semester
+	 * @param fachbereich
+	 * @return
+	 */
+	public List<Veranstaltung> getAllWP(int semester, String fachbereich)
 	{
 		
 		
-		List<Fach> pos = new ArrayList<>();
+		List<Veranstaltung> wps = new ArrayList<>();
 		Statement statement = null;
-		String qry = "select * from Veranstaltung where Semester =" + semester
-					+ " AND "+ _FBKuerzel + " = " + fachbereich + "And " + _fachbereichBezeichnung + " = WP";
+		String qry = "select * from WP where Semester =" + semester
+					+ " AND fachbereich = " + fachbereich;
 		
 		try 
 		{
@@ -83,45 +81,55 @@ public class AnzeigerSrv
 			ResultSet rs = statement.executeQuery(qry);
 			
 			while(rs.next()){
-				Fach vrst = new Fach();
+				Veranstaltung vrst = new WP();
 				
-				vrst.setFachKuerzel(rs.getString(_FBKuerzel));
-				vrst.setFachbereich(rs.getString(_fachbereichBezeichnung));
-				vrst.setSemester(rs.getInt(_semester));
-				pos.add(vrst);
-				
-			
-			}
-			statement.close();
-		} 
-		catch (SQLException e) 
-		{
-			e.printStackTrace();
-		}
-		return pos;
-	}
-	//return List<Veranstaltung>
-	public List<Fach> getAllPO(int semester, String fachbereich)
-	{
-		
-		
-		List<Fach> pos = new ArrayList<>();
-		Statement statement = null;
-		String qry = "select * from Veranstaltung where Semester =" + semester
-					+ " AND "+ _FBKuerzel + " = " + fachbereich + "And " + _fachbereichBezeichnung + " = PO";
-		
-		try 
-		{
-			statement = connection.createStatement();
-			ResultSet rs = statement.executeQuery(qry);
-			
-			while(rs.next()){
-				Fach vrst = new Fach();
-				
-				
-				vrst.setFachKuerzel(rs.getString("Fachkürzel"));
+				/**
+				vrst.setVeranstaltungsNr(rs.getInt("VERANSTALTUNGSNR"));
 				vrst.setFachbereich(rs.getString("FACHBEREICH"));
 				vrst.setSemester(rs.getInt("SEMESTER"));
+				vrst.setTyp("WP");
+				wps.add(vrst);
+				**/
+			}
+			statement.close();
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		return wps;
+	}
+	
+	/**
+	 * TODO: Fehler korrigieren, siehe ersten pullrequest (Kommentare
+	 * @param semester
+	 * @param fachbereich
+	 * @return
+	 */
+	public List<Veranstaltung> getAllPO(int semester, String fachbereich)
+	{
+		
+		
+		List<Veranstaltung> pos = new ArrayList<>();
+		Statement statement = null;
+		String qry = "select * from PO where Semester =" + semester
+					+ " AND fachbereich = " + fachbereich;
+		
+		try 
+		{
+			statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(qry);
+			
+			while(rs.next()){
+				Veranstaltung vrst = new Projekt();
+				
+				/**
+				 * TODO: Fehler korrigieren
+				 */
+//				vrst.setVeranstaltungsNr(rs.getInt("VERANSTALTUNGSNR"));
+//				vrst.setFachbereich(rs.getString("FACHBEREICH"));
+//				vrst.setSemester(rs.getInt("SEMESTER"));
+//				vrst.setTyp("PO");
 				pos.add(vrst);
 			}
 			statement.close();
@@ -133,8 +141,12 @@ public class AnzeigerSrv
 		return pos;
 	}
 
-
-	public List<Gruppe> getAllGruppen(@RequestBody Veranstaltung veranstaltung)
+	/**
+	 * TODO: korrigieren -> siehe ersten Pullrequest
+	 * @param veranstaltung
+	 * @return
+	 */
+	public List<Gruppe> getAllGruppen(Veranstaltung veranstaltung)
 	{
 		
 		
@@ -142,11 +154,13 @@ public class AnzeigerSrv
 		Statement statement = null;
 		String qry = null;
 		
- 
+		// Primary-Key = Fachkuerzel der klasse Fach in Veranstaltung
+		/**
+		 * TODO: korrigieren -> 
 		 
-			qry = "select * from GRUPPE where "+ _gruppenNr +" in (select" + _gruppenNr +" from " + veranstaltungenHabenGruppen +
-			"where " + _veranstaltungPrimary +" = "+ veranstaltung.getFach().getFachKuerzel() + ")";
-		
+			qry = "select * from GRUPPE where GruppenNr in (select GruppenNr from GRUPPEVERANSTALTUNG where"
+				+ "VeranstaltungsNr = "+ veranstaltung.getVeranstaltungsNr() + ")";
+		 */			
 		
 		try 
 		{
@@ -166,16 +180,15 @@ public class AnzeigerSrv
 		}
 		return gruppen;
 	}
-	//sollte eig Teamliste zurückgeben und Fachkürzel für select-Befehl auch Kürzel
+	
 	public List<Person> getAllTeilnehmer(Gruppe gruppe)
 	{
 		
 		
 		List<Person> personen = new ArrayList<>();
 		Statement statement = null;
-		String qry = "select Distinct * from STUDENT where " + _matrikelNummer + "in (select " + _matrikelNummer +
-				" from Team where " + _teamNr + " in (select " + _teamNr + " from " + _gruppenHabenTeams +
-				" where " + _gruppenNr + " = " + gruppe.getGrpNr()+"))";
+		String qry = "select Distinct * from STUDENT where TeamNr in (select TeamNr from GRUPPENTEAM where"
+				+" GruppenNr = "+ gruppe.getGrpNr() + ")";
 		
 		try 
 		{
@@ -197,7 +210,6 @@ public class AnzeigerSrv
 		}
 		return personen;
 	}
-	
 	
 	
 }
