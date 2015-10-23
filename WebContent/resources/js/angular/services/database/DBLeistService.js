@@ -179,8 +179,8 @@
     var hcLeistungen = [leistung1, leistung2, leistung3, leistung4, leistung5, leistung6];
 
     // ==========================================================================
-    
-    
+
+
     // ##########################################################################
 
     // Helper
@@ -206,26 +206,26 @@
 
     // ermittelt alle Faecher (Fachkuerzel) aus der Datenbank, für die Parameter und listet sie im Dropdownmenue
     var updateFaecher = function(typ, fachbereich, semester){
-    	
+
     	// url = fachkuerzel
-    	
+
     	return true;
     }
-    
+
   // ermittelt alle Gruppennummern  aus der Datenbank für die Parameter und listet sie im Dropdownmenue
     var gruppennummernDropDown = function(fachkuerzel, gruppennummer){
-    	
+
     	// url= grNummern
-    	
+
     	return true;
     }
-    
+
     // Ermittelt alle Leistungen aus der Datenbank
     var zeigeLeistungenAn = function(gruppennummer, fachkuerzel){
-    	
+
     	var args = [fachkuerzel, grpNr]; // Json
     	// url = leistungen
-    	
+
     	return true;
     }
 
@@ -262,15 +262,15 @@
 
     var tragePVLEin = function(index, datum, pvl){
 
-      
+
       var leistung = hcLeistungen[index];
       console.log("Vorher: "+leistung.pvl)
       leistung.datumPVL = datum;
       leistung.pvl = pvl;
-      
+
       console.log("Nachher: "+leistung.pvl)
-      
-      
+
+
 
       if(!tragePVLEinDB(leistung)){
         return false;
@@ -289,7 +289,7 @@
     var semester = [1, 2, 3, 4, 5, 6]; // zZ noch hardcoded -> Später Datenbank
     var fachbereiche = ["AI", "WI", "TI"]; // zZ noch hardcoded -> Später Datenbank
     var typen = ["Praktikum", "WP", "PO"];
-    
+
     // Gebe dieses Object zurück und mache die Schnittstelle zugänglich für Client
     // -----------------------------------------------------------------------------------
     return {

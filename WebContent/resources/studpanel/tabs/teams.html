@@ -1,0 +1,52 @@
+<div class="row" id="teams" ng-controller="TeamController">
+  <br />
+  <div class="col-md-10 col-md-offset-1">
+    <div class="panel panel-cust-info">
+      <br />
+      <div class="panel-body">
+        <!--ContentPane start-->
+        <div class="col-md-10 col-md-offset-1">
+          <div class="panel panel-cust-success">
+            <div class="panel-heading">
+              <h2>
+                <strong>Meine Teams</strong>
+              </h2>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-sm-12 inner-addon right-addon">
+                  <span class="glyphicon glyphicon-search"></span>
+                  <input type="text" class="form-control" ng-model="searchKeyword" placeholder="Student, Fach, etc..." />
+                </div>
+              </div>
+              <div class="row">
+                <br/>
+                <div class="col-md-12">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Team-ID</th>
+                        <th>Fach</th>
+                        <th>Grp. Nr.</th>
+                        <th>Mitglieder</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="teameintrag in teams | filter: searchKeyword">
+                        <td>{{teameintrag.team.teamId.id}}</td>
+                        <td>{{teameintrag.fach.fachKuerzel}}</td>
+                        <td>{{teameintrag.team.grpNr}}</td>
+                        <td>{{teameintrag.team.mgString}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--ContentPane end-->
+    </div>
+  </div>
+</div>

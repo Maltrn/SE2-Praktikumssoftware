@@ -10,10 +10,9 @@
   var MeldungenController = function($scope) {
 
     $scope.popover = {};
-    $scope.popover.template = "resources/popovers/meldungen.html"
+    $scope.popover.template = "resources/apanel/popovers/meldungen.html"
   };
   // Controller bei der App "anmelden"
   app.controller("MeldungenController", MeldungenController);
-
   // Code sofort ausführen
 }());

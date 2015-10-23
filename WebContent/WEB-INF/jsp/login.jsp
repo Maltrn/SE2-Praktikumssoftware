@@ -58,7 +58,7 @@
   <script src="<c:url value="/resources/js/bootstrap/ui-bootstrap.min.js" />" ></script>
   <script src="<c:url value="/resources/js/bootstrap/ui-bootstrap-tpls.js" />" ></script>
   <script src="<c:url value="/resources/js/bootstrap/ui-bootstrap-tpls.min.js" />" ></script>
-  <script src="<c:url value="/resources/js/angular/app/login.js" />" ></script>
-  <script src="<c:url value="/resources/js/angular/controllers/LoginController.js" />" ></script>
-  <script src="<c:url value="/resources/js/angular/services/database/DBLoginService.js" />" ></script>
+  <script src="<c:url value="/resources/global/app/login.js" />" ></script>
+  <script src="<c:url value="/resources/global/controllers/LoginController.js" />" ></script>
+  <script src="<c:url value="/resources/global/services/database/DBLoginService.js" />" ></script>
 </html>

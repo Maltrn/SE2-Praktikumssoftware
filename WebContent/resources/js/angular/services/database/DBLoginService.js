@@ -45,7 +45,7 @@
     	}
     	return false;
     }
-    
+
  // #########################################################################
 
     // Gebe dieses Objekt und mache die Methoden sichtbar

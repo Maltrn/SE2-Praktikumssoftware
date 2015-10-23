@@ -91,13 +91,26 @@ public class LoginSrv {
 	 * da Studentpanel noch nicht erstellt
 	 * @return View
 	 */
-	public ModelAndView ladeMainPanel() {
+	public ModelAndView ladeAngestPanel() {
 		
 		erzeugeServices();
 		ModelAndView mv = new ModelAndView("apanel");
 			// informiere... (zb "fail"-View laden -> muss erst noch erstellt werden)
+		return mv;
+	}
+	
+	
+	/**
+	 * Lädt das Mainpanel (Angestellter)
+	 * HINWEIS: Erstmal wird für beide Benutzer die gleiche View geladen,
+	 * da Studentpanel noch nicht erstellt
+	 * @return View
+	 */
+	public ModelAndView ladeStudPanel() {
 		
-
+		erzeugeServices();
+		ModelAndView mv = new ModelAndView("spanel");
+			// informiere... (zb "fail"-View laden -> muss erst noch erstellt werden)
 		return mv;
 	}
 

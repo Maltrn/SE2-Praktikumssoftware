@@ -137,7 +137,7 @@
 
       return true;
     }
-    
+
     $scope.isValidProfInput = function(expr){
 
         for(var i = 0; i < DBVeranstService.professoren.length; i++){
@@ -148,7 +148,7 @@
         }
         return false;
       }
-    
+
     $scope.isValidAssistInput = function(expr){
 
         for(var i = 0; i < DBVeranstService.assistenten.length; i++){
@@ -197,7 +197,7 @@
         $scope.gr.termine.splice(ngIndex, 1);
       }
 
-      
+
     // Fügt einen weiteren Termin hinzu
     $scope.terminHinzufuegen = function() {
         var lastAppDate = $scope.gr.termine[$scope.gr.termine.length - 1].datum;
@@ -231,7 +231,7 @@
       if (!DBGruppService.addGruppe(gr)) {
         // Fehlermeldung -> TODO: implement
       }
-     
+
       autoscroller.erstellen = null;
 
       // Termine zurücksetzen
@@ -250,7 +250,7 @@
       $scope.gr.maxTeams = DBGruppService.hcGruppenDaten[indexGrEdit].maxTeams
       $scope.gr.resTeams = DBGruppService.hcGruppenDaten[indexGrEdit].resTeams;
       $scope.gr.anzTeams = DBGruppService.hcGruppenDaten[indexGrEdit].anzTeams;
-      
+
 
     }
 
@@ -287,7 +287,7 @@
 
       // Termine zurücksetzen
       $scope.gr.termine = DBGruppService.resetAppValues();
-      
+
       // Modal schließen forcieren, bug über normalen Weg (data-dismiss-tag) TODO: FIX
       $('#gruppeBearbeiten').modal('hide');
       $('body').removeClass('modal-open');

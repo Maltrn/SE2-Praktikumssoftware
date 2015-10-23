@@ -73,11 +73,11 @@ public class LeistungenAnzSrv {
 			
 		}else if(typ.equals("po")){
 			
-			veranstaltungen = veranAnzSrv.getAllPO(semester, fachbereich);
+			//veranstaltungen = veranAnzSrv.getAllPO(semester, fachbereich);
 			
 		}else{
 			
-			veranstaltungen = veranAnzSrv.getAllWP(semester, fachbereich);
+			//veranstaltungen = veranAnzSrv.getAllWP(semester, fachbereich);
 			
 		}
 		
